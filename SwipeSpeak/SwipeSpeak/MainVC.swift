@@ -95,8 +95,8 @@ class MainVC: UIViewController {
         
         swipeView = SwipeView(frame: CGRect(x: 0, y: screenH - keyboardView.frame.height,
                                                   width: screenW, height: keyboardView.frame.height),
-                                    keyboardView: keyboardView,
-                                    keyViewList: keyViewList)
+                              keyboardView: keyboardView,
+                              keyViewList:  keyViewList)
         self.view.addSubview(swipeView)
         
         sentenceLabel = UILabel(frame: CGRect(x: 0, y: 30, width: screenW, height: 60))
@@ -108,6 +108,7 @@ class MainVC: UIViewController {
         self.view.addSubview(sentenceLabel)
         
         wordLabel = UILabel(frame: CGRect(x: 0, y: 140, width: screenW, height: 60))
+        wordLabel.text = ""
         wordLabel.backgroundColor = UIColor.white
         wordLabel.font = UIFont.boldSystemFont(ofSize: 30)
         wordLabel.isUserInteractionEnabled = true
@@ -144,6 +145,9 @@ class MainVC: UIViewController {
         self.view.addSubview(settingsButton)
         
         setupPredictionLabels()
+        
+        backspaceAll()
+        resetBuildWordMode()
     }
     
     func setupPredictionLabels() {
@@ -307,6 +311,7 @@ class MainVC: UIViewController {
     // E.g. if key list is [down, right, left], "unit" is the first prediction.
     // But there are only 3 keys in list, so we should show "uni" in input box.
     func trimmedStringForwordLabel(_ result: String) -> String {
+        if result == "" { return "" }
         return result.substring(to: result.characters.index(result.startIndex, offsetBy: enteredKeyList.count))
     }
     
