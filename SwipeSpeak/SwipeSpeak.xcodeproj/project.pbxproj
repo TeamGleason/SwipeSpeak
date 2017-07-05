@@ -11,6 +11,7 @@
 		DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001A1F0DA0C2003BEE3D /* Utility.swift */; };
 		DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */; };
 		DA07001F1F0DA72A003BEE3D /* WordList.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA07001E1F0DA72A003BEE3D /* WordList.csv */; };
+		DA0700211F0DA84A003BEE3D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700201F0DA84A003BEE3D /* SettingsVC.swift */; };
 		DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */; };
 		DA57B1FC1F0D9EC100895E18 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1FB1F0D9EC100895E18 /* MainVC.swift */; };
 		DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B1FD1F0D9EC100895E18 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		DA07001A1F0DA0C2003BEE3D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordPredictionEngine.swift; sourceTree = "<group>"; };
 		DA07001E1F0DA72A003BEE3D /* WordList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordList.csv; sourceTree = "<group>"; };
+		DA0700201F0DA84A003BEE3D /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DA57B1F61F0D9EC100895E18 /* SwipeSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA57B1FB1F0D9EC100895E18 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				DA57B1FB1F0D9EC100895E18 /* MainVC.swift */,
 				DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */,
 				DA0700181F0DA06B003BEE3D /* SwipeView.swift */,
+				DA0700201F0DA84A003BEE3D /* SettingsVC.swift */,
 				DA07001A1F0DA0C2003BEE3D /* Utility.swift */,
 				DA07001E1F0DA72A003BEE3D /* WordList.csv */,
 				DA57B1FD1F0D9EC100895E18 /* Main.storyboard */,
@@ -155,6 +158,7 @@
 				DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */,
 				DA57B1FC1F0D9EC100895E18 /* MainVC.swift in Sources */,
 				DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */,
+				DA0700211F0DA84A003BEE3D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

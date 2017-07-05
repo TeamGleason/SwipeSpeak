@@ -1,5 +1,5 @@
 //
-//  DrawableView.swift
+//  SwipeView.swift
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
