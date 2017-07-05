@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700181F0DA06B003BEE3D /* SwipeView.swift */; };
+		DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001A1F0DA0C2003BEE3D /* Utility.swift */; };
+		DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */; };
 		DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */; };
-		DA57B1FC1F0D9EC100895E18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1FB1F0D9EC100895E18 /* ViewController.swift */; };
+		DA57B1FC1F0D9EC100895E18 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1FB1F0D9EC100895E18 /* MainVC.swift */; };
 		DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B1FD1F0D9EC100895E18 /* Main.storyboard */; };
 		DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2001F0D9EC100895E18 /* Assets.xcassets */; };
 		DA57B2041F0D9EC100895E18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2021F0D9EC100895E18 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA0700181F0DA06B003BEE3D /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		DA07001A1F0DA0C2003BEE3D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordPredictionEngine.swift; sourceTree = "<group>"; };
 		DA57B1F61F0D9EC100895E18 /* SwipeSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA57B1FB1F0D9EC100895E18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA57B1FB1F0D9EC100895E18 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DA57B1FE1F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA57B2001F0D9EC100895E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA57B2031F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */,
-				DA57B1FB1F0D9EC100895E18 /* ViewController.swift */,
+				DA57B1FB1F0D9EC100895E18 /* MainVC.swift */,
+				DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */,
+				DA0700181F0DA06B003BEE3D /* SwipeView.swift */,
+				DA07001A1F0DA0C2003BEE3D /* Utility.swift */,
 				DA57B1FD1F0D9EC100895E18 /* Main.storyboard */,
 				DA57B2001F0D9EC100895E18 /* Assets.xcassets */,
 				DA57B2021F0D9EC100895E18 /* LaunchScreen.storyboard */,
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA57B1FC1F0D9EC100895E18 /* ViewController.swift in Sources */,
+				DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */,
+				DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */,
+				DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */,
+				DA57B1FC1F0D9EC100895E18 /* MainVC.swift in Sources */,
 				DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +314,7 @@
 				DA57B20A1F0D9EC100895E18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
