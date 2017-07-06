@@ -104,7 +104,7 @@ class MainVC: UIViewController {
         sentenceLabel.backgroundColor = UIColor.white
         sentenceLabel.font = UIFont.systemFont(ofSize: 30)
         sentenceLabel.isUserInteractionEnabled = true
-        sentenceLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readAloudSentence)))
+        sentenceLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sentenceLabelTouched)))
         self.view.addSubview(sentenceLabel)
         
         wordLabel = UILabel(frame: CGRect(x: 0, y: 140, width: screenW, height: 60))
@@ -329,7 +329,10 @@ class MainVC: UIViewController {
         }
     }
     
-    func readAloudSentence() {
+    func sentenceLabelTouched() {
+        if sentenceLabel.text == "" { return }
+        
+        addSentenceToCSV(sentenceLabel.text!)
         readAloudText(sentenceLabel.text!)
         resetAfterWordAdded()
         sentenceLabel.text = ""

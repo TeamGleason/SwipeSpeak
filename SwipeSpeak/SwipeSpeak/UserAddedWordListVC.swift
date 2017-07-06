@@ -38,13 +38,7 @@ class UserAddedWordListVC: UITableViewController {
         
         self.tableView.reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        saveWordList()
-    }
-    
     // Update number of rows in tableview (only one section in the tableview).
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userAddedWordList.count
