@@ -92,7 +92,7 @@ class MainVC: UIViewController {
         
         setupKeyboard()
         
-        swipeView = SwipeView(frame: CGRect(x: 0, y: screenH - keyboardView.frame.height, width: screenW, height: keyboardView.frame.height),
+        swipeView = SwipeView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH),
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList)
         self.view.addSubview(swipeView)

@@ -110,8 +110,7 @@ class SwipeView: UIView {
     
     func handleTap(_ recognizer:UITapGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
-        let pointInKeyboardView = CGPoint(x: currentPoint.x - keyboardView.frame.minX, y: currentPoint.y)
-        
+        let pointInKeyboardView = CGPoint(x: currentPoint.x - keyboardView.frame.minX, y: currentPoint.y - keyboardView.frame.minY)
         for i in 0 ..< keyViewList.count {
             if keyViewList[i].frame.contains(pointInKeyboardView) {
                 AudioServicesPlaySystemSound(1105)
