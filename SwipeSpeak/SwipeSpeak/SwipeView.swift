@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class SwipeView: UIView {
     var swipeDirectionList = [Int]()
@@ -113,6 +114,8 @@ class SwipeView: UIView {
         
         for i in 0 ..< keyViewList.count {
             if keyViewList[i].frame.contains(pointInKeyboardView) {
+                AudioServicesPlaySystemSound(1105)
+
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: i)
                 return
             }
@@ -145,6 +148,8 @@ class SwipeView: UIView {
             // When user completes swipe gesture, find the majority velocity direction during the swipe.
             let majorityDirection = (Int)(swipeDirectionList.index(of: swipeDirectionList.max()!)!)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: majorityDirection)
+            
+            AudioServicesPlaySystemSound(1004)
             
             // Clean the path.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

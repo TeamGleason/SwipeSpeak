@@ -80,7 +80,6 @@ class MainVC: UIViewController {
             if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
                 for pair in wordAndFrequencyList {
                     wordPredictionEngine.insert(pair.0, frequency: pair.1)
-                    print(pair)
                 }
             }
         }
@@ -93,8 +92,7 @@ class MainVC: UIViewController {
         
         setupKeyboard()
         
-        swipeView = SwipeView(frame: CGRect(x: 0, y: screenH - keyboardView.frame.height,
-                                                  width: screenW, height: keyboardView.frame.height),
+        swipeView = SwipeView(frame: CGRect(x: 0, y: screenH - keyboardView.frame.height, width: screenW, height: keyboardView.frame.height),
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList)
         self.view.addSubview(swipeView)
@@ -105,6 +103,7 @@ class MainVC: UIViewController {
         sentenceLabel.font = UIFont.systemFont(ofSize: 30)
         sentenceLabel.isUserInteractionEnabled = true
         sentenceLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sentenceLabelTouched)))
+        sentenceLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.sentenceLabelLongPressed)))
         self.view.addSubview(sentenceLabel)
         
         wordLabel = UILabel(frame: CGRect(x: 0, y: 140, width: screenW, height: 60))
@@ -271,7 +270,7 @@ class MainVC: UIViewController {
         if index != -1 {
             // Visual indicator
             keyViewList[index].layer.borderWidth = 3
-            
+            /*
             // Audio indicator
             if getNumberOfKeys() == 4 {
                 readAloudText(audioCue4Keys[index])
@@ -280,6 +279,7 @@ class MainVC: UIViewController {
             } else if getNumberOfKeys() == 8 {
                 readAloudText(audioCue8Keys[index])
             }
+             */
         }
     }
     
@@ -331,9 +331,15 @@ class MainVC: UIViewController {
     
     func sentenceLabelTouched() {
         if sentenceLabel.text == "" { return }
+
+        readAloudText(sentenceLabel.text!)
+        sentenceLabelLongPressed()
+    }
+    
+    func sentenceLabelLongPressed() {
+        if sentenceLabel.text == "" { return }
         
         addSentenceToCSV(sentenceLabel.text!)
-        readAloudText(sentenceLabel.text!)
         resetAfterWordAdded()
         sentenceLabel.text = ""
     }
