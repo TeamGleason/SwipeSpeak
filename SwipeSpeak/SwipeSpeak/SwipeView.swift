@@ -12,6 +12,7 @@ import AVFoundation
 
 class SwipeView: UIView {
     var swipeDirectionList = [Int]()
+    var firstStroke = -1
     
     var path = UIBezierPath()
     var previousPoint: CGPoint
@@ -24,7 +25,7 @@ class SwipeView: UIView {
         super.init(frame: frame)
     }
     
-    init(frame: CGRect, keyboardView: UIView, keyViewList: [UILabel]) {
+    init(frame: CGRect, keyboardView: UIView, keyViewList: [UILabel], isTwoStrokes: Bool) {
         previousPoint = CGPoint.zero
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
@@ -34,12 +35,18 @@ class SwipeView: UIView {
         
         self.isUserInteractionEnabled = true
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        self.addGestureRecognizer(tap)
-        
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
-        pan.maximumNumberOfTouches = 1
-        self.addGestureRecognizer(pan)
+        if isTwoStrokes {
+            let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipeTwoStrokes(_:)))
+            pan.maximumNumberOfTouches = 1
+            self.addGestureRecognizer(pan)
+        } else {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            self.addGestureRecognizer(tap)
+            
+            let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
+            pan.maximumNumberOfTouches = 1
+            self.addGestureRecognizer(pan)
+        }
     }
     
     
@@ -56,11 +63,11 @@ class SwipeView: UIView {
     }
     
     
-    func swipeToKey(_ velocity: CGPoint) -> Int {
+    func swipeToKey(_ velocity: CGPoint, numberOfKeys: Int) -> Int {
         var degree = (Double)(atan2(velocity.y, velocity.x)) * 180 / Double.pi
         if (degree < 0) { degree += 360 }
         
-        if getNumberOfKeys() == 4 {
+        if numberOfKeys == 4 {
             if (315 <= degree && degree <= 360) || (0 <= degree && degree < 45) {
                 return 1
             } else if (45 <= degree && degree < 135) {
@@ -70,7 +77,7 @@ class SwipeView: UIView {
             } else if (225 <= degree && degree < 315) {
                 return 0
             }
-        } else if getNumberOfKeys() == 6 {
+        } else if numberOfKeys == 6 {
             let unit = 22.5
             if (unit*15 <= degree && degree <= 360) || (0 <= degree && degree < unit*2) {
                 return 3
@@ -85,7 +92,7 @@ class SwipeView: UIView {
             } else if (unit*13 <= degree && degree < unit*15) {
                 return 0
             }
-        } else if getNumberOfKeys() == 8 {
+        } else if numberOfKeys == 8 {
             let unit = 22.5
             if (unit*15 <= degree && degree <= 360) || (0 <= degree && degree < unit) {
                 return 3
@@ -103,6 +110,45 @@ class SwipeView: UIView {
                 return 1
             } else if (unit*13 <= degree && degree < unit*15) {
                 return 0
+            }
+        } else if numberOfKeys == -1 { // 6 directions for Steve keyboard layout, stroke 1
+            if (0 <= degree && degree < 60) {
+                return 3
+            } else if (60 <= degree && degree < 120) {
+                return 4
+            } else if (120 <= degree && degree < 180) {
+                return 5
+            } else if (180 <= degree && degree < 240) {
+                return 2
+            } else if (240 <= degree && degree < 300) {
+                return 1
+            } else if (300 <= degree && degree <= 360) {
+                return 0
+            }
+        } else if numberOfKeys == -2 { // 4 directions for Steve keyboard layout, stroke 2
+            if (315 <= degree && degree <= 360) || (0 <= degree && degree < 45) {
+                return 0
+            } else if (45 <= degree && degree < 135) {
+                return 3
+            } else if (135 <= degree && degree < 225) {
+                return 2
+            } else if (225 <= degree && degree < 315) {
+                return 1
+            }
+        } else if numberOfKeys == -3 { // 6 directions(include Y,Z) for Steve keyboard layout, stroke 2
+            let unit = 22.5
+            if (unit*14 <= degree && degree <= 360) || (0 <= degree && degree < unit) {
+                return 0
+            } else if (unit <= degree && degree < unit*3) {
+                return 4
+            } else if (unit*3 <= degree && degree < unit*5) {
+                return 3
+            } else if (unit*5 <= degree && degree < unit*7) {
+                return 5
+            } else if (unit*7 <= degree && degree < unit*10) {
+                return 2
+            } else if (unit*10 <= degree && degree < unit*14) {
+                return 1
             }
         }
         return 0
@@ -138,7 +184,7 @@ class SwipeView: UIView {
         case .changed:
             // When user is doing swipe gesture, find current velocity direction.
             let velocity = recognizer.velocity(in: self)
-            swipeDirectionList[swipeToKey(velocity)] += 1
+            swipeDirectionList[swipeToKey(velocity, numberOfKeys: getNumberOfKeys())] += 1
             
             // Add curve.
             path.addQuadCurve(to: midPoint, controlPoint: previousPoint)
@@ -149,6 +195,65 @@ class SwipeView: UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: majorityDirection)
             
             AudioServicesPlaySystemSound(1004)
+            
+            // Clean the path.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.path.removeAllPoints()
+                self.setNeedsDisplay()
+            }
+            break
+        default:
+            break
+        }
+        
+        previousPoint = currentPoint
+        self.setNeedsDisplay()
+    }
+    
+    func handleSwipeTwoStrokes(_ recognizer:UIPanGestureRecognizer) {
+        let currentPoint = recognizer.location(in: self)
+        let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
+                               y: (previousPoint.y + currentPoint.y) / 2)
+        
+        switch recognizer.state {
+        case .began:
+            // When user starts swipe gesture, reset directionCount.
+            swipeDirectionList = Array<Int>(repeating: 0, count: 6)
+            
+            // Make sure we clean previous gesture.
+            path.removeAllPoints()
+            path.move(to: currentPoint)
+            break
+        case .changed:
+            // When user is doing swipe gesture, find current velocity direction.
+            let velocity = recognizer.velocity(in: self)
+            if firstStroke == -1 {
+                swipeDirectionList[swipeToKey(velocity, numberOfKeys: -1)] += 1
+            } else {
+                if firstStroke == 5 {
+                    swipeDirectionList[swipeToKey(velocity, numberOfKeys: -3)] += 1
+                } else {
+                    swipeDirectionList[swipeToKey(velocity, numberOfKeys: -2)] += 1
+                }
+            }
+            
+            // Add curve.
+            path.addQuadCurve(to: midPoint, controlPoint: previousPoint)
+            break
+        case .ended:
+            // When user completes swipe gesture, find the majority velocity direction during the swipe.
+            let majorityDirection = (Int)(swipeDirectionList.index(of: swipeDirectionList.max()!)!)
+            
+            if firstStroke == -1 {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: majorityDirection)
+                firstStroke = majorityDirection
+                AudioServicesPlaySystemSound(1004)
+            } else {
+                let letterValue = Int((UnicodeScalar(String(keyLetterGroupingSteve[firstStroke][majorityDirection]))?.value)!)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: letterValue)
+                firstStroke = -1
+                AudioServicesPlaySystemSound(1004)
+            }
             
             // Clean the path.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

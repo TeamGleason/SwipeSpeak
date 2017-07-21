@@ -49,6 +49,8 @@ class MainVC: UIViewController {
         setupWordPredictionEngine()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyEntered), name: NSNotification.Name(rawValue: "KeyEntered"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(firstStrokeEntered), name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(secondStrokeEntered), name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +96,8 @@ class MainVC: UIViewController {
         
         swipeView = SwipeView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH),
                               keyboardView: keyboardView,
-                              keyViewList:  keyViewList)
+                              keyViewList:  keyViewList,
+                              isTwoStrokes: getNumberOfKeys() == -1)
         self.view.addSubview(swipeView)
         
         sentenceLabel = UILabel(frame: CGRect(x: 0, y: 30, width: screenW - 60, height: 60))
@@ -183,7 +186,7 @@ class MainVC: UIViewController {
         
         switch getNumberOfKeys() {
         case 4:
-            let keyW: CGFloat = 130
+            let keyW: CGFloat = 140
             let keyH: CGFloat = 100
             let keyGap: CGFloat = 5
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*2+keyGap), y: screenH - (keyH*3+keyGap*2), width: keyW*2+keyGap, height: keyH*3+keyGap*2))
@@ -228,9 +231,9 @@ class MainVC: UIViewController {
             keyLetterGrouping = keyLetterGrouping8Keys
             break
         case -1:
-            let keyW: CGFloat = 90
-            let keyH: CGFloat = 100
             let keyGap: CGFloat = 4
+            let keyW: CGFloat = (screenW - keyGap*2)/3
+            let keyH: CGFloat = keyW
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*2+keyGap), width: keyW*3+keyGap*2, height: keyH*2+keyGap))
             keyViewList = [
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
@@ -259,12 +262,36 @@ class MainVC: UIViewController {
             
             if getNumberOfKeys() == 4 {
                 keyViewList[i].numberOfLines = 2
-                keyViewList[i].font = UIFont.boldSystemFont(ofSize: 32)
+                keyViewList[i].font = UIFont.boldSystemFont(ofSize: 36)
                 var s = keyLetterGrouping[i].uppercased()
                 s.insert("\n", at: s.index(s.startIndex, offsetBy: 3))
                 keyViewList[i].text = s
             }
-            
+            if getNumberOfKeys() == -1 {
+                keyViewList[i].text = ""
+                let keyH = keyViewList[i].frame.height
+                let keyW = keyViewList[i].frame.width
+                let letterSize: CGFloat = 36
+                var letterLabelList = [
+                    UILabel(frame: CGRect(x: keyW - letterSize,     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
+                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: 0,                     width: letterSize, height: letterSize)),
+                    UILabel(frame: CGRect(x: 0,                     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
+                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: keyH - letterSize,     width: letterSize, height: letterSize))
+                ]
+                // Add Y and Z letter
+                if i == 5 {
+                    letterLabelList.append(UILabel(frame: CGRect(x: keyW - letterSize, y: keyH - letterSize, width: letterSize, height: letterSize)))
+                    letterLabelList.append(UILabel(frame: CGRect(x: 0,                 y: keyH - letterSize, width: letterSize, height: letterSize)))
+                }
+                for j in 0 ..< letterLabelList.count {
+                    letterLabelList[j].text = String(keyLetterGrouping[i][j]).uppercased()
+                    letterLabelList[j].font = UIFont.boldSystemFont(ofSize: 36)
+                    letterLabelList[j].textColor = UIColor.white
+                    letterLabelList[j].textAlignment = .center
+                    keyViewList[i].addSubview(letterLabelList[j])
+                }
+                
+            }
             keyboardView.addSubview(keyViewList[i])
         }
         self.view.addSubview(keyboardView)
@@ -297,6 +324,17 @@ class MainVC: UIViewController {
         }
     }
     
+    func firstStrokeEntered(_ notification:NSNotification) {
+        let key = (Int)(notification.object! as! NSNumber)
+        updateKeyboardIndicator(key)
+    }
+    
+    func secondStrokeEntered(_ notification:NSNotification) {
+        let letter = (Int)(notification.object! as! NSNumber)
+        enteredKeyList.append(letter)
+        updatePredictions()
+    }
+    
     func keyEntered(_ notification:NSNotification) {
         let key = (Int)(notification.object! as! NSNumber)
         enteredKeyList.append(key)
@@ -306,9 +344,8 @@ class MainVC: UIViewController {
     }
     
     func backspace() {
-        if (enteredKeyList.count == 0) { return }
-        
         updateKeyboardIndicator(-1)
+        if (enteredKeyList.count == 0) { return }
         
         // Remove last character.
         enteredKeyList.remove(at: enteredKeyList.endIndex - 1)
@@ -393,60 +430,71 @@ class MainVC: UIViewController {
             wordLabel.text = ""
             return
         }
-        if let buildWordButton = predictionLabels.last {
-            buildWordButton.text = buildWordButtonText
-        }
         
-        // Possible words from input T9 digits.
-        let results = wordPredictionEngine.getSuggestions(enteredKeyList)
-        
-        // Show first result in input box.
-        if (results.count >= numPredictionLabels) {
-            // If we already get enough results, we do not need add characters to search predictions.
+        // Possible words from input letters.
+        if getNumberOfKeys() == -1 {
+            let results = wordPredictionEngine.getSuggestionsFromLetter(enteredKeyList)
             wordLabel.text = results[0].0
             // Results is already sorted.
-            for i in 0 ..< numPredictionLabels {
+            for i in 0 ..< min(numPredictionLabels - 1, results.count) {
                 prediction.append(results[i])
             }
         } else {
-            // Add characters after input to get more predictions.
-            var digits = [enteredKeyList]
-            var searchLevel = 0
+            if let buildWordButton = predictionLabels.last {
+                buildWordButton.text = buildWordButtonText
+            }
+
+            // Possible words from input T9 digits.
+            let results = wordPredictionEngine.getSuggestions(enteredKeyList)
             
-            // Do not search too many mutations.
-            while (prediction.count < numPredictionLabels - results.count && searchLevel < 4) {
-                var newDigits = [[Int]]()
-                for digit in digits {
-                    for i in 0 ..< getNumberOfKeys() {
-                        newDigits.append(digit+[i])
-                    }
+            // Show first result in input box.
+            if (results.count >= numPredictionLabels) {
+                // If we already get enough results, we do not need add characters to search predictions.
+                wordLabel.text = results[0].0
+                // Results is already sorted.
+                for i in 0 ..< numPredictionLabels {
+                    prediction.append(results[i])
                 }
-                for digit in newDigits {
-                    prediction += wordPredictionEngine.getSuggestions(digit)
-                }
-                digits = newDigits
-                
-                searchLevel += 1
-            }
-            
-            // Sort all predictions based on frequency.
-            prediction.sort { $0.1 > $1.1 }
-            
-            for i in 0 ..< results.count {
-                prediction.insert(results[i], at: i)
-            }
-            
-            // Cannot find any prediction.
-            if (prediction.count == 0) {
-                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
-                return
-            }
-            
-            let firstPrediction = prediction[0].0
-            if (firstPrediction.characters.count >= enteredKeyList.count) {
-                wordLabel.text = trimmedStringForwordLabel(firstPrediction)
             } else {
-                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                // Add characters after input to get more predictions.
+                var digits = [enteredKeyList]
+                var searchLevel = 0
+                
+                // Do not search too many mutations.
+                while (prediction.count < numPredictionLabels - results.count && searchLevel < 4) {
+                    var newDigits = [[Int]]()
+                    for digit in digits {
+                        for i in 0 ..< getNumberOfKeys() {
+                            newDigits.append(digit+[i])
+                        }
+                    }
+                    for digit in newDigits {
+                        prediction += wordPredictionEngine.getSuggestions(digit)
+                    }
+                    digits = newDigits
+                    
+                    searchLevel += 1
+                }
+                
+                // Sort all predictions based on frequency.
+                prediction.sort { $0.1 > $1.1 }
+                
+                for i in 0 ..< results.count {
+                    prediction.insert(results[i], at: i)
+                }
+                
+                // Cannot find any prediction.
+                if (prediction.count == 0) {
+                    wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                    return
+                }
+                
+                let firstPrediction = prediction[0].0
+                if (firstPrediction.characters.count >= enteredKeyList.count) {
+                    wordLabel.text = trimmedStringForwordLabel(firstPrediction)
+                } else {
+                    wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                }
             }
         }
         

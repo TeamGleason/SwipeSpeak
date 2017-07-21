@@ -98,4 +98,13 @@ class WordPredictionEngine {
         
         return node.words
     }
+    
+    func getSuggestionsFromLetter(_ keyString: [Int]) -> [(String, Int)] {
+        var inputString = ""
+        for letterValue in keyString {
+            inputString += String(describing: UnicodeScalar(letterValue)!)
+        }
+        print(inputString)
+        return [(inputString, 200), ("dsd", 200), ("ss", 200), ("wwe", 200)]
+    }
 }
