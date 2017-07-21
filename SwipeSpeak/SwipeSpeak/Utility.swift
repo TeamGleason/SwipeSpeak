@@ -22,6 +22,7 @@ let numPredictionLabels = 8
 let keyLetterGrouping4Keys = ["abcdef", "ghijkl", "mnopqrs", "tuvwxyz"]
 let keyLetterGrouping6Keys = ["abcd", "efgh", "ijkl", "mnop", "qrstu", "vwxyz"]
 let keyLetterGrouping8Keys = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
 let audioCue4Keys = ["Up", "Left", "Right", "Down"]
 let audioCue6Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down"]
 let audioCue8Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down Left", "Down", "Down Right"]
@@ -33,7 +34,7 @@ var keyboardSettingsUpdated = false
 
 
 func getNumberOfKeys() -> Int {
-    if UserDefaults.standard.integer(forKey: "keyboard") <= 0 {
+    if UserDefaults.standard.integer(forKey: "keyboard") == 0 {
         setKeyboardNumber(4)
         return 4
     }

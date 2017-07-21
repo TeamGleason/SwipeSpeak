@@ -97,7 +97,7 @@ class MainVC: UIViewController {
                               keyViewList:  keyViewList)
         self.view.addSubview(swipeView)
         
-        sentenceLabel = UILabel(frame: CGRect(x: 0, y: 30, width: screenW, height: 60))
+        sentenceLabel = UILabel(frame: CGRect(x: 0, y: 30, width: screenW - 60, height: 60))
         sentenceLabel.text = ""
         sentenceLabel.backgroundColor = UIColor.white
         sentenceLabel.font = UIFont.systemFont(ofSize: 30)
@@ -138,7 +138,7 @@ class MainVC: UIViewController {
         buildWordCancelButton.isHidden = true
         self.view.addSubview(buildWordCancelButton)
         
-        settingsButton = UIButton(frame: CGRect(x: 0, y: screenH - 60, width: 60, height: 60))
+        settingsButton = UIButton(frame: CGRect(x: screenW - 60, y: 30, width: 60, height: 60))
         settingsButton.setImage(UIImage(named:"Settings"), for: .normal)
         settingsButton.addTarget(self, action: #selector(self.settingsButtonTouched), for: .touchUpInside)
         self.view.addSubview(settingsButton)
@@ -227,6 +227,21 @@ class MainVC: UIViewController {
             ]
             keyLetterGrouping = keyLetterGrouping8Keys
             break
+        case -1:
+            let keyW: CGFloat = 90
+            let keyH: CGFloat = 100
+            let keyGap: CGFloat = 4
+            keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*2+keyGap), width: keyW*3+keyGap*2, height: keyH*2+keyGap))
+            keyViewList = [
+                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: keyW+keyGap,     y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH))
+            ]
+            keyLetterGrouping = keyLetterGroupingSteve
+            break
         default:
             break
         }
@@ -241,7 +256,6 @@ class MainVC: UIViewController {
             keyViewList[i].tag = i
             keyViewList[i].layer.borderColor = UIColor.green.cgColor
             keyViewList[i].isUserInteractionEnabled = true
-            //keyViewList[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.touchKeyboard)))
             
             if getNumberOfKeys() == 4 {
                 keyViewList[i].numberOfLines = 2

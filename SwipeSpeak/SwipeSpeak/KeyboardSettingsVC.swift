@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class KeyboardSettingsVC: UITableViewController {
-    let numberOfKeysList = [4, 6, 8]
+    let numberOfKeysList = [4, 6, 8, -1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,8 @@ class KeyboardSettingsVC: UITableViewController {
             selectedCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
         } else if getNumberOfKeys() == 8 {
             selectedCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0))
+        } else if getNumberOfKeys() == -1 {
+            selectedCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0))
         }
         selectedCell.accessoryType = .checkmark
     }
