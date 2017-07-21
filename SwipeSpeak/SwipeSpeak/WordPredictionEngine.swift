@@ -25,10 +25,17 @@ class WordPredictionEngine {
     var keyLetterGrouping = [Character:Int]()
     
     func setKeyLetterGrouping(_ grouping: [String]) {
-        keyLetterGrouping = [Character:Int]()
-        for i in 0 ..< grouping.count {
-            for letter in grouping[i].characters {
-                keyLetterGrouping[letter] = i
+        if getNumberOfKeys() == -1 {
+            keyLetterGrouping = [Character:Int]()
+            for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
+                keyLetterGrouping[Character(UnicodeScalar(letterValue)!)] = Int(letterValue)
+            }
+        } else {
+            keyLetterGrouping = [Character:Int]()
+            for i in 0 ..< grouping.count {
+                for letter in grouping[i].characters {
+                    keyLetterGrouping[letter] = i
+                }
             }
         }
     }
@@ -98,7 +105,7 @@ class WordPredictionEngine {
         
         return node.words
     }
-    
+    /*
     func getSuggestionsFromLetter(_ keyString: [Int]) -> [(String, Int)] {
         var inputString = ""
         for letterValue in keyString {
@@ -106,5 +113,5 @@ class WordPredictionEngine {
         }
         print(inputString)
         return [(inputString, 200), ("dsd", 200), ("ss", 200), ("wwe", 200)]
-    }
+    }*/
 }

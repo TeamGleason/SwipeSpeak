@@ -432,69 +432,79 @@ class MainVC: UIViewController {
         }
         
         // Possible words from input letters.
-        if getNumberOfKeys() == -1 {
-            let results = wordPredictionEngine.getSuggestionsFromLetter(enteredKeyList)
-            wordLabel.text = results[0].0
-            // Results is already sorted.
-            for i in 0 ..< min(numPredictionLabels - 1, results.count) {
-                prediction.append(results[i])
-            }
-        } else {
+        if getNumberOfKeys() != -1 {
             if let buildWordButton = predictionLabels.last {
                 buildWordButton.text = buildWordButtonText
             }
+        }
+        // Possible words from input T9 digits.
+        let results = wordPredictionEngine.getSuggestions(enteredKeyList)
+        
+        // Show first result in input box.
+        if (results.count >= numPredictionLabels) {
+            // If we already get enough results, we do not need add characters to search predictions.
+            wordLabel.text = results[0].0
+            // Results is already sorted.
+            for i in 0 ..< numPredictionLabels {
+                prediction.append(results[i])
+            }
+        } else {
+            // Add characters after input to get more predictions.
+            var digits = [enteredKeyList]
+            var searchLevel = 0
+            var maxSearchLevel = 4
+            if getNumberOfKeys() == -1 { maxSearchLevel = 2 }
 
-            // Possible words from input T9 digits.
-            let results = wordPredictionEngine.getSuggestions(enteredKeyList)
-            
-            // Show first result in input box.
-            if (results.count >= numPredictionLabels) {
-                // If we already get enough results, we do not need add characters to search predictions.
-                wordLabel.text = results[0].0
-                // Results is already sorted.
-                for i in 0 ..< numPredictionLabels {
-                    prediction.append(results[i])
-                }
-            } else {
-                // Add characters after input to get more predictions.
-                var digits = [enteredKeyList]
-                var searchLevel = 0
-                
-                // Do not search too many mutations.
-                while (prediction.count < numPredictionLabels - results.count && searchLevel < 4) {
-                    var newDigits = [[Int]]()
-                    for digit in digits {
+            // Do not search too many mutations.
+            while (prediction.count < numPredictionLabels - results.count && searchLevel < maxSearchLevel) {
+                var newDigits = [[Int]]()
+                for digit in digits {
+                    if getNumberOfKeys() == -1 {
+                        for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
+                            newDigits.append(digit+[Int(letterValue)])
+                        }
+                    } else {
                         for i in 0 ..< getNumberOfKeys() {
                             newDigits.append(digit+[i])
                         }
                     }
-                    for digit in newDigits {
-                        prediction += wordPredictionEngine.getSuggestions(digit)
-                    }
-                    digits = newDigits
-                    
-                    searchLevel += 1
                 }
-                
-                // Sort all predictions based on frequency.
-                prediction.sort { $0.1 > $1.1 }
-                
-                for i in 0 ..< results.count {
-                    prediction.insert(results[i], at: i)
+                for digit in newDigits {
+                    prediction += wordPredictionEngine.getSuggestions(digit)
                 }
+                digits = newDigits
                 
-                // Cannot find any prediction.
-                if (prediction.count == 0) {
-                    wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
-                    return
+                searchLevel += 1
+            }
+            
+            // Sort all predictions based on frequency.
+            prediction.sort { $0.1 > $1.1 }
+            
+            for i in 0 ..< results.count {
+                prediction.insert(results[i], at: i)
+            }
+            
+            if getNumberOfKeys() == -1 {
+                var inputString = ""
+                for letterValue in enteredKeyList {
+                    inputString += String(describing: UnicodeScalar(letterValue)!)
                 }
-                
-                let firstPrediction = prediction[0].0
-                if (firstPrediction.characters.count >= enteredKeyList.count) {
-                    wordLabel.text = trimmedStringForwordLabel(firstPrediction)
-                } else {
-                    wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                if (prediction.count != 0 && prediction[0].0 != inputString) {
+                    prediction.insert((inputString, 0), at: 0)
                 }
+            }
+            
+            // Cannot find any prediction.
+            if (prediction.count == 0) {
+                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                return
+            }
+            
+            let firstPrediction = prediction[0].0
+            if (firstPrediction.characters.count >= enteredKeyList.count) {
+                wordLabel.text = trimmedStringForwordLabel(firstPrediction)
+            } else {
+                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
             }
         }
         
