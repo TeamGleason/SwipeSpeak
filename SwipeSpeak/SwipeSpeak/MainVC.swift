@@ -199,9 +199,9 @@ class MainVC: UIViewController {
             keyLetterGrouping = keyLetterGrouping4Keys
             break
         case 6:
-            let keyW: CGFloat = 100
+            let keyW: CGFloat = 110
             let keyH: CGFloat = 100
-            let keyGap: CGFloat = 2
+            let keyGap: CGFloat = 3
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
             keyViewList = [
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
@@ -214,9 +214,9 @@ class MainVC: UIViewController {
             keyLetterGrouping = keyLetterGrouping6Keys
             break
         case 8:
-            let keyW: CGFloat = 90
+            let keyW: CGFloat = 110
             let keyH: CGFloat = 100
-            let keyGap: CGFloat = 2
+            let keyGap: CGFloat = 3
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
             keyViewList = [
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
@@ -231,7 +231,7 @@ class MainVC: UIViewController {
             keyLetterGrouping = keyLetterGrouping8Keys
             break
         case -1:
-            let keyGap: CGFloat = 4
+            let keyGap: CGFloat = 3
             let keyW: CGFloat = (screenW - keyGap*2)/3
             let keyH: CGFloat = keyW
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*2+keyGap), width: keyW*3+keyGap*2, height: keyH*2+keyGap))
@@ -489,7 +489,7 @@ class MainVC: UIViewController {
                 for letterValue in enteredKeyList {
                     inputString += String(describing: UnicodeScalar(letterValue)!)
                 }
-                if (prediction.count != 0 && prediction[0].0 != inputString) {
+                if (prediction.count == 0 || prediction[0].0 != inputString) {
                     prediction.insert((inputString, 0), at: 0)
                 }
             }

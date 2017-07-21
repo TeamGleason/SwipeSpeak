@@ -244,7 +244,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Keyboard4" translatesAutoresizingMaskIntoConstraints="NO" id="7Aa-BN-cuc">
-                                                    <rect key="frame" x="159" y="9" width="110" height="130"/>
+                                                    <rect key="frame" x="180" y="9" width="110" height="130"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -265,7 +265,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Keyboard6" translatesAutoresizingMaskIntoConstraints="NO" id="jfn-gu-fp9">
-                                                    <rect key="frame" x="150" y="9" width="130" height="130"/>
+                                                    <rect key="frame" x="170" y="9" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -286,7 +286,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Keyboard8" translatesAutoresizingMaskIntoConstraints="NO" id="I2f-c2-zAF">
-                                                    <rect key="frame" x="150" y="9" width="130" height="130"/>
+                                                    <rect key="frame" x="170" y="9" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -299,15 +299,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steve" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-RU-cMF">
-                                                    <rect key="frame" x="20" y="54" width="90" height="40"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 Strokes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-RU-cMF">
+                                                    <rect key="frame" x="20" y="54" width="140" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Keyboard6" translatesAutoresizingMaskIntoConstraints="NO" id="HVs-53-Zfp">
-                                                    <rect key="frame" x="150" y="9" width="130" height="130"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="KeyboardTwoStrokes" translatesAutoresizingMaskIntoConstraints="NO" id="HVs-53-Zfp">
+                                                    <rect key="frame" x="170" y="30" width="130" height="88"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -349,5 +349,6 @@
         <image name="Keyboard4" width="265" height="310"/>
         <image name="Keyboard6" width="304" height="304"/>
         <image name="Keyboard8" width="274" height="304"/>
+        <image name="KeyboardTwoStrokes" width="187" height="124"/>
     </resources>
 </document>
