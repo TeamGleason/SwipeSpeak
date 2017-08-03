@@ -332,6 +332,7 @@ class MainVC: UIViewController {
     func secondStrokeEntered(_ notification:NSNotification) {
         let letter = (Int)(notification.object! as! NSNumber)
         enteredKeyList.append(letter)
+        updateKeyboardIndicator(-1)
         updatePredictions()
     }
     
@@ -344,18 +345,33 @@ class MainVC: UIViewController {
     }
     
     func backspace() {
+        if !buildWordConfirmButton.isHidden { return }
+
         updateKeyboardIndicator(-1)
-        if (enteredKeyList.count == 0) { return }
+        if enteredKeyList.count == 0 { return }
         
-        // Remove last character.
-        enteredKeyList.remove(at: enteredKeyList.endIndex - 1)
-        updatePredictions()
+        // Remove first stroke.
+        if swipeView.firstStroke != -1 {
+            swipeView.firstStroke = -1
+        } else { // Remove last character.
+            enteredKeyList.remove(at: enteredKeyList.endIndex - 1)
+            updatePredictions()
+        }
+
+        AudioServicesPlaySystemSound(1105)
     }
     
     func backspaceAll() {
+        if !buildWordConfirmButton.isHidden { return }
+        
+        if !enteredKeyList.isEmpty {
+            AudioServicesPlaySystemSound(1105)
+        }
+        
         enteredKeyList.removeAll()
         updatePredictions()
         updateKeyboardIndicator(-1)
+        swipeView.firstStroke = -1
     }
     
     // Input box should has same length as entered keys.
@@ -554,7 +570,7 @@ class MainVC: UIViewController {
     func resetBuildWordMode() {
         buildWordTimer.invalidate()
         buildWordProgressIndex = 0
-        buildWordLetterIndex = 0
+        buildWordLetterIndex = -1
         enteredKeyList = [Int]()
         buildWordResult = ""
         for key in keyViewList {
