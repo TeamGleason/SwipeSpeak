@@ -194,6 +194,7 @@ class SwipeView: UIView {
             let majorityDirection = (Int)(swipeDirectionList.index(of: swipeDirectionList.max()!)!)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: majorityDirection)
             
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             AudioServicesPlaySystemSound(1004)
             
             // Clean the path.
@@ -247,11 +248,13 @@ class SwipeView: UIView {
             if firstStroke == -1 {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: majorityDirection)
                 firstStroke = majorityDirection
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 AudioServicesPlaySystemSound(1004)
             } else {
                 let letterValue = Int((UnicodeScalar(String(keyLetterGroupingSteve[firstStroke][majorityDirection]))?.value)!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: letterValue)
                 firstStroke = -1
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 AudioServicesPlaySystemSound(1004)
             }
             
