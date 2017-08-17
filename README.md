@@ -2,9 +2,11 @@
 
 SwipeSpeak is an iPhone app that allows people with locked-in syndrome (**_speakers_**) to communicate. The **_communication partner_** reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences.
 
+SwipeSpeak is an open-source project created by <a href="https://www.microsoft.com/en-us/research/group/enable"/>Microsoft Research Enable Team</a> and <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this software and continues to improve it via the open source project.
+
 # Start Typing
 
-<img src="/assets/images/typing_TASK.jpg" alt="Word Predictions Update After Each Gesture in This Four-gesture Sequence to Spell TASK." width="70%">
+<img src="/assets/images/typing_TASK.jpg" alt="Word Predictions Update After Each Gesture in This Four-gesture Sequence to Spell TASK." width="80%">
 
 **Figure 1. Word Predictions Update After Each Gesture in This Four-gesture Sequence to Spell "task".**
 
@@ -12,7 +14,11 @@ To reduce fatigue and increase throughput, our app uses four simple eye gestures
 
 Our app implements a predictive text engine to find all possible words that could be created with the letters in the groups indicated by a gesture sequence. To enter one character, the speaker moves his eyes in the direction associated with that letter’s group; the communication partner swipes in corresponding direction on phone screen. For example, to enter the word TASK (Figure 1.b), the speaker first looks down for T, then looks up for A, looks right for S, and looks left for K.
 
-<img src="/assets/images/typing_interface.png" alt="Communication Partner Interface." width="70%">
+<br>
+<br>
+<br>
+
+<img src="/assets/images/typing_interface.png" alt="Communication Partner Interface." width="80%">
 
 **Figure 2. Communication Partner Interface.**
 
