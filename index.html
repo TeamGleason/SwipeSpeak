@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SwipeSpeak</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#home" data-toggle="tab" role="tab">Home</a></li>
+                  <li><a href="#typing" data-toggle="tab" role="tab">Typing</a></li>
+                  <li><a href="#settings" data-toggle="tab" role="tab">Out-of-Dictionary Words</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel">
+              <div class="inner cover">
+                <h2>SwipeSpeak</h2>
+                <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                  <img src="assets/images/main.jpg" class="img-screenshot">
+                </div>
+                </div>
+
+                <p class="lead">This site provides a reference for how to use the SwipeSpeak app released as an open-source project (<a href="https://github.com/TeamGleason/SwipeSpeak"/><b>Github</b></a>) by <a href="https://www.microsoft.com/en-us/research/group/enable"/>Microsoft Research Enable Team</a> and <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a <b>research prototype</b> rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this software and continues to improve it via the open source project.</p>
+                <p class="lead">SwipeSpeak is an iPhone app that allows people with locked-in syndrome (<b>speakers</b>) to communicate. The <b>communication partner</b> reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it to the phone’s back for easy reference.</p>
+
+                <div class="row">
+                  <div class="text-center">
+                    <img src="assets/images/AppStore.svg" height="60px" alt="App Store Download Button">
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="tab-pane" id="typing" role="tabpanel">
+              <div class="inner cover">
+                <h2>Typing with EyeGaze</h2>
+                <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                <div class="embed-responsive embed-responsive-16by9 video-wrapper">
+                  <iframe width="1280" height="720" src="https://www.youtube.com/embed/bHwIIVDoZoM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <img src="assets/images/typing_TASK.jpg" class="img-screenshot">
+                  </div>
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <p class="lead text-center"><b>Figure 1. Word Predictions Update After Each Gesture in This Four-gesture Sequence to Spell "task".</b></p>
+                  </div>
+                </div>
+                <p class="lead">To reduce fatigue and increase throughput, our app uses four simple eye gestures (up/down/left/right) to refer to all 26 letters of the English alphabet, using only one gesture per letter entered. This design leads to an ambiguous keyboard (Figure 1.a) in which the letters of the alphabet are clustered into four groups that can each be indicated with one up/down/left/right gesture. On the back of the phone, a four-key image reminds the speaker of the letter groupings associated with each of the four gesture directions; you can print the <a href="assets/files/keyboard.pdf"><b>keyboard layout image file</b></a> and tape it to the back of your phone for easy reference by the speaker. SwipeSpeak also supports multiple keyboards layout with different number of possible eye gesture directions (Figure 2.b).</p>
+                <p class="lead">Our app implements a predictive text engine to find all possible words that could be created with the letters in the groups indicated by a gesture sequence. To enter one character, the speaker moves his eyes in the direction associated with that letter’s group; the communication partner swipes in corresponding direction on phone screen. For example, to enter the word TASK (Figure 1.b), the speaker first looks down for T, then looks up for A, looks right for S, and looks left for K.</p>
+                <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <img src="assets/images/typing_interface.png" class="img-screenshot">
+                  </div>
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <p class="lead text-center"><b>Figure 2. Communication Partner Interface.</b></p>
+                  </div>
+                </div>
+                <p class="lead">In the following instruction, we use "wink left eye" as no, and "wink right eye" as yes. Speakers and their communication partners can use their own agreed-upon eye gestures for yes/no.</p>
+                <p class="lead">When the speaker mistypes a letter, he can wink left eye to notify the communication partner, who can then <b>touch the backspace key</b> to correct it.</p>
+                <p class="lead">When the speaker finishes a sequence for an entire word, he can wink right eye to notify the communication partner, who can then <b>touch each prediction</b> so that the system will speak it aloud. The speaker can wink right eye again to confirm this prediction, or wink left eye to reject. The communication partner can <b>long press the confirmed prediction</b> to add it to the current sentence, and begin accepting gestures for the next word.</p>
+                <p class="lead">When it feels like the end of a sentence, the communication partner can <b>touch the sentence box</b> to let SwipeSpeak read the entire sentence aloud. The sentence box will be empty after reading.</p>
+                <p class="lead">When the speaker rejects all word predictions, please read the "Out-of-Dictionary Words" on the top bar for solution.</p>
+                <p class="lead">The communication partner can touch the gear icon to access settings.</p>
+                <br>
+              </div>
+            </div>
+            <div class="tab-pane" id="settings" role="tabpanel">
+              <div class="inner cover">
+                <h2>Out-of-Dictionary Words</h2>
+                <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                <div class="embed-responsive embed-responsive-16by9 video-wrapper">
+                  <iframe width="1280" height="720" src="https://www.youtube.com/embed/bHwIIVDoZoM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-12">
+                  <img src="assets/images/typing_out.png" class="img-screenshot">
+                  <div>
+                    <p class="lead text-center"><b>Figure 1. Build an Out-of-dictionary Word.</b></p>
+                  </div>
+                </div>
+                </div>
+                <p class="lead">After typing with several gestures, the desired word may not be in the set of word predictions (Figure 1.a); this is particularly likely for unique words such as proper nouns (e.g., a person’s name). In this case, the communication partner can touch the orange "Build Word" button to allow the speaker to confirm the word, letter by letter.</p>
+                <p class="lead">To build a word, SwipeSpeak will use the most recent gesture sequence before hitting the "Build Word" button. Then, for each gesture in the sequence, SwipeSpeak will read all letters in the key associated with that eye gesture direction. When the desired letter is spoken, the speaker uses a gesture to confirm the letter. The communication partner sees the confirmation gesture and touches "Confirm" button. The communication partner can touch the "Cancel" button anytime to restart typing if the speaker indicates the word is wrong (Figure 1.b).</p>
+                <p class="lead">For example, the speaker looks Up, Right, Down, but does not see the desired word "Amy" in the word predictions. Then, in "Build Word" mode, the speaker will first hear "<b>A</b>, B, C, D, E, F", a letter at a time. When he hears "A", the speaker should confirm the first letter (Figure 1.c). Then the speaker will hear "<b>M</b>, N, O, P, Q, R, S". When he hears "M", the speaker should confirm the second letter. Finally, the speaker will hear "T, U, V, W, X, <b>Y</b>, Z" (Figure 1.d). When hears "Y", the speaker should confirm the last letter (Figure 1.e).</p>
+                <p class="lead">When the speaker confirms all letters of the desired word, it will be added to prediction dictionary for future re-use. The communication partner can also manually add words to prediction dictionary in "Settings -> User-added words". Our prediction dictionary only includes ~5000 common words. The interpreter can add words frequently used by the speaker, so that those words will be shown in word predictions during typing by gaze. Please do not include punctuation or spaces in the new words.</p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p><a href="mailto:MSRssec@microsoft.com">Contact Us</a> | <a href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy & Cookies</a> | <a href="https://go.microsoft.com/fwlink/?LinkID=246338">Terms Of Use</a> | <a href="https://go.microsoft.com/fwlink/?LinkId=506942">Trademarks</a> | © 2017 Microsoft <a href="https://www.microsoft.com"><img src="assets/images/Microsoft_logo.png" height="18px" style="margin-left: 10px; margin-top: -2px"></a> </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
