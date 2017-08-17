@@ -2,7 +2,11 @@
 
 SwipeSpeak is an iPhone app that allows people with locked-in syndrome (**_speakers_**) to communicate. The **_communication partner_** reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences.
 
-SwipeSpeak is an open-source project created by <a href="https://www.microsoft.com/en-us/research/group/enable"/>Microsoft Research Enable Team</a> and <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this software and continues to improve it via the open source project.
+<a href="">
+<img src="assets/images/AppStore.png" width="200px" alt="App Store Download Button">
+</a>
+
+SwipeSpeak is an open-source project created by <a href="https://www.microsoft.com/en-us/research/group/enable"/>Microsoft Research Enable Team</a> and <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this app and continues to improve it via the open source project.
 
 # Start Typing
 
