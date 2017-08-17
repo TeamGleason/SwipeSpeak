@@ -8,4 +8,6 @@ a direction and this corresponds to a letter of the alphabet.
 What SwipeSpeak brings to the table is word prediction to make it easier to say
 words with fewer eye gestures.
 
-![2 Swipe ScreenShot](/media/ScreenShot2Swipe.png | width=100)
+![2 Swipe ScreenShot](/media/ScreenShot2Swipe.png){:class="img-responsive"}
+![2 Swipe ScreenShot](/media/ScreenShot2Swipe.png){:height="50%" width="50%"}
+![2 Swipe ScreenShot](/media/ScreenShot2Swipe.png){:height="700px" width="400px"}
