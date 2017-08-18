@@ -192,8 +192,8 @@ class MainVC: UIViewController {
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*2+keyGap), y: screenH - (keyH*3+keyGap*2), width: keyW*2+keyGap, height: keyH*3+keyGap*2))
             keyViewList = [
                 UILabel(frame: CGRect(x: (keyW+keyGap)/2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: keyW+keyGap,     y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)/2, y: (keyH + keyGap)*2, width: keyW, height: keyH))
             ]
             keyLetterGrouping = keyLetterGrouping4Keys
@@ -204,11 +204,11 @@ class MainVC: UIViewController {
             let keyGap: CGFloat = 3
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
             keyViewList = [
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: keyW+keyGap,     y: (keyH + keyGap)*2, width: keyW, height: keyH))
             ]
             keyLetterGrouping = keyLetterGrouping6Keys
@@ -219,14 +219,14 @@ class MainVC: UIViewController {
             let keyGap: CGFloat = 3
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
             keyViewList = [
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: (keyH + keyGap)*2, width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: keyW+keyGap,     y: (keyH + keyGap)*2, width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: (keyH + keyGap)*2, width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: (keyH + keyGap)*2, width: keyW, height: keyH))
+                UILabel(frame: CGRect(x: 0,               y: (keyH + keyGap)*2, width: keyW, height: keyH))
             ]
             keyLetterGrouping = keyLetterGrouping8Keys
             break
@@ -236,12 +236,12 @@ class MainVC: UIViewController {
             let keyH: CGFloat = keyW
             keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*2+keyGap), width: keyW*3+keyGap*2, height: keyH*2+keyGap))
             keyViewList = [
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
+                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
                 UILabel(frame: CGRect(x: keyW+keyGap,     y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH))
+                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH))
             ]
             keyLetterGrouping = keyLetterGroupingSteve
             break
@@ -273,9 +273,9 @@ class MainVC: UIViewController {
                 let keyW = keyViewList[i].frame.width
                 let letterSize: CGFloat = 36
                 var letterLabelList = [
-                    UILabel(frame: CGRect(x: 0,                     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
-                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: 0,                     width: letterSize, height: letterSize)),
                     UILabel(frame: CGRect(x: keyW - letterSize,     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
+                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: 0,                     width: letterSize, height: letterSize)),
+                    UILabel(frame: CGRect(x: 0,                     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
                     UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: keyH - letterSize,     width: letterSize, height: letterSize))
                 ]
                 // Add Y and Z letter
