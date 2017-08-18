@@ -1,6 +1,6 @@
 # SwipeSpeak
 
-SwipeSpeak is an iPhone app that allows people with locked-in syndrome (**_speakers_**) to communicate. The **_communication partner_** reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences.
+SwipeSpeak is an iPhone app that allows people with locked-in syndrome (**_speakers_**) to communicate. The **_communication partner_** reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it somewhere that speakers can see for easy reference.</p>
 
 <a href="">
 <img src="assets/images/AppStore.png" width="200px" alt="App Store Download Button">
