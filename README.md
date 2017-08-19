@@ -42,6 +42,14 @@ The communication partner can touch the gear icon to access settings.
 <br>
 <br>
 
-<img src="/assets/images/typing_out.png" alt="Communication Partner Interface." width="80%">
+<img src="/assets/images/typing_out.png" alt="Build an Out-of-dictionary Word." width="80%">
 
 **Figure 3. Build an Out-of-dictionary Word.**
+
+After typing with several gestures, the desired word may not be in the set of word predictions (Figure 3.a); this is particularly likely for unique words such as proper nouns (e.g., a person’s name). In this case, the communication partner can touch the orange "Build Word" button to allow the speaker to confirm the word, letter by letter.
+
+To build a word, SwipeSpeak will use the most recent gesture sequence before hitting the "Build Word" button. Then, for each gesture in the sequence, SwipeSpeak will read all letters in the key associated with that eye gesture direction. When the desired letter is spoken, the speaker uses a gesture to confirm the letter. The communication partner sees the confirmation gesture and touches "Confirm" button. The communication partner can touch the "Cancel" button anytime to restart typing if the speaker indicates the word is wrong (Figure 3.b).
+
+For example, the speaker looks Up, Right, Down, but does not see the desired word "Amy" in the word predictions. Then, in "Build Word" mode, the speaker will first hear "<b>A</b>, B, C, D, E, F", a letter at a time. When he hears "A", the speaker should confirm the first letter (Figure 3.c). Then the speaker will hear "<b>M</b>, N, O, P, Q, R, S". When he hears "M", the speaker should confirm the second letter. Finally, the speaker will hear "T, U, V, W, X, <b>Y</b>, Z" (Figure 3.d). When hears "Y", the speaker should confirm the last letter (Figure 3.e).
+
+When the speaker confirms all letters of the desired word, it will be added to prediction dictionary for future re-use. The communication partner can also manually add words to prediction dictionary in "Settings -> User-added words". Our prediction dictionary only includes ~5000 common words. The interpreter can add words frequently used by the speaker, so that those words will be shown in word predictions during typing by gaze. Please do not include punctuation or spaces in the new words.
