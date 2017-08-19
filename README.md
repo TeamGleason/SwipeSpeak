@@ -42,7 +42,7 @@ The communication partner can touch the gear icon to access settings.
 <br>
 <br>
 
-<img src="/assets/images/typing_out.png" alt="Build an Out-of-dictionary Word." width="80%">
+<img src="/assets/images/typing_out.png" alt="Build an Out-of-dictionary Word.">
 
 **Figure 3. Build an Out-of-dictionary Word.**
 
