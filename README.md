@@ -1,12 +1,12 @@
 # SwipeSpeak
 
-SwipeSpeak is an iPhone app that allows people with locked-in syndrome (**_speakers_**) to communicate. The **_communication partner_** reads eye gestures of speakers and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it somewhere that speakers can see for easy reference.</p>
+SwipeSpeak is an iPhone app that allows people to communicate with eye gestures. The **_communication partner_** reads eye gestures of the **_speaker_** and swipes in corresponding direction on phone screen. Then SwipeSpeak will translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it somewhere that speakers can see for easy reference.</p>
 
 <a href="">
 <img src="assets/images/AppStore.png" width="200px" alt="App Store Download Button">
 </a>
 
-SwipeSpeak is an open-source project created by <a href="https://www.microsoft.com/en-us/research/group/enable"/>Microsoft Research Enable Team</a> and <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this app and continues to improve it via the open source project.
+SwipeSpeak is an open-source project created by <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this app and continues to improve it via the open source project.
 
 # Start Typing
 
@@ -34,6 +34,14 @@ When the speaker finishes a sequence for an entire word, he can wink right eye t
 
 When it feels like the end of a sentence, the communication partner can touch the sentence box to let SwipeSpeak read the entire sentence aloud. The sentence box will be empty after reading.
 
-When the speaker rejects all word predictions, please read the "Out-of-Dictionary Words" on the top bar for solution.
+When the speaker rejects all word predictions, please read the "Out-of-Dictionary Words" below for solution.
 
 The communication partner can touch the gear icon to access settings.
+
+<br>
+<br>
+<br>
+
+<img src="/assets/images/typing_out.png" alt="Communication Partner Interface." width="80%">
+
+**Figure 3. Build an Out-of-dictionary Word.**
