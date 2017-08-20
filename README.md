@@ -24,7 +24,7 @@ Our app implements a predictive text engine to find all possible words that coul
 
 <img src="/assets/images/typing_interface.png" alt="Communication Partner Interface." width="80%">
 
-**Figure 2. Communication Partner Interface.**
+**Figure 2. Communication Partner Interface.** (<a href="/assets/files/Typing.mp4">Demo Video</a>)
 
 In the following instruction, we use "wink left eye" as no, and "wink right eye" as yes. Speakers and their communication partners can use their own agreed-upon eye gestures for yes/no.
 
@@ -44,7 +44,7 @@ The communication partner can touch the gear icon to access settings.
 
 <img src="/assets/images/typing_out.png" alt="Build an Out-of-dictionary Word.">
 
-**Figure 3. Build an Out-of-dictionary Word.**
+**Figure 3. Build an Out-of-dictionary Word.** (<a href="/assets/files/Out.mp4">Demo Video</a>)
 
 After typing with several gestures, the desired word may not be in the set of word predictions (Figure 3.a); this is particularly likely for unique words such as proper nouns (e.g., a person’s name). In this case, the communication partner can touch the orange "Build Word" button to allow the speaker to confirm the word, letter by letter.
 
