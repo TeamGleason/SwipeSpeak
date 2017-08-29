@@ -40,10 +40,24 @@ func getNumberOfKeys() -> Int {
     }
     return UserDefaults.standard.integer(forKey: "keyboard")
 }
-
 func setKeyboardNumber(_ keyboard: Int) {
     UserDefaults.standard.set(keyboard, forKey: "keyboard")
 }
+
+func getAudioCueNumLetterSwitch() -> Bool {
+    return UserDefaults.standard.bool(forKey: "audioCueNumLetterSwitch")
+}
+func setAudioCueNumLetterSwitch(_ value: Bool) {
+    UserDefaults.standard.set(value, forKey: "audioCueNumLetterSwitch")
+}
+
+func getBuildWordPauseSwitch() -> Bool {
+    return UserDefaults.standard.bool(forKey: "buildWordPauseSwitch")
+}
+func setBuildWordPauseSwitch(_ value: Bool) {
+    UserDefaults.standard.set(value, forKey: "buildWordPauseSwitch")
+}
+
 
 func fileInDocumentsDirectory(_ folderName: String, fileName: String) -> String {
     var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

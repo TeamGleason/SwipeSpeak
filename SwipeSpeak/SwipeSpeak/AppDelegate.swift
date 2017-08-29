@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Set default settings value to true.
+        UserDefaults.standard.register(defaults: ["audioCueNumLetterSwitch" : true,
+                                                  "buildWordPauseSwitch"    : true])
+        
         return true
     }
 

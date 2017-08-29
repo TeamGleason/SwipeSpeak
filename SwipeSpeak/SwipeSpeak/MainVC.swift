@@ -36,6 +36,7 @@ class MainVC: UIViewController {
     var buildWordResult = ""
     var buildWordConfirmButton = UIButton()
     var buildWordCancelButton = UIButton()
+    var buildWordPauseSeconds = 3.5
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -62,6 +63,12 @@ class MainVC: UIViewController {
             setupWordPredictionEngine()
             userAddedWordListUpdated = false
             keyboardSettingsUpdated = false
+        }
+        
+        if getBuildWordPauseSwitch() {
+            buildWordPauseSeconds = 3.5
+        } else {
+            buildWordPauseSeconds = 2.0
         }
     }
     
@@ -334,6 +341,11 @@ class MainVC: UIViewController {
         enteredKeyList.append(letter)
         updateKeyboardIndicator(-1)
         updatePredictions()
+        
+        // Indicate how many letter entered, if enabled in settings.
+        if getAudioCueNumLetterSwitch() {
+            readAloudText("Letter " + String(enteredKeyList.count + 1))
+        }
     }
     
     func keyEntered(_ notification:NSNotification) {
@@ -342,6 +354,11 @@ class MainVC: UIViewController {
         // Update predictive text for key list.
         updatePredictions()
         updateKeyboardIndicator(key)
+        
+        // Indicate how many letter entered, if enabled in settings.
+        if getAudioCueNumLetterSwitch() {
+            readAloudText("Letter " + String(enteredKeyList.count + 1))
+        }
     }
     
     func backspace() {
@@ -543,7 +560,7 @@ class MainVC: UIViewController {
         buildWordCancelButton.isHidden = false
         
         buildWordProgressIndex = 0
-        buildWordTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
+        buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
         DispatchQueue.main.async {
             self.wordLabel.text = "Build Word"
             self.readAloudText("Build Word")
@@ -618,7 +635,7 @@ class MainVC: UIViewController {
             self.readAloudText(word + " Next Letter")
             
             sleep(UInt32(self.buildWordResult.characters.count / 2))
-            self.buildWordTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
+            self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
         }
     }
     
