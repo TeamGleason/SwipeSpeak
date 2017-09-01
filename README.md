@@ -1,6 +1,6 @@
 # SwipeSpeak
 
-SwipeSpeak is an iPhone app that allows people to communicate with eye gestures. The **_communication partner_** reads eye gestures of the **_speaker_** and swipes in the corresponding direction on the phone screen. SwipeSpeak will then translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it somewhere that speakers can see for easy reference.</p>
+SwipeSpeak is an iPhone app that allows people to communicate with eye gestures. The **_communication partner_** reads eye gestures of the **_speaker_** and swipes in the corresponding direction on the phone screen. SwipeSpeak will then translate those swipes into words and sentences. We strongly recommend printing the <a href="assets/files/keyboard.pdf">keyboard layout image file</a> and taping it somewhere that speakers can see for easy reference. The communication partner can also attach the keyboard on his/her clothes, make an apron with keyboard print, or insert the keyboard in a transparent binder.</p>
 
 <a href="">
 <img src="assets/images/AppStore.png" width="200px" alt="App Store Download Button">
