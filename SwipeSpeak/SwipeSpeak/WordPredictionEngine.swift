@@ -15,7 +15,7 @@ class TrieNode {
 
 extension String {
     subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
+        return self[self.index(self.startIndex, offsetBy: i)]
     }
 }
 
@@ -33,7 +33,7 @@ class WordPredictionEngine {
         } else {
             keyLetterGrouping = [Character:Int]()
             for i in 0 ..< grouping.count {
-                for letter in grouping[i].characters {
+                for letter in grouping[i] {
                     keyLetterGrouping[letter] = i
                 }
             }
@@ -45,7 +45,7 @@ class WordPredictionEngine {
         
         // Traverse existing nodes as far as possible.
         var i = 0
-        let length = word.characters.count
+        let length = word.count
         while (i < length) {
             var key:Int
             key = keyLetterGrouping[word[i]]!

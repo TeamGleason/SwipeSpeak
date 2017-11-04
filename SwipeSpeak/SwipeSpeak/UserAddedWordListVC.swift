@@ -76,7 +76,7 @@ class UserAddedWordListVC: UITableViewController {
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
             let textField = alertController.textFields![0] as UITextField
-            if (textField.text != nil) && textField.text!.characters.count > 0 {
+            if (textField.text != nil) && textField.text!.count > 0 {
                 self.userAddedWordList.insert(textField.text!, at: 0)
                 self.tableView.reloadData()
                 

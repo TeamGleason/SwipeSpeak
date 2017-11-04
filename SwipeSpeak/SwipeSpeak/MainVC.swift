@@ -396,7 +396,7 @@ class MainVC: UIViewController {
     // But there are only 3 keys in list, so we should show "uni" in input box.
     func trimmedStringForwordLabel(_ result: String) -> String {
         if result == "" { return "" }
-        return result.substring(to: result.characters.index(result.startIndex, offsetBy: enteredKeyList.count))
+        return result.substring(to: result.index(result.startIndex, offsetBy: enteredKeyList.count))
     }
     
     func readAloudText(_ text: String) {
@@ -534,7 +534,7 @@ class MainVC: UIViewController {
             }
             
             let firstPrediction = prediction[0].0
-            if (firstPrediction.characters.count >= enteredKeyList.count) {
+            if (firstPrediction.count >= enteredKeyList.count) {
                 wordLabel.text = trimmedStringForwordLabel(firstPrediction)
             } else {
                 wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
@@ -571,7 +571,7 @@ class MainVC: UIViewController {
         let enteredKey = enteredKeyList[buildWordProgressIndex]
         let lettersOnKey = keyLetterGrouping[enteredKey]
         buildWordLetterIndex += 1
-        buildWordLetterIndex %= lettersOnKey.characters.count
+        buildWordLetterIndex %= lettersOnKey.count
         let letter = lettersOnKey[buildWordLetterIndex]
         DispatchQueue.main.async {
             self.readAloudText(String(letter))
@@ -602,14 +602,14 @@ class MainVC: UIViewController {
         buildWordResult.append(letter)
         
         // Complete the whole word
-        if (buildWordResult.characters.count == enteredKeyList.count) {
+        if (buildWordResult.count == enteredKeyList.count) {
             DispatchQueue.main.async {
                 self.wordLabel.text = self.buildWordResult
                 
                 addWordToCSV(self.buildWordResult)
                 
                 var word = ""
-                for letter in self.buildWordResult.characters {
+                for letter in self.buildWordResult {
                     word += (String(letter) + ", ")
                 }
                 self.readAloudText(word + self.buildWordResult)
@@ -629,12 +629,12 @@ class MainVC: UIViewController {
             self.buildWordTimer.invalidate()
             
             var word = ""
-            for letter in self.buildWordResult.characters {
+            for letter in self.buildWordResult {
                 word += (String(letter) + ", ")
             }
             self.readAloudText(word + " Next Letter")
             
-            sleep(UInt32(self.buildWordResult.characters.count / 2))
+            sleep(UInt32(self.buildWordResult.count / 2))
             self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
         }
     }
