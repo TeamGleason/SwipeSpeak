@@ -307,7 +307,7 @@ class MainVC: UIViewController {
     
     /* --------------------UI Interaction-------------------- */
     
-    func settingsButtonTouched() {
+    @objc func settingsButtonTouched() {
         performSegue(withIdentifier: "showSettingsVC", sender: self)
     }
     
@@ -331,13 +331,13 @@ class MainVC: UIViewController {
         }
     }
     
-    func firstStrokeEntered(_ notification:NSNotification) {
-        let key = (Int)(notification.object! as! NSNumber)
+    @objc func firstStrokeEntered(_ notification:NSNotification) {
+        let key = (notification.object! as! NSNumber).intValue
         updateKeyboardIndicator(key)
     }
     
-    func secondStrokeEntered(_ notification:NSNotification) {
-        let letter = (Int)(notification.object! as! NSNumber)
+    @objc func secondStrokeEntered(_ notification:NSNotification) {
+        let letter = (notification.object! as! NSNumber).intValue
         enteredKeyList.append(letter)
         updateKeyboardIndicator(-1)
         updatePredictions()
@@ -348,8 +348,8 @@ class MainVC: UIViewController {
         }
     }
     
-    func keyEntered(_ notification:NSNotification) {
-        let key = (Int)(notification.object! as! NSNumber)
+    @objc func keyEntered(_ notification:NSNotification) {
+        let key = (notification.object! as! NSNumber).intValue
         enteredKeyList.append(key)
         // Update predictive text for key list.
         updatePredictions()
@@ -361,7 +361,7 @@ class MainVC: UIViewController {
         }
     }
     
-    func backspace() {
+    @objc func backspace() {
         if !buildWordConfirmButton.isHidden { return }
 
         updateKeyboardIndicator(-1)
@@ -378,7 +378,7 @@ class MainVC: UIViewController {
         AudioServicesPlaySystemSound(1105)
     }
     
-    func backspaceAll() {
+    @objc func backspaceAll() {
         if !buildWordConfirmButton.isHidden { return }
         
         if !enteredKeyList.isEmpty {
@@ -407,20 +407,20 @@ class MainVC: UIViewController {
         synthesizer.speak(utterance)
     }
     
-    func readAloudLabel(_ sender: UITapGestureRecognizer) {
+    @objc func readAloudLabel(_ sender: UITapGestureRecognizer) {
         if let word = (sender.view as! UILabel).text {
             readAloudText(word)
         }
     }
     
-    func sentenceLabelTouched() {
+    @objc func sentenceLabelTouched() {
         if sentenceLabel.text == "" { return }
 
         readAloudText(sentenceLabel.text!)
         sentenceLabelLongPressed()
     }
     
-    func sentenceLabelLongPressed() {
+    @objc func sentenceLabelLongPressed() {
         if sentenceLabel.text == "" { return }
         
         addSentenceToCSV(sentenceLabel.text!)
@@ -438,7 +438,7 @@ class MainVC: UIViewController {
     }
     
     // Interpreter add word to sentence by long press.
-    func addWordToSentence(_ sender: UILongPressGestureRecognizer) {
+    @objc func addWordToSentence(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == .began){
             if let word = (sender.view as! UILabel).text {
                 // Audio feedback after adding a word.
@@ -552,7 +552,7 @@ class MainVC: UIViewController {
     
     /* --------------------Scanning Mode-------------------- */
     
-    func buildWordButtonTouched() {
+    @objc func buildWordButtonTouched() {
         if (enteredKeyList.count == 0) { return }
         
         wordPredictionView.isHidden = true
@@ -567,7 +567,7 @@ class MainVC: UIViewController {
         }
     }
     
-    func scanningLettersOnKey() {
+    @objc func scanningLettersOnKey() {
         let enteredKey = enteredKeyList[buildWordProgressIndex]
         let lettersOnKey = keyLetterGrouping[enteredKey]
         buildWordLetterIndex += 1
@@ -595,7 +595,7 @@ class MainVC: UIViewController {
         }
     }
     
-    func buildWordConfirmButtonTouched() {
+    @objc func buildWordConfirmButtonTouched() {
         if buildWordLetterIndex == -1 { return }
         
         let letter = keyLetterGrouping[enteredKeyList[buildWordProgressIndex]][buildWordLetterIndex]
@@ -639,7 +639,7 @@ class MainVC: UIViewController {
         }
     }
     
-    func buildWordCancelButtonTouched() {
+    @objc func buildWordCancelButtonTouched() {
         resetBuildWordMode()
         
         wordPredictionView.isHidden = false

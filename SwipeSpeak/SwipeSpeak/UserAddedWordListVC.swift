@@ -70,7 +70,7 @@ class UserAddedWordListVC: UITableViewController {
         return false
     }
     
-    func addWordButtonTouched() {
+    @objc func addWordButtonTouched() {
         let alertController = UIAlertController(title: "Add a word", message: "Please do not include punctuation or space.", preferredStyle: .alert)
         
         

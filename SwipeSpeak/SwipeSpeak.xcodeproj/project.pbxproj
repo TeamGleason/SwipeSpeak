@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */; };
 		DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700181F0DA06B003BEE3D /* SwipeView.swift */; };
 		DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001A1F0DA0C2003BEE3D /* Utility.swift */; };
 		DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */; };
@@ -19,10 +20,10 @@
 		DA57B1FC1F0D9EC100895E18 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1FB1F0D9EC100895E18 /* MainVC.swift */; };
 		DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B1FD1F0D9EC100895E18 /* Main.storyboard */; };
 		DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2001F0D9EC100895E18 /* Assets.xcassets */; };
-		DA57B2041F0D9EC100895E18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2021F0D9EC100895E18 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9FD99F21FADFFEB00E34F9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA0700181F0DA06B003BEE3D /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		DA07001A1F0DA0C2003BEE3D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordPredictionEngine.swift; sourceTree = "<group>"; };
@@ -36,7 +37,6 @@
 		DA57B1FB1F0D9EC100895E18 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DA57B1FE1F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA57B2001F0D9EC100895E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DA57B2031F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA57B2051F0D9EC100895E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,8 +81,8 @@
 				DA07001A1F0DA0C2003BEE3D /* Utility.swift */,
 				DA07001E1F0DA72A003BEE3D /* WordList.csv */,
 				DA57B1FD1F0D9EC100895E18 /* Main.storyboard */,
+				B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */,
 				DA57B2001F0D9EC100895E18 /* Assets.xcassets */,
-				DA57B2021F0D9EC100895E18 /* LaunchScreen.storyboard */,
 				DA57B2051F0D9EC100895E18 /* Info.plist */,
 			);
 			path = SwipeSpeak;
@@ -148,9 +148,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA57B2041F0D9EC100895E18 /* LaunchScreen.storyboard in Resources */,
 				DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */,
 				DA07001F1F0DA72A003BEE3D /* WordList.csv in Resources */,
+				B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */,
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,20 +177,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9FD99F21FADFFEB00E34F9F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		DA57B1FD1F0D9EC100895E18 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DA57B1FE1F0D9EC100895E18 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DA57B2021F0D9EC100895E18 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DA57B2031F0D9EC100895E18 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -243,12 +243,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -293,10 +294,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -307,10 +309,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QC5E2933GC;
 				INFOPLIST_FILE = SwipeSpeak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TeamGleason.SwipeSpeak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -320,10 +323,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QC5E2933GC;
 				INFOPLIST_FILE = SwipeSpeak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TeamGleason.SwipeSpeak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

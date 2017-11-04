@@ -154,7 +154,7 @@ class SwipeView: UIView {
         return 0
     }
     
-    func handleTap(_ recognizer:UITapGestureRecognizer) {
+    @objc func handleTap(_ recognizer:UITapGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
         let pointInKeyboardView = CGPoint(x: currentPoint.x - keyboardView.frame.minX, y: currentPoint.y - keyboardView.frame.minY)
         for i in 0 ..< keyViewList.count {
@@ -167,7 +167,7 @@ class SwipeView: UIView {
         }
     }
     
-    func handleSwipe(_ recognizer:UIPanGestureRecognizer) {
+    @objc func handleSwipe(_ recognizer:UIPanGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
         let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
                                y: (previousPoint.y + currentPoint.y) / 2)
@@ -211,7 +211,7 @@ class SwipeView: UIView {
         self.setNeedsDisplay()
     }
     
-    func handleSwipeTwoStrokes(_ recognizer:UIPanGestureRecognizer) {
+    @objc func handleSwipeTwoStrokes(_ recognizer:UIPanGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
         let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
                                y: (previousPoint.y + currentPoint.y) / 2)
