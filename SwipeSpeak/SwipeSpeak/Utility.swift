@@ -13,7 +13,6 @@ import UIKit
 let addedWordFreq = 9999999
 let buttonBackgroundColor = UIColor.init(white: 67/255, alpha: 1)
 let buttonGreenColor = UIColor.init(red: 61/255, green: 193/255, blue: 71/255, alpha: 1)
-let userAddedWordListName = "UserAddedWordList.csv"
 let sentenceHistoryName = "sentenceHistory.csv"
 let buildWordButtonText = "Build Word"
 let screenW = UIScreen.main.bounds.width
@@ -58,7 +57,6 @@ func setBuildWordPauseSwitch(_ value: Bool) {
     UserDefaults.standard.set(value, forKey: "buildWordPauseSwitch")
 }
 
-
 func fileInDocumentsDirectory(_ folderName: String, fileName: String) -> String {
     var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     if folderName != "" {
@@ -66,40 +64,6 @@ func fileInDocumentsDirectory(_ folderName: String, fileName: String) -> String 
     }
     url = url.appendingPathComponent(fileName)
     return url.path
-}
-
-func addWordToCSV(_ word: String) {
-    let line = word + "," + String(addedWordFreq) + "\n"
-    let data = line.data(using: String.Encoding.utf8, allowLossyConversion: false)!
-    
-    let wordList = fileInDocumentsDirectory("", fileName: userAddedWordListName)
-    if !FileManager.default.fileExists(atPath: wordList) {
-        do {
-            try "".write(toFile: wordList, atomically: false, encoding: String.Encoding.utf8)
-        } catch {}
-    }
-    if let fileHandle = FileHandle(forWritingAtPath: wordList) {
-        fileHandle.seekToEndOfFile()
-        fileHandle.write(data)
-        fileHandle.closeFile()
-    }
-}
-
-func addSentenceToCSV(_ sentence: String) {
-    let line = sentence + "," + String(Date().timeIntervalSince1970) + "\n"
-    let data = line.data(using: String.Encoding.utf8, allowLossyConversion: false)!
-    
-    let sentenceHistory = fileInDocumentsDirectory("", fileName: sentenceHistoryName)
-    if !FileManager.default.fileExists(atPath: sentenceHistory) {
-        do {
-            try "".write(toFile: sentenceHistory, atomically: false, encoding: String.Encoding.utf8)
-        } catch {}
-    }
-    if let fileHandle = FileHandle(forWritingAtPath: sentenceHistory) {
-            fileHandle.seekToEndOfFile()
-            fileHandle.write(data)
-            fileHandle.closeFile()
-    }
 }
 
 func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
@@ -117,13 +81,23 @@ func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
     return wordAndFrequencyList
 }
 
-func getSentenceHistoryFromCSV(_ filepath: String) -> [(String, String)] {
-    let contents = try? String(contentsOfFile: filepath)
-    let lines = contents?.components(separatedBy: CharacterSet.newlines).filter{!$0.isEmpty}
-    var sentenceHistoryList = [(String, String)]()
-    for line in lines! {
-        let pair = line.components(separatedBy: ",")
-        sentenceHistoryList.append((pair[0], pair[1]))
+func isWordValid(_ word: String) -> Bool {
+    let predicate = NSPredicate(format:"SELF MATCHES %@", "[A-Za-z]+")
+    return predicate.evaluate(with: word)
+}
+
+extension UIViewController {
+    var isPresentedModaly: Bool {
+        if let index = navigationController?.viewControllers.index(of: self), index > 0 {
+            return false
+        } else if presentingViewController != nil {
+            return true
+        } else if navigationController?.presentingViewController?.presentedViewController == navigationController  {
+            return true
+        } else if tabBarController?.presentingViewController is UITabBarController {
+            return true
+        } else {
+            return false
+        }
     }
-    return sentenceHistoryList
 }

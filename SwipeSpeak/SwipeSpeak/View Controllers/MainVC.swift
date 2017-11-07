@@ -405,6 +405,8 @@ class MainVC: UIViewController {
         // Change speed here.
         utterance.rate = 0.4
         synthesizer.speak(utterance)
+        
+        //print("voices: \(AVSpeechSynthesisVoice.speechVoices())")
     }
     
     @objc func readAloudLabel(_ sender: UITapGestureRecognizer) {

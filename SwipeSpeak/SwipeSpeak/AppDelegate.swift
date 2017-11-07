@@ -6,6 +6,10 @@
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
+// TODO: add icons to settings
+// TODO: share sentance history
+// TODO: add voice over labels
+
 import UIKit
 
 @UIApplicationMain
@@ -18,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set default settings value to true.
         UserDefaults.standard.register(defaults: ["audioCueNumLetterSwitch" : true,
                                                   "buildWordPauseSwitch"    : true])
+        window?.tintColor = UIColor.lightGray
+        
+        if #available(iOS 11, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
         
         return true
     }
@@ -44,6 +53,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

@@ -10,15 +10,30 @@ import Foundation
 import UIKit
 
 class SettingsVC: UITableViewController {
+    
     @IBOutlet weak var numLetterSwitch: UISwitch!
     @IBOutlet weak var pauseSwitch: UISwitch!
-    
+    @IBOutlet weak var keyboardLayoutLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         numLetterSwitch.isOn = getAudioCueNumLetterSwitch()
         pauseSwitch.isOn = getBuildWordPauseSwitch()
+        
+        let keys = getNumberOfKeys()
+        keyboardLayoutLabel.text = NSLocalizedString("\(keys) Keys", comment: "")
+
+    }
+    
+    @IBAction func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func numLetterSwitchTouched(_ sender: UISwitch) {
@@ -35,5 +50,11 @@ class SettingsVC: UITableViewController {
         } else {
             setBuildWordPauseSwitch(false)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Reload the image for the tint to take effect
+        cell.imageView?.tintColor = UIColor.lightGray
+        cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
     }
 }
