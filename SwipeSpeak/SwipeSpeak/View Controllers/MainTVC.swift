@@ -3,11 +3,11 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import UIKit
-import AVFoundation
 
 class MainTVC: UITableViewController {
     
@@ -19,15 +19,10 @@ class MainTVC: UITableViewController {
     @IBOutlet var keysView8Keys: UIView!
     @IBOutlet var keysView2Strokes: UIView!
 
-    
-    
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var backspaceButton: UIButton!
     var wordPredictionView: UIView!
-    
-    // Text to Speech
-    let synthesizer = AVSpeechSynthesizer()
     
     var swipeView: SwipeView!
     var settingsButton = UIButton()
@@ -36,16 +31,11 @@ class MainTVC: UITableViewController {
     var wordPredictionEngine: WordPredictionEngine!
     var enteredKeyList = [Int]()
     var keyViewList = [UILabel]()
-    //var keyboardView = UIView()
     var keyboardView: UIView!
     @IBOutlet weak var keyboardContainerView: UIView!
     
     var keyLetterGrouping = [String]()
-    //var predictionLabels = [UILabel]()
-    
-
     @IBOutlet var predictionLabels: [UILabel]!
-    
     
     // Build Word Mode
     @IBOutlet weak var buildWordButton: UIButton!
@@ -83,7 +73,7 @@ class MainTVC: UITableViewController {
             keyboardSettingsUpdated = false
         }
         
-        if getBuildWordPauseSwitch() {
+        if UserPreferences.shared.longerPauseBetweenLetters {
             buildWordPauseSeconds = 3.5
         } else {
             buildWordPauseSeconds = 2.0
@@ -114,68 +104,19 @@ class MainTVC: UITableViewController {
     }
     
     func setupUI() {
+        if UIScreen.main.bounds.size.height > 600 {
+            tableView.isScrollEnabled = false
+        }
         
-//        for v in self.view.subviews {
-//            v.removeFromSuperview()
-//        }
-        
-        tableView.isScrollEnabled = false
         setupKeyboard()
         
         swipeView = SwipeView(frame: keyboardView.frame,
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
-                              isTwoStrokes: getNumberOfKeys() == -1)
+                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
         keyboardView.superview!.addSubview(swipeView)
         
         sentenceLabel.text = ""
-//        sentenceLabel = UILabel(frame: CGRect(x: 0, y: 30, width: screenW - 60, height: 60))
-//        sentenceLabel.text = ""
-//        sentenceLabel.backgroundColor = UIColor.white
-//        sentenceLabel.font = UIFont.systemFont(ofSize: 30)
-//        sentenceLabel.isUserInteractionEnabled = true
-//        sentenceLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sentenceLabelTouched)))
-//        sentenceLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.sentenceLabelLongPressed)))
-//        self.view.addSubview(sentenceLabel)
-        
-//        wordLabel = UILabel(frame: CGRect(x: 0, y: 140, width: screenW, height: 60))
-//        wordLabel.text = ""
-//        wordLabel.backgroundColor = UIColor.white
-//        wordLabel.font = UIFont.boldSystemFont(ofSize: 30)
-//        wordLabel.isUserInteractionEnabled = true
-//        self.view.addSubview(wordLabel)
-        
-//        backspaceButton = UIButton(frame: CGRect(x: screenW - 60, y: 0, width: 60, height: 60))
-//        backspaceButton.setImage(UIImage(named: "Backspace"), for: .normal)
-//        backspaceButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backspace)))
-//        backspaceButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.backspaceAll)))
-//        wordLabel.addSubview(backspaceButton)
-        
-        //wordPredictionView = UIView(frame: CGRect(x: 0, y: 220, width: screenW, height: 100))
-        //self.view.addSubview(wordPredictionView)
-        
-//        buildWordConfirmButton = UIButton(frame: CGRect(x: 0, y: wordPredictionView.frame.minY, width: (screenW - 5)/2, height: 50))
-//        buildWordConfirmButton.setTitle("Confirm", for: .normal)
-//        buildWordConfirmButton.setTitleColor(UIColor.white, for: .normal)
-//        buildWordConfirmButton.backgroundColor = buttonGreenColor
-//        buildWordConfirmButton.addTarget(self, action: #selector(self.buildWordConfirmButtonTouched), for: .touchUpInside)
-//        buildWordConfirmButton.isHidden = true
-//        self.view.addSubview(buildWordConfirmButton)
-        
-//        buildWordCancelButton = UIButton(frame: CGRect(x: screenW - (screenW - 5)/2, y: wordPredictionView.frame.minY, width: (screenW - 5)/2, height: 50))
-//        buildWordCancelButton.setTitle("Cancel", for: .normal)
-//        buildWordCancelButton.setTitleColor(UIColor.white, for: .normal)
-//        buildWordCancelButton.backgroundColor = buttonBackgroundColor
-//        buildWordCancelButton.addTarget(self, action: #selector(self.buildWordCancelButtonTouched), for: .touchUpInside)
-//        buildWordCancelButton.isHidden = true
-//        self.view.addSubview(buildWordCancelButton)
-        
-//        settingsButton = UIButton(frame: CGRect(x: screenW - 60, y: 30, width: 60, height: 60))
-//        settingsButton.setImage(UIImage(named:"Settings"), for: .normal)
-//        settingsButton.addTarget(self, action: #selector(self.settingsButtonTouched), for: .touchUpInside)
-//        self.view.addSubview(settingsButton)
-        
-        //setupPredictionLabels()
         
         for label in predictionLabels {
             label.isUserInteractionEnabled = true
@@ -183,195 +124,50 @@ class MainTVC: UITableViewController {
             label.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.addWordToSentence)))
         }
         
+        if let buildTitleLabel = buildWordButton.titleLabel {
+            buildTitleLabel.adjustsFontSizeToFitWidth = true
+            buildTitleLabel.minimumScaleFactor = 0.75
+        }
+        
         backspaceAll()
         resetBuildWordMode()
     }
     
-    func setupPredictionLabels() {
-        if predictionLabels.count != 0 {
-            predictionLabels.removeAll()
-        }
-        
-        for i in 0 ..< 8 {
-            let pixelOfGap: CGFloat = 2
-            let width: CGFloat = (wordPredictionView.frame.width - pixelOfGap) / 4
-            let height: CGFloat = (wordPredictionView.frame.height - pixelOfGap) / 2
-            let predictionLabel = UILabel()
-            predictionLabel.font = predictionLabel.font.withSize(20)
-            predictionLabel.textColor = UIColor.white
-            predictionLabel.frame = CGRect(x: CGFloat(i%4) * (width + pixelOfGap), y: CGFloat(i/4) * (height + pixelOfGap), width: width, height: height)
-            predictionLabel.backgroundColor = buttonBackgroundColor
-            predictionLabel.adjustsFontSizeToFitWidth = true
-            wordPredictionView.addSubview(predictionLabel)
-            predictionLabels.append(predictionLabel)
-            
-            predictionLabel.isUserInteractionEnabled = true
-            predictionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readAloudLabel(_:))))
-            predictionLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.addWordToSentence(_:))))
-        }
-        
-        let buildWordButton = predictionLabels.last!
-        buildWordButton.font = UIFont.boldSystemFont(ofSize: 16)
-        buildWordButton.backgroundColor = UIColor.orange
-        buildWordButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.buildWordButtonTouched)))
-    }
-    
     func setupKeyboard() {
-        
-        
         if keyboardView != nil && keyboardView.superview != nil {
             swipeView.removeFromSuperview()
             keyboardView.removeFromSuperview()
             keyViewList.removeAll()
         }
         
-        switch getNumberOfKeys() {
-        case 4:
+        switch UserPreferences.shared.keyboardLayout {
+        case .keys4:
             keyboardView = keysView4Keys
             keyLetterGrouping = keyLetterGrouping4Keys
             break
-        case 6:
+        case .keys6:
             keyboardView = keysView6Keys
             keyLetterGrouping = keyLetterGrouping6Keys
             break
-        case 8:
+        case .keys8:
             keyboardView = keysView8Keys
             keyLetterGrouping = keyLetterGrouping8Keys
             break
-        case -1:
+        case .strokes2:
             keyboardView = keysView2Strokes
             keyLetterGrouping = keyLetterGroupingSteve
             break
-        default:
-            break
         }
+        
         keyboardContainerView.addSubview(keyboardView)
         
         for subview in keyboardView.subviews {
-            //let label = subview.subviews.first! as! UILabel
-            guard let label = subview as? UILabel else {
-                continue
-            }
+            guard let label = subview as? UILabel else { continue }
             label.isUserInteractionEnabled = true
             label.layer.borderColor = UIColor.green.cgColor
             
             keyViewList.append(label)
         }
-        return
-
-        //keyboardView.removeFromSuperview()
-
-        switch getNumberOfKeys() {
-        case 4:
-            let keyW: CGFloat = 140
-            let keyH: CGFloat = 100
-            let keyGap: CGFloat = 5
-            keyboardView = UIView(frame: CGRect(x: screenW - (keyW*2+keyGap), y: screenH - (keyH*3+keyGap*2), width: keyW*2+keyGap, height: keyH*3+keyGap*2))
-            keyViewList = [
-                UILabel(frame: CGRect(x: (keyW+keyGap)/2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)/2, y: (keyH + keyGap)*2, width: keyW, height: keyH))
-            ]
-            keyLetterGrouping = keyLetterGrouping4Keys
-            break
-        case 6:
-            let keyW: CGFloat = 110
-            let keyH: CGFloat = 100
-            let keyGap: CGFloat = 3
-            keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
-            keyViewList = [
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: (keyH + keyGap)*2, width: keyW, height: keyH))
-            ]
-            keyLetterGrouping = keyLetterGrouping6Keys
-            break
-        case 8:
-            let keyW: CGFloat = 110
-            let keyH: CGFloat = 100
-            let keyGap: CGFloat = 3
-            keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*3+keyGap*2), width: keyW*3+keyGap*2, height: keyH*3+keyGap*2))
-            keyViewList = [
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: (keyH + keyGap)*2, width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: (keyH + keyGap)*2, width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: (keyH + keyGap)*2, width: keyW, height: keyH))
-            ]
-            keyLetterGrouping = keyLetterGrouping8Keys
-            break
-        case -1:
-            let keyGap: CGFloat = 3
-            let keyW: CGFloat = (screenW - keyGap*2)/3
-            let keyH: CGFloat = keyW
-            keyboardView = UIView(frame: CGRect(x: screenW - (keyW*3+keyGap*2), y: screenH - (keyH*2+keyGap), width: keyW*3+keyGap*2, height: keyH*2+keyGap))
-            keyViewList = [
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: 0,                 width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: (keyW+keyGap)*2, y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: keyW+keyGap,     y: keyH + keyGap,     width: keyW, height: keyH)),
-                UILabel(frame: CGRect(x: 0,               y: keyH + keyGap,     width: keyW, height: keyH))
-            ]
-            keyLetterGrouping = keyLetterGroupingSteve
-            break
-        default:
-            break
-        }
-        
-        for i in 0 ..< keyViewList.count {
-            keyViewList[i].backgroundColor = buttonBackgroundColor
-            keyViewList[i].text = keyLetterGrouping[i].uppercased()
-            keyViewList[i].font = UIFont.boldSystemFont(ofSize: 27)
-            keyViewList[i].adjustsFontSizeToFitWidth = true
-            keyViewList[i].textColor = UIColor.white
-            keyViewList[i].textAlignment = .center
-            keyViewList[i].tag = i
-            keyViewList[i].layer.borderColor = UIColor.green.cgColor
-            keyViewList[i].isUserInteractionEnabled = true
-            
-            if getNumberOfKeys() == 4 {
-                keyViewList[i].numberOfLines = 2
-                keyViewList[i].font = UIFont.boldSystemFont(ofSize: 36)
-                var s = keyLetterGrouping[i].uppercased()
-                s.insert("\n", at: s.index(s.startIndex, offsetBy: 3))
-                keyViewList[i].text = s
-            }
-            if getNumberOfKeys() == -1 {
-                keyViewList[i].text = ""
-                let keyH = keyViewList[i].frame.height
-                let keyW = keyViewList[i].frame.width
-                let letterSize: CGFloat = 36
-                var letterLabelList = [
-                    UILabel(frame: CGRect(x: keyW - letterSize,     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
-                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: 0,                     width: letterSize, height: letterSize)),
-                    UILabel(frame: CGRect(x: 0,                     y: (keyH - letterSize)/2, width: letterSize, height: letterSize)),
-                    UILabel(frame: CGRect(x: (keyW - letterSize)/2, y: keyH - letterSize,     width: letterSize, height: letterSize))
-                ]
-                // Add Y and Z letter
-                if i == 5 {
-                    letterLabelList.append(UILabel(frame: CGRect(x: keyW - letterSize, y: keyH - letterSize, width: letterSize, height: letterSize)))
-                    letterLabelList.append(UILabel(frame: CGRect(x: 0,                 y: keyH - letterSize, width: letterSize, height: letterSize)))
-                }
-                for j in 0 ..< letterLabelList.count {
-                    letterLabelList[j].text = String(keyLetterGrouping[i][j]).uppercased()
-                    letterLabelList[j].font = UIFont.boldSystemFont(ofSize: 36)
-                    letterLabelList[j].textColor = UIColor.white
-                    letterLabelList[j].textAlignment = .center
-                    keyViewList[i].addSubview(letterLabelList[j])
-                }
-                
-            }
-            keyboardView.addSubview(keyViewList[i])
-        }
-        self.view.addSubview(keyboardView)
     }
     
     // MARK: - UI Interaction
@@ -386,16 +182,6 @@ class MainTVC: UITableViewController {
         if index != -1 {
             // Visual indicator
             keyViewList[index].layer.borderWidth = 3
-            /*
-             // Audio indicator
-             if getNumberOfKeys() == 4 {
-             readAloudText(audioCue4Keys[index])
-             } else if getNumberOfKeys() == 6 {
-             readAloudText(audioCue6Keys[index])
-             } else if getNumberOfKeys() == 8 {
-             readAloudText(audioCue8Keys[index])
-             }
-             */
         }
     }
     
@@ -411,7 +197,7 @@ class MainTVC: UITableViewController {
         updatePredictions()
         
         // Indicate how many letter entered, if enabled in settings.
-        if getAudioCueNumLetterSwitch() {
+        if UserPreferences.shared.announceLettersCount {
             readAloudText("Letter " + String(enteredKeyList.count + 1))
         }
     }
@@ -424,7 +210,7 @@ class MainTVC: UITableViewController {
         updateKeyboardIndicator(key)
         
         // Indicate how many letter entered, if enabled in settings.
-        if getAudioCueNumLetterSwitch() {
+        if UserPreferences.shared.announceLettersCount {
             readAloudText("Letter " + String(enteredKeyList.count + 1))
         }
     }
@@ -444,8 +230,9 @@ class MainTVC: UITableViewController {
             updatePredictions()
         }
         
-        //UIDevice.current.playInputClick()
-        AudioServicesPlaySystemSound(1105)
+        if UserPreferences.shared.audioFeedback {
+            playSoundBackspace()
+        }
     }
     
     @IBAction func backspaceAll() {
@@ -453,7 +240,9 @@ class MainTVC: UITableViewController {
        // if !buildWordConfirmButton.isHidden { return }
 
         if !enteredKeyList.isEmpty {
-            AudioServicesPlaySystemSound(1105)
+            if UserPreferences.shared.audioFeedback {
+                playSoundBackspace()
+            }
         }
         
         enteredKeyList.removeAll()
@@ -471,22 +260,7 @@ class MainTVC: UITableViewController {
     }
     
     func readAloudText(_ text: String) {
-        let utterance = AVSpeechUtterance(string: text)
-        
-        if let voiceIdentifier = UserPreferences.shared.voiceIdentifier,
-            let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
-            utterance.voice = voice
-        } else {
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        }
-        
-        // Change speed here.
-        utterance.rate = UserPreferences.shared.speechRate
-        utterance.volume = UserPreferences.shared.speechVolume
-
-        synthesizer.speak(utterance)
-        
-        //print("voices: \(AVSpeechSynthesisVoice.speechVoices())")
+        SpeechSynthesizer.shared.speak(text)
     }
     
     @IBAction func readAloudLabel(_ sender: UITapGestureRecognizer) {
@@ -527,7 +301,9 @@ class MainTVC: UITableViewController {
         if (sender.state == .began){
             if let word = (sender.view as! UILabel).text {
                 // Audio feedback after adding a word.
-                AudioServicesPlaySystemSound(1111)
+                if UserPreferences.shared.audioFeedback {
+                    playSoundWordAdded()
+                }
                 sentenceLabel.text! += (word + " ")
                 resetAfterWordAdded()
                 resetBuildWordMode()
@@ -553,7 +329,7 @@ class MainTVC: UITableViewController {
         }
         
         // Possible words from input letters.
-        if getNumberOfKeys() != -1 {
+        if UserPreferences.shared.keyboardLayout != .strokes2 {
             buildWordButton.setTitle(buildWordButtonText, for: .normal)
         }
         
@@ -573,18 +349,21 @@ class MainTVC: UITableViewController {
             var digits = [enteredKeyList]
             var searchLevel = 0
             var maxSearchLevel = 4
-            if getNumberOfKeys() == -1 { maxSearchLevel = 2 }
+            
+            if UserPreferences.shared.keyboardLayout == .strokes2 {
+                maxSearchLevel = 2
+            }
             
             // Do not search too many mutations.
             while (prediction.count < numPredictionLabels - results.count && searchLevel < maxSearchLevel) {
                 var newDigits = [[Int]]()
                 for digit in digits {
-                    if getNumberOfKeys() == -1 {
+                    if UserPreferences.shared.keyboardLayout == .strokes2 {
                         for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
                             newDigits.append(digit+[Int(letterValue)])
                         }
                     } else {
-                        for i in 0 ..< getNumberOfKeys() {
+                        for i in 0 ..< UserPreferences.shared.keyboardLayout.rawValue {
                             newDigits.append(digit+[i])
                         }
                     }
@@ -604,7 +383,7 @@ class MainTVC: UITableViewController {
                 prediction.insert(results[i], at: i)
             }
             
-            if getNumberOfKeys() == -1 {
+            if UserPreferences.shared.keyboardLayout == .strokes2 {
                 var inputString = ""
                 for letterValue in enteredKeyList {
                     inputString += String(describing: UnicodeScalar(letterValue)!)
@@ -738,10 +517,6 @@ class MainTVC: UITableViewController {
         inBuildWordMode = false
         tableView.reloadData()
         
-//        wordPredictionView.isHidden = false
-//        buildWordConfirmButton.isHidden = true
-//        buildWordCancelButton.isHidden = true
-        
         DispatchQueue.main.async {
             self.wordLabel.text = ""
             for label in self.predictionLabels {
@@ -749,10 +524,6 @@ class MainTVC: UITableViewController {
             }
             
             self.buildWordButton.setTitle(buildWordButtonText, for: .normal)
-//            if let buildWordButton = self.predictionLabels.last {
-//                buildWordButton.text = buildWordButtonText
-//                buildWordButton.textAlignment = .center
-//            }
         }
     }
     

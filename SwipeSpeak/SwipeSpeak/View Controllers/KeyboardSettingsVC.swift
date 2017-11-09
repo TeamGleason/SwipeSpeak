@@ -3,6 +3,7 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
@@ -10,7 +11,11 @@ import Foundation
 import UIKit
 
 class KeyboardSettingsVC: UITableViewController {
-    let numberOfKeysList = [4, 6, 8, -1]
+    
+    private let rowLayoutMap: [Int: KeyboardLayout] = [0: .keys4,
+                                                       1: .keys6,
+                                                       2: .keys8,
+                                                       3: .strokes2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,17 +24,21 @@ class KeyboardSettingsVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        var selectedCell: UITableViewCell!
-        if getNumberOfKeys() == 4 {
-            selectedCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        } else if getNumberOfKeys() == 6 {
-            selectedCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
-        } else if getNumberOfKeys() == 8 {
-            selectedCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0))
-        } else if getNumberOfKeys() == -1 {
-            selectedCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0))
+        let row: Int
+        switch UserPreferences.shared.keyboardLayout {
+        case .keys4:
+            row = 0
+        case .keys6:
+            row = 1
+        case .keys8:
+            row = 2
+        case .strokes2:
+            row = 3
         }
-        selectedCell.accessoryType = .checkmark
+        
+        if let selectedCell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+            selectedCell.accessoryType = .checkmark
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -42,7 +51,7 @@ class KeyboardSettingsVC: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             
-            setKeyboardNumber(numberOfKeysList[indexPath.row])
+            UserPreferences.shared.keyboardLayout = rowLayoutMap[indexPath.row]!
         }
         
         keyboardSettingsUpdated = true

@@ -3,6 +3,7 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
@@ -11,14 +12,14 @@ import DZNEmptyDataSet
 
 class SentenceHistoryVC: UITableViewController {
     
-    lazy var dateFormatter: DateFormatter = {
+    private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
-    var sentenceHistory: [[String: Any]] = []
+    private var sentenceHistory: [[String: Any]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,6 @@ class SentenceHistoryVC: UITableViewController {
         loadSentenceHistory()
     }
     
-    func loadSentenceHistory() {
-        sentenceHistory = Array(UserPreferences.shared.sentenceHistory)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -43,6 +40,10 @@ class SentenceHistoryVC: UITableViewController {
         
         loadSentenceHistory()
         self.tableView.reloadData()
+    }
+    
+    func loadSentenceHistory() {
+        sentenceHistory = Array(UserPreferences.shared.sentenceHistory)
     }
     
     @IBAction func dismissViewController() {
@@ -78,10 +79,6 @@ class SentenceHistoryVC: UITableViewController {
             self.tableView.reloadEmptyDataSet()
         }
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
-    }
 
 }
 
@@ -102,13 +99,5 @@ extension SentenceHistoryVC: DZNEmptyDataSetSource {
                          NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)
     }
-    
-    //    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    //        return UIImage(named: "bluetooth-off_big")
-    //    }
-    //
-    //    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-    //        return self.view.tintColor
-    //    }
     
 }

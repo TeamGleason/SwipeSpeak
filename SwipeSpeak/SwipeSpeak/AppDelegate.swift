@@ -3,12 +3,9 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
-
-// TODO: add icons to settings
-// TODO: share sentance history
-// TODO: add voice over labels
 
 import UIKit
 

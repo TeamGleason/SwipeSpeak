@@ -3,6 +3,7 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
@@ -11,30 +12,29 @@ import DZNEmptyDataSet
 
 class UserAddedWordListVC: UITableViewController {
     
-    var userAddedWords: [String] = []
+    private var userAddedWords: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Added Words", comment: "")
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addWordButtonTouched))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGray
         
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
     }
     
-    func loadUserAddedWords() {
-        userAddedWords = Array(UserPreferences.shared.userAddedWords)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        userAddedWordListUpdated = true
-        // post notification
-        
+
         loadUserAddedWords()
         self.tableView.reloadData()
+    }
+    
+    private func loadUserAddedWords() {
+        userAddedWords = Array(UserPreferences.shared.userAddedWords)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,13 +60,9 @@ class UserAddedWordListVC: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
-    }
-    
     @objc func addWordButtonTouched() {
         let alertController = UIAlertController(title: "Add Word",
-                                                message: "Please do not include punctuation or space.",
+                                                message: "Please do not include punctuations or spaces",
                                                 preferredStyle: .alert)
         
         let saveAction = UIAlertAction(title: "Add", style: .default) { (_) in
@@ -79,6 +75,8 @@ class UserAddedWordListVC: UITableViewController {
             self.loadUserAddedWords()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             self.tableView.reloadEmptyDataSet()
+            
+            userAddedWordListUpdated = true
         }
         
         saveAction.isEnabled = false
@@ -101,8 +99,32 @@ class UserAddedWordListVC: UITableViewController {
             })
         }
         
+        present(alertController, animated: true, completion: nil)
+        alertController.view.tintColor = UIColor.darkGray
+    }
+    
+    /*
+    @objc func clearWordsButtonTouched() {
+        let alertController = UIAlertController(title: "Clear Words",
+                                                message: "Are you sure you want to clear all added words?",
+                                                preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Clear", style: .destructive) { (_) in
+            UserPreferences.shared.clearWords()
+            self.loadUserAddedWords()
+            self.tableView.reloadData()
+            self.tableView.reloadEmptyDataSet()
+            
+            userAddedWordListUpdated = true
+        }
+        alertController.addAction(saveAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addAction(cancelAction)
+
         self.present(alertController, animated: true, completion: nil)
     }
+ */
     
 }
 
@@ -123,14 +145,6 @@ extension UserAddedWordListVC: DZNEmptyDataSetSource {
                          NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)
     }
-    
-//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-//        return UIImage(named: "bluetooth-off_big")
-//    }
-//
-//    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-//        return self.view.tintColor
-//    }
     
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         let title = NSLocalizedString("Add Word", comment: "")

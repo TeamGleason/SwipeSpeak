@@ -3,12 +3,12 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import AVFoundation
 
 class SwipeView: UIView {
     var swipeDirectionList = [Int]()
@@ -159,7 +159,9 @@ class SwipeView: UIView {
         let pointInKeyboardView = CGPoint(x: currentPoint.x - keyboardView.frame.minX, y: currentPoint.y - keyboardView.frame.minY)
         for i in 0 ..< keyViewList.count {
             if keyViewList[i].frame.contains(pointInKeyboardView) {
-                AudioServicesPlaySystemSound(1105)
+                if UserPreferences.shared.audioFeedback {
+                    playSoundClick()
+                }
 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: i)
                 return
@@ -175,7 +177,7 @@ class SwipeView: UIView {
         switch recognizer.state {
         case .began:
             // When user starts swipe gesture, reset directionCount.
-            swipeDirectionList = Array<Int>(repeating: 0, count: getNumberOfKeys())
+            swipeDirectionList = Array<Int>(repeating: 0, count: UserPreferences.shared.keyboardLayout.rawValue)
             
             // Make sure we clean previous gesture.
             path.removeAllPoints()
@@ -184,7 +186,7 @@ class SwipeView: UIView {
         case .changed:
             // When user is doing swipe gesture, find current velocity direction.
             let velocity = recognizer.velocity(in: self)
-            swipeDirectionList[swipeToKey(velocity, numberOfKeys: getNumberOfKeys())] += 1
+            swipeDirectionList[swipeToKey(velocity, numberOfKeys: UserPreferences.shared.keyboardLayout.rawValue)] += 1
             
             // Add curve.
             path.addQuadCurve(to: midPoint, controlPoint: previousPoint)
@@ -194,8 +196,13 @@ class SwipeView: UIView {
             let majorityDirection = (Int)(swipeDirectionList.index(of: swipeDirectionList.max()!)!)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: majorityDirection)
             
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            AudioServicesPlaySystemSound(1004)
+            if UserPreferences.shared.vibrate {
+                vibrate()
+            }
+            
+            if UserPreferences.shared.audioFeedback {
+                playSoundSwipe()
+            }
             
             // Clean the path.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -248,14 +255,26 @@ class SwipeView: UIView {
             if firstStroke == -1 {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: majorityDirection)
                 firstStroke = majorityDirection
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                AudioServicesPlaySystemSound(1004)
+                
+                if UserPreferences.shared.vibrate {
+                    vibrate()
+                }
+                
+                if UserPreferences.shared.audioFeedback {
+                    playSoundSwipe()
+                }
             } else {
                 let letterValue = Int((UnicodeScalar(String(keyLetterGroupingSteve[firstStroke][majorityDirection]))?.value)!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: letterValue)
                 firstStroke = -1
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                AudioServicesPlaySystemSound(1004)
+                
+                if UserPreferences.shared.vibrate {
+                    vibrate()
+                }
+                
+                if UserPreferences.shared.audioFeedback {
+                    playSoundSwipe()
+                }
             }
             
             // Clean the path.

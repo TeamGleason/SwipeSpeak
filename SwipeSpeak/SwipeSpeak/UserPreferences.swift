@@ -3,6 +3,7 @@
 //  SwipeSpeak
 //
 //  Created by Daniel Tsirulnikov on 06/11/2017.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
@@ -11,7 +12,23 @@ import AVFoundation
 import Zephyr
 
 enum KeyboardLayout: Int {
-    case keys4 = 0, keys6, keys8, strokes2
+    case keys4 = 4
+    case keys6 = 6
+    case keys8 = 8
+    case strokes2 = -1
+    
+    func localizedString() -> String {
+        switch self {
+        case .keys4:
+            return NSLocalizedString("4 Keys", comment: "")
+        case .keys6:
+            return NSLocalizedString("6 Keys", comment: "")
+        case .keys8:
+            return NSLocalizedString("8 Keys", comment: "")
+        case .strokes2:
+            return NSLocalizedString("2 Strokes", comment: "")
+        }
+    }
 }
 
 private struct Keys {
@@ -67,7 +84,7 @@ class UserPreferences {
     
     // MARK: Initialization
 
-    init() {
+    private init() {
         userDefaults.register(defaults: [
             Keys.keyboardLayout: KeyboardLayout.keys4.rawValue,
             
@@ -100,7 +117,43 @@ class UserPreferences {
             return layout
         }
         set(newValue) {
-            userDefaults.set(newValue.rawValue, forKey: Keys.speechRate)
+            userDefaults.set(newValue.rawValue, forKey: Keys.keyboardLayout)
+        }
+    }
+    
+    var announceLettersCount: Bool {
+        get {
+            return userDefaults.bool(forKey: Keys.announceLettersCount)
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: Keys.announceLettersCount)
+        }
+    }
+    
+    var vibrate: Bool {
+        get {
+            return userDefaults.bool(forKey: Keys.vibrate)
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: Keys.vibrate)
+        }
+    }
+    
+    var longerPauseBetweenLetters: Bool {
+        get {
+            return userDefaults.bool(forKey: Keys.longerPauseBetweenLetters)
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: Keys.longerPauseBetweenLetters)
+        }
+    }
+    
+    var audioFeedback: Bool {
+        get {
+            return userDefaults.bool(forKey: Keys.audioFeedback)
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: Keys.audioFeedback)
         }
     }
     
@@ -131,6 +184,15 @@ class UserPreferences {
         }
     }
     
+    var enableCloudSync: Bool {
+        get {
+            return userDefaults.bool(forKey: Keys.enableCloudSync)
+        }
+        set(newValue) {
+            userDefaults.set(newValue, forKey: Keys.enableCloudSync)
+        }
+    }
+    
     var userAddedWords: [String] {
         get {
             guard let array = userDefaults.array(forKey: Keys.userAddedWords) else { return [] }
@@ -143,10 +205,16 @@ class UserPreferences {
     
     // User added words
     
+    private let MaxUserAddedWords = 100
+    
     func addWord(_ word: String) {
         let array = userAddedWords
         var newArray = Array(array)
         newArray.insert(word, at: 0)
+        
+        if newArray.count > MaxUserAddedWords {
+            newArray.removeLast()
+        }
         
         userAddedWords = newArray
     }
@@ -161,6 +229,10 @@ class UserPreferences {
         userAddedWords = newArray
     }
     
+    func clearWords() {
+        userAddedWords = []
+    }
+    
     // Sentence history
 
     var sentenceHistory: [[String: Any]] {
@@ -173,12 +245,18 @@ class UserPreferences {
         }
     }
     
+    private let MaxSentenceHistory = 100
+
     func addSentence(_ sentence: String) {
         let array = sentenceHistory
         var newArray = Array(array)
         
         let dict = ["sentence": sentence, "date": Date()] as [String : Any]
         newArray.insert(dict, at: 0)
+        
+        if newArray.count > MaxSentenceHistory {
+            newArray.removeLast()
+        }
         
         sentenceHistory = newArray
     }
@@ -193,6 +271,8 @@ class UserPreferences {
         sentenceHistory = newArray
     }
     
-    
+    func clearSentenceHistory() {
+        sentenceHistory = []
+    }
     
 }

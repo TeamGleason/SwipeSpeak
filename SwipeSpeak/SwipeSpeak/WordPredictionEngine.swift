@@ -25,7 +25,7 @@ class WordPredictionEngine {
     var keyLetterGrouping = [Character:Int]()
     
     func setKeyLetterGrouping(_ grouping: [String]) {
-        if getNumberOfKeys() == -1 {
+        if UserPreferences.shared.keyboardLayout == .strokes2 {
             keyLetterGrouping = [Character:Int]()
             for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
                 keyLetterGrouping[Character(UnicodeScalar(letterValue)!)] = Int(letterValue)

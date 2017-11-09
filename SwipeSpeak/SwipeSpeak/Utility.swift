@@ -3,11 +3,13 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import AVFoundation
 
 // Constants
 let addedWordFreq = 9999999
@@ -26,36 +28,9 @@ let audioCue4Keys = ["Up", "Left", "Right", "Down"]
 let audioCue6Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down"]
 let audioCue8Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down Left", "Down", "Down Right"]
 
-
 // Global
 var userAddedWordListUpdated = false
 var keyboardSettingsUpdated = false
-
-
-func getNumberOfKeys() -> Int {
-    if UserDefaults.standard.integer(forKey: "keyboard") == 0 {
-        setKeyboardNumber(4)
-        return 4
-    }
-    return UserDefaults.standard.integer(forKey: "keyboard")
-}
-func setKeyboardNumber(_ keyboard: Int) {
-    UserDefaults.standard.set(keyboard, forKey: "keyboard")
-}
-
-func getAudioCueNumLetterSwitch() -> Bool {
-    return UserDefaults.standard.bool(forKey: "audioCueNumLetterSwitch")
-}
-func setAudioCueNumLetterSwitch(_ value: Bool) {
-    UserDefaults.standard.set(value, forKey: "audioCueNumLetterSwitch")
-}
-
-func getBuildWordPauseSwitch() -> Bool {
-    return UserDefaults.standard.bool(forKey: "buildWordPauseSwitch")
-}
-func setBuildWordPauseSwitch(_ value: Bool) {
-    UserDefaults.standard.set(value, forKey: "buildWordPauseSwitch")
-}
 
 func fileInDocumentsDirectory(_ folderName: String, fileName: String) -> String {
     var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -100,4 +75,24 @@ extension UIViewController {
             return false
         }
     }
+}
+
+func vibrate() {
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+}
+
+func playSoundClick() {
+    AudioServicesPlaySystemSound(1123)
+}
+
+func playSoundSwipe() {
+    AudioServicesPlaySystemSound(1004)
+}
+
+func playSoundBackspace() {
+    AudioServicesPlaySystemSound(1155)
+}
+
+func playSoundWordAdded() {
+    AudioServicesPlaySystemSound(1111)
 }

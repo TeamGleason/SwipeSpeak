@@ -49,6 +49,8 @@ class SpeechVC: UITableViewController  {
     @IBAction func rateSliderValueChanged(_ sender: UISlider) {
         rateLabel.text = "\(Int(sender.value*100))%"
         UserPreferences.shared.speechRate = sender.value
+        
+        SpeechSynthesizer.shared.speak(NSLocalizedString("Speaking Rate", comment: ""))
     }
     
     @IBAction func volumeSliderValueChanged(_ sender: UISlider) {

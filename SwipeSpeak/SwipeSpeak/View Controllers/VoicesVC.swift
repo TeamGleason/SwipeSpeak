@@ -11,27 +11,12 @@ import AVFoundation
 
 class VoicesVC: UITableViewController {
 
-    lazy var iOSResumeDescription: String = {
-        return "I am an iOS developer"
+    private lazy var voices: [AVSpeechSynthesisVoice] = {
+        return AVSpeechSynthesisVoice.speechVoices().filter({ (voice) -> Bool in
+            return voice.language.range(of: "en-") != nil
+        })
     }()
     
-    lazy var voices: [AVSpeechSynthesisVoice] = {
-        var englishVoices: [AVSpeechSynthesisVoice] = []
-
-        for voice in AVSpeechSynthesisVoice.speechVoices() where voice.language.range(of: "en-") != nil {
-            englishVoices.append(voice)
-        }
-
-        return englishVoices
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -68,6 +53,8 @@ class VoicesVC: UITableViewController {
         let voice = voices[indexPath.row]
 
         UserPreferences.shared.voiceIdentifier = voice.identifier
+        
+        SpeechSynthesizer.shared.speak(NSLocalizedString("Hello, this is \(voice.name)", comment: ""), voice.identifier)
         
         for cell in tableView.visibleCells {
             if tableView.indexPath(for: cell) == indexPath {

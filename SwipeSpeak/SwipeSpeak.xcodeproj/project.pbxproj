@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */; };
 		B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95CB4171FAFBCAA00F705EB /* Settings.storyboard */; };
 		B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */; };
 		B95CB41D1FAFC50E00F705EB /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		816F1DCA7BB8E6CB0883B7A2 /* Pods-SwipeSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.debug.xcconfig"; sourceTree = "<group>"; };
+		B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		B95CB4181FAFBCAA00F705EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesVC.swift; sourceTree = "<group>"; };
 		B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -47,7 +49,6 @@
 		DA0700261F0DB116003BEE3D /* SentenceHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentenceHistoryVC.swift; sourceTree = "<group>"; };
 		DA57B1F61F0D9EC100895E18 /* SwipeSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA57B1FB1F0D9EC100895E18 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DA57B1FE1F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA57B2001F0D9EC100895E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA57B2051F0D9EC100895E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,13 +88,12 @@
 			isa = PBXGroup;
 			children = (
 				B991E2271FAEE26F0038074E /* MainTVC.swift */,
-				DA57B1FB1F0D9EC100895E18 /* MainVC.swift */,
 				DA0700201F0DA84A003BEE3D /* SettingsVC.swift */,
 				DA0700221F0DA889003BEE3D /* KeyboardSettingsVC.swift */,
 				DA0700241F0DA98F003BEE3D /* UserAddedWordListVC.swift */,
 				DA0700261F0DB116003BEE3D /* SentenceHistoryVC.swift */,
-				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
 				B95CB41E1FAFCB1F00F705EB /* SpeechVC.swift */,
+				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -129,6 +129,7 @@
 				DA0700181F0DA06B003BEE3D /* SwipeView.swift */,
 				DA07001A1F0DA0C2003BEE3D /* Utility.swift */,
 				B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */,
+				B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */,
 				DA07001E1F0DA72A003BEE3D /* WordList.csv */,
 				DA57B2051F0D9EC100895E18 /* Info.plist */,
 				B95CB4201FB041C900F705EB /* SwipeSpeak.entitlements */,
@@ -167,7 +168,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = Microsoft;
+				ORGANIZATIONNAME = TeamGleason;
 				TargetAttributes = {
 					DA57B1F51F0D9EC100895E18 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -277,6 +278,7 @@
 			files = (
 				B991E2281FAEE26F0038074E /* MainTVC.swift in Sources */,
 				B95CB41D1FAFC50E00F705EB /* UserPreferences.swift in Sources */,
+				B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */,
 				DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */,
 				DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */,
 				DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */,

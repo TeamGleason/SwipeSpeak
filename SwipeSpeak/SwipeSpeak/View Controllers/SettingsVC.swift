@@ -3,6 +3,7 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
@@ -11,45 +12,32 @@ import UIKit
 
 class SettingsVC: UITableViewController {
     
-    @IBOutlet weak var numLetterSwitch: UISwitch!
-    @IBOutlet weak var pauseSwitch: UISwitch!
     @IBOutlet weak var keyboardLayoutLabel: UILabel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    @IBOutlet weak var announceLettersCountSwitch: UISwitch!
+    @IBOutlet weak var vibrateSwitch: UISwitch!
 
-    }
-    
+    @IBOutlet weak var longerPauseBetweenLettersSwitch: UISwitch!
+ 
+    @IBOutlet weak var enableAudioFeedbackSwitch: UISwitch!
+    @IBOutlet weak var enableCouldSyncSwitch: UISwitch!
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        numLetterSwitch.isOn = getAudioCueNumLetterSwitch()
-        pauseSwitch.isOn = getBuildWordPauseSwitch()
-        
-        let keys = getNumberOfKeys()
-        keyboardLayoutLabel.text = NSLocalizedString("\(keys) Keys", comment: "")
+        keyboardLayoutLabel.text = UserPreferences.shared.keyboardLayout.localizedString()
 
+        announceLettersCountSwitch.isOn = UserPreferences.shared.announceLettersCount
+        vibrateSwitch.isOn = UserPreferences.shared.vibrate
+        
+        longerPauseBetweenLettersSwitch.isOn = UserPreferences.shared.longerPauseBetweenLetters
+
+        enableAudioFeedbackSwitch.isOn = UserPreferences.shared.audioFeedback
+        enableCouldSyncSwitch.isOn = UserPreferences.shared.enableCloudSync
     }
     
     @IBAction func dismissViewController() {
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func numLetterSwitchTouched(_ sender: UISwitch) {
-        if sender.isOn {
-            setAudioCueNumLetterSwitch(true)
-        } else {
-            setAudioCueNumLetterSwitch(false)
-        }
-    }
-    
-    @IBAction func pauseSwitchTouched(_ sender: UISwitch) {
-        if sender.isOn {
-            setBuildWordPauseSwitch(true)
-        } else {
-            setBuildWordPauseSwitch(false)
-        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -57,4 +45,19 @@ class SettingsVC: UITableViewController {
         cell.imageView?.tintColor = UIColor.lightGray
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
     }
+    
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        if sender === announceLettersCountSwitch {
+            UserPreferences.shared.announceLettersCount = sender.isOn
+        } else if sender === vibrateSwitch {
+            UserPreferences.shared.vibrate = sender.isOn
+        } else if sender === longerPauseBetweenLettersSwitch {
+            UserPreferences.shared.longerPauseBetweenLetters = sender.isOn
+        } else if sender === enableAudioFeedbackSwitch {
+            UserPreferences.shared.audioFeedback = sender.isOn
+        } else if sender === enableCouldSyncSwitch {
+            UserPreferences.shared.enableCloudSync = sender.isOn
+        }
+    }
+    
 }
