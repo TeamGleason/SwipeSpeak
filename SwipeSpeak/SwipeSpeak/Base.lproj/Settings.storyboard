@@ -310,29 +310,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="General" id="FAK-Y3-r1n">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HKt-7T-F1I" imageView="V4T-Jx-XZX" style="IBUITableViewCellStyleDefault" id="bwc-Sg-nWQ">
-                                        <rect key="frame" x="0.0" y="874" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwc-Sg-nWQ" id="qBp-ZD-mEh">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HKt-7T-F1I">
-                                                    <rect key="frame" x="55" y="0.0" width="285" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="ic_help" id="V4T-Jx-XZX">
-                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="0Mb-7G-SMS" imageView="qTI-9q-T4u" style="IBUITableViewCellStyleDefault" id="n0N-Yq-vqK">
-                                        <rect key="frame" x="0.0" y="918" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="874" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n0N-Yq-vqK" id="9J9-eB-mkq">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -658,7 +637,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="xen-P9-uA8">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="xen-P9-uA8">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -704,25 +683,8 @@
                         <sections>
                             <tableViewSection id="AbX-Pr-glu">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gUw-Uo-EBA" style="IBUITableViewCellStyleDefault" id="X4B-Sa-5CR">
-                                        <rect key="frame" x="0.0" y="173" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X4B-Sa-5CR" id="Igw-Cu-epS">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gUw-Uo-EBA">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="etw-bd-4xO" style="IBUITableViewCellStyleDefault" id="v6B-xh-yjL">
-                                        <rect key="frame" x="0.0" y="217" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="173" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v6B-xh-yjL" id="JfP-xm-brK">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -973,7 +935,6 @@
         <image name="KeyboardTwoStrokes" width="187" height="124"/>
         <image name="ic_add_box" width="24" height="24"/>
         <image name="ic_cloud" width="24" height="24"/>
-        <image name="ic_help" width="24" height="24"/>
         <image name="ic_history" width="24" height="24"/>
         <image name="ic_info" width="24" height="24"/>
         <image name="ic_pause_circle_filled" width="24" height="24"/>
@@ -984,7 +945,7 @@
         <image name="ic_view_module" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fOk-ve-yZr"/>
+        <segue reference="Joi-6F-RDW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
