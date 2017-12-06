@@ -15,7 +15,6 @@ import AVFoundation
 let addedWordFreq = 9999999
 let buttonBackgroundColor = UIColor.init(white: 67/255, alpha: 1)
 let buttonGreenColor = UIColor.init(red: 61/255, green: 193/255, blue: 71/255, alpha: 1)
-let sentenceHistoryName = "sentenceHistory.csv"
 let buildWordButtonText = "Build Word"
 let screenW = UIScreen.main.bounds.width
 let screenH = UIScreen.main.bounds.height
@@ -75,6 +74,14 @@ extension UIViewController {
             return false
         }
     }
+}
+
+var appVersion: String {
+    return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+}
+
+var appBuild: String {
+    return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
 }
 
 func vibrate() {

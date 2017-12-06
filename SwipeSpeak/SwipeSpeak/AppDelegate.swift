@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Set default settings value to true.
-        UserDefaults.standard.register(defaults: ["audioCueNumLetterSwitch" : true,
-                                                  "buildWordPauseSwitch"    : true])
         window?.tintColor = UIColor.lightGray
         
         if #available(iOS 11, *) {

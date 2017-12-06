@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */; };
+		B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */; };
+		B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */; };
 		B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95CB4171FAFBCAA00F705EB /* Settings.storyboard */; };
 		B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */; };
 		B95CB41D1FAFC50E00F705EB /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */; };
 		B95CB41F1FAFCB1F00F705EB /* SpeechVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41E1FAFCB1F00F705EB /* SpeechVC.swift */; };
+		B98A9A021FB96FC5002D2FD9 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */; };
 		B991E2281FAEE26F0038074E /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991E2271FAEE26F0038074E /* MainTVC.swift */; };
 		B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */; };
 		D6E2115834A64202A7D846AC /* Pods_SwipeSpeak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2DB48CB6BFD706DC18DD1B /* Pods_SwipeSpeak.framework */; };
@@ -31,11 +34,14 @@
 /* Begin PBXFileReference section */
 		816F1DCA7BB8E6CB0883B7A2 /* Pods-SwipeSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.debug.xcconfig"; sourceTree = "<group>"; };
 		B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
+		B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-SwipeSpeak-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsVC.swift; sourceTree = "<group>"; };
 		B95CB4181FAFBCAA00F705EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesVC.swift; sourceTree = "<group>"; };
 		B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		B95CB41E1FAFCB1F00F705EB /* SpeechVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechVC.swift; sourceTree = "<group>"; };
 		B95CB4201FB041C900F705EB /* SwipeSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwipeSpeak.entitlements; sourceTree = "<group>"; };
+		B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		B991E2271FAEE26F0038074E /* MainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		B9FD99F21FADFFEB00E34F9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C45FDF6BDB14ABD71E7730E4 /* Pods-SwipeSpeak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +90,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B93BCCA11FD7F8E5007BFCC3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA57B2051F0D9EC100895E18 /* Info.plist */,
+				B95CB4201FB041C900F705EB /* SwipeSpeak.entitlements */,
+				DA07001E1F0DA72A003BEE3D /* WordList.csv */,
+				B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B9FD99F41FAE387600E34F9F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +111,8 @@
 				DA0700261F0DB116003BEE3D /* SentenceHistoryVC.swift */,
 				B95CB41E1FAFCB1F00F705EB /* SpeechVC.swift */,
 				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
+				B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */,
+				B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -130,9 +149,7 @@
 				DA07001A1F0DA0C2003BEE3D /* Utility.swift */,
 				B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */,
 				B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */,
-				DA07001E1F0DA72A003BEE3D /* WordList.csv */,
-				DA57B2051F0D9EC100895E18 /* Info.plist */,
-				B95CB4201FB041C900F705EB /* SwipeSpeak.entitlements */,
+				B93BCCA11FD7F8E5007BFCC3 /* Resources */,
 			);
 			path = SwipeSpeak;
 			sourceTree = "<group>";
@@ -206,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */,
+				B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */,
 				DA07001F1F0DA72A003BEE3D /* WordList.csv in Resources */,
 				B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */,
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
@@ -239,11 +257,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
 				"${BUILT_PRODUCTS_DIR}/Zephyr/Zephyr.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zephyr.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98A9A021FB96FC5002D2FD9 /* AboutVC.swift in Sources */,
 				B991E2281FAEE26F0038074E /* MainTVC.swift in Sources */,
 				B95CB41D1FAFC50E00F705EB /* UserPreferences.swift in Sources */,
 				B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */,
@@ -286,6 +307,7 @@
 				B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */,
 				DA0700271F0DB116003BEE3D /* SentenceHistoryVC.swift in Sources */,
 				DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */,
+				B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */,
 				DA0700251F0DA98F003BEE3D /* UserAddedWordListVC.swift in Sources */,
 				DA0700211F0DA84A003BEE3D /* SettingsVC.swift in Sources */,
 				B95CB41F1FAFCB1F00F705EB /* SpeechVC.swift in Sources */,
@@ -434,14 +456,15 @@
 			baseConfigurationReference = 816F1DCA7BB8E6CB0883B7A2 /* Pods-SwipeSpeak.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/SwipeSpeak.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/Resources/SwipeSpeak.entitlements;
 				DEVELOPMENT_TEAM = UBF8T346G9;
-				INFOPLIST_FILE = SwipeSpeak/Info.plist;
+				INFOPLIST_FILE = SwipeSpeak/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.swipespeak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,14 +473,15 @@
 			baseConfigurationReference = C45FDF6BDB14ABD71E7730E4 /* Pods-SwipeSpeak.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/SwipeSpeak.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/Resources/SwipeSpeak.entitlements;
 				DEVELOPMENT_TEAM = UBF8T346G9;
-				INFOPLIST_FILE = SwipeSpeak/Info.plist;
+				INFOPLIST_FILE = SwipeSpeak/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.swipespeak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
