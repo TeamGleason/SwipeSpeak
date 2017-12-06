@@ -31,6 +31,11 @@ enum KeyboardLayout: Int {
     }
 }
 
+struct SentenceKeys {
+    static let sentence = "sentence"
+    static let date     = "date"
+}
+
 private struct Keys {
     
     static let keyboardLayout   = "keyboardLayout"
@@ -89,7 +94,7 @@ class UserPreferences {
             Keys.keyboardLayout: KeyboardLayout.keys4.rawValue,
             
             Keys.announceLettersCount: true,
-            Keys.vibrate: true,
+            Keys.vibrate: false,
             Keys.longerPauseBetweenLetters: true,
 
             Keys.audioFeedback: true,
@@ -101,10 +106,6 @@ class UserPreferences {
         
         Zephyr.debugEnabled = true
         Zephyr.sync(keys: Keys.iCloudSyncKeys())
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: Properties
@@ -251,7 +252,8 @@ class UserPreferences {
         let array = sentenceHistory
         var newArray = Array(array)
         
-        let dict = ["sentence": sentence, "date": Date()] as [String : Any]
+        let dict = [SentenceKeys.sentence: sentence,
+                    SentenceKeys.date: Date()] as [String : Any]
         newArray.insert(dict, at: 0)
         
         if newArray.count > MaxSentenceHistory {

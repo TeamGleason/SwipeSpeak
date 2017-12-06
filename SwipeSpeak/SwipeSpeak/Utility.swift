@@ -11,34 +11,17 @@ import Foundation
 import UIKit
 import AVFoundation
 
-// Constants
-let addedWordFreq = 9999999
-let buttonBackgroundColor = UIColor.init(white: 67/255, alpha: 1)
-let buttonGreenColor = UIColor.init(red: 61/255, green: 193/255, blue: 71/255, alpha: 1)
-let buildWordButtonText = "Build Word"
-let screenW = UIScreen.main.bounds.width
-let screenH = UIScreen.main.bounds.height
-let numPredictionLabels = 8
-let keyLetterGrouping4Keys = ["abcdef", "ghijkl", "mnopqrs", "tuvwxyz"]
-let keyLetterGrouping6Keys = ["abcd", "efgh", "ijkl", "mnop", "qrstu", "vwxyz"]
-let keyLetterGrouping8Keys = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
-let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
-let audioCue4Keys = ["Up", "Left", "Right", "Down"]
-let audioCue6Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down"]
-let audioCue8Keys = ["Up Left", "Up", "Up Right", "Left", "Right", "Down Left", "Down", "Down Right"]
+struct Constants {
+    static let addedWordFreq = 9999999
 
-// Global
+    static let keyLetterGrouping4Keys = ["abcdef", "ghijkl", "mnopqrs", "tuvwxyz"]
+    static let keyLetterGrouping6Keys = ["abcd", "efgh", "ijkl", "mnop", "qrstu", "vwxyz"]
+    static let keyLetterGrouping8Keys = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+    static let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
+}
+
 var userAddedWordListUpdated = false
 var keyboardSettingsUpdated = false
-
-func fileInDocumentsDirectory(_ folderName: String, fileName: String) -> String {
-    var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    if folderName != "" {
-        url = url.appendingPathComponent(folderName)
-    }
-    url = url.appendingPathComponent(fileName)
-    return url.path
-}
 
 func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
     let contents = try? String(contentsOfFile: filepath)
@@ -49,7 +32,7 @@ func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
         if let frequency = Int(pair[1]) {
             wordAndFrequencyList.append((pair[0].lowercased(), frequency))
         } else {
-            wordAndFrequencyList.append((pair[0].lowercased(), addedWordFreq))
+            wordAndFrequencyList.append((pair[0].lowercased(), Constants.addedWordFreq))
         }
     }
     return wordAndFrequencyList
@@ -77,11 +60,13 @@ extension UIViewController {
 }
 
 var appVersion: String {
-    return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return "" }
+    return version
 }
 
 var appBuild: String {
-    return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    guard let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String else { return "" }
+    return build
 }
 
 func vibrate() {

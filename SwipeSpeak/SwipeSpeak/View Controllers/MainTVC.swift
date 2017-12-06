@@ -9,8 +9,14 @@
 
 import UIKit
 
+private let numPredictionLabels = 8
+
 class MainTVC: UITableViewController {
     
+    // MARK: Constants
+    
+    static let buildWordButtonText = "Build Word"
+
     // MARK: Properties
     
     // Keys
@@ -99,7 +105,7 @@ class MainTVC: UITableViewController {
         }
         
         for word in UserPreferences.shared.userAddedWords {
-            wordPredictionEngine.insert(word, frequency: addedWordFreq)
+            wordPredictionEngine.insert(word, frequency: Constants.addedWordFreq)
         }
     }
     
@@ -143,19 +149,19 @@ class MainTVC: UITableViewController {
         switch UserPreferences.shared.keyboardLayout {
         case .keys4:
             keyboardView = keysView4Keys
-            keyLetterGrouping = keyLetterGrouping4Keys
+            keyLetterGrouping = Constants.keyLetterGrouping4Keys
             break
         case .keys6:
             keyboardView = keysView6Keys
-            keyLetterGrouping = keyLetterGrouping6Keys
+            keyLetterGrouping = Constants.keyLetterGrouping6Keys
             break
         case .keys8:
             keyboardView = keysView8Keys
-            keyLetterGrouping = keyLetterGrouping8Keys
+            keyLetterGrouping = Constants.keyLetterGrouping8Keys
             break
         case .strokes2:
             keyboardView = keysView2Strokes
-            keyLetterGrouping = keyLetterGroupingSteve
+            keyLetterGrouping = Constants.keyLetterGroupingSteve
             break
         }
         
@@ -255,8 +261,12 @@ class MainTVC: UITableViewController {
     // E.g. if key list is [down, right, left], "unit" is the first prediction.
     // But there are only 3 keys in list, so we should show "uni" in input box.
     func trimmedStringForwordLabel(_ result: String) -> String {
-        if result == "" { return "" }
-        return result.substring(to: result.index(result.startIndex, offsetBy: enteredKeyList.count))
+        guard !result.isEmpty else {
+            return ""
+        }
+        
+        let toIndex = result.index(result.startIndex, offsetBy: enteredKeyList.count)
+        return String(result[..<toIndex])
     }
     
     func readAloudText(_ text: String) {
@@ -330,7 +340,7 @@ class MainTVC: UITableViewController {
         
         // Possible words from input letters.
         if UserPreferences.shared.keyboardLayout != .strokes2 {
-            buildWordButton.setTitle(buildWordButtonText, for: .normal)
+            buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
         }
         
         // Possible words from input T9 digits.
@@ -523,7 +533,7 @@ class MainTVC: UITableViewController {
                 label.text = ""
             }
             
-            self.buildWordButton.setTitle(buildWordButtonText, for: .normal)
+            self.buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
         }
     }
     

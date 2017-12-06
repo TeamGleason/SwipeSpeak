@@ -264,7 +264,7 @@ class SwipeView: UIView {
                     playSoundSwipe()
                 }
             } else {
-                let letterValue = Int((UnicodeScalar(String(keyLetterGroupingSteve[firstStroke][majorityDirection]))?.value)!)
+                let letterValue = Int((UnicodeScalar(String(Constants.keyLetterGroupingSteve[firstStroke][majorityDirection]))?.value)!)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: letterValue)
                 firstStroke = -1
                 

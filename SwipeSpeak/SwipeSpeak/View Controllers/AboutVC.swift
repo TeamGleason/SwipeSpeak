@@ -10,8 +10,13 @@ import UIKit
 
 class AboutVC: UITableViewController {
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "\(appVersion) (\(appBuild))"
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        versionLabel.text = NSLocalizedString("Version", comment: "") + " \(appVersion) (\(appBuild))"
     }
     
 }

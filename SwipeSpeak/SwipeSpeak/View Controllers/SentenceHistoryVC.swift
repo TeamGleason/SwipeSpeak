@@ -62,11 +62,12 @@ class SentenceHistoryVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SentenceCell", for: indexPath) as UITableViewCell
         
         let sentenceObject = sentenceHistory[indexPath.row]
-        let sentence = sentenceObject["sentence"]! as! String
-        let date = sentenceObject["date"]! as! Date
-
-        cell.textLabel?.text = sentence
-        cell.detailTextLabel?.text = dateFormatter.string(from: date)
+        
+        if let sentence = sentenceObject[SentenceKeys.sentence] as? String,
+            let date = sentenceObject[SentenceKeys.date] as? Date {
+            cell.textLabel?.text = sentence
+            cell.detailTextLabel?.text = dateFormatter.string(from: date)
+        }
         
         return cell
     }
