@@ -217,7 +217,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="iCloud" footerTitle="The settings, added words and sentence history will be sync with your other devices." id="Fuq-al-off">
+                            <tableViewSection headerTitle="iCloud" footerTitle="The settings, added words and sentence history will be synced with your other devices." id="Fuq-al-off">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="zM5-SO-CDa" imageView="QnX-3Q-MXg" style="IBUITableViewCellStyleDefault" id="kUy-MF-5qo">
                                         <rect key="frame" x="0.0" y="602" width="375" height="44"/>
