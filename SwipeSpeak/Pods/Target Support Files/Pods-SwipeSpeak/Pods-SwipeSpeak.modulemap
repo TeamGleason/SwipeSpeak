@@ -1,0 +1,6 @@
+framework module Pods_SwipeSpeak {
+  umbrella header "Pods-SwipeSpeak-umbrella.h"
+
+  export *
+  module * { export * }
+}

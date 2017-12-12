@@ -1,0 +1,1505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05B1F02560378D28FEBD4E8F6D293216 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		262342F2175891BFD95297762D51820C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		278FCB81B4ED6FDE9B99C99808C10BE6 /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = 56CA1028DC0D8E7968096DDC43259D3B /* main.css */; };
+		29FEADDF2086FDEA7D5BA87DD23B08C6 /* pb_decode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AA38247A6370B9D75617C8DB16FF81A /* pb_decode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30AF9675293E78F6DE89BDDCBA4DA4A7 /* MarkdownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 048125904A37D7BC6D26EFAB7CC3328C /* MarkdownView.bundle */; };
+		392F2CF142BAA751AC1BB61D8B757D98 /* pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DF12DB647B873E7475108C9F5D283C3 /* pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A50F5C8ECED9627F2EBD97F61BD376D /* pb_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 49A778930D360AA5DFDE445D81BC8EC0 /* pb_common.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -fno-objc-arc -fno-objc-arc"; }; };
+		3F2DBD5D0EF19BB46ACAE1643CC56EFA /* Zephyr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BAADEFE0C83D8F69967B1CF6C1D208 /* Zephyr.swift */; };
+		4568C6CC7F78399CA1312B20E26EA8FE /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A021D2443D861217A7C3F5816E335E /* UIScrollView+EmptyDataSet.m */; };
+		468DFD90B6C4DA2F7CFA0C1C89F1B615 /* nanopb-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8079B7CB4ADB60A0A4DEE6C474A8C650 /* nanopb-dummy.m */; };
+		49713C701C71AA084726B5D48529DCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		4C144355E41C99902528AAD3CF069680 /* DZNEmptyDataSet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5530D80C5A1FF21F2611ADD20F409876 /* DZNEmptyDataSet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CAFD94A63C20F05452A73C278A5E575 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 4CE66BA92A0BA57FCF4D4162C3E0D3E3 /* main.js */; };
+		541C5362289CC44D4F067D097F231250 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F790F24B46C8852934CFEA916842898 /* GTMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54F580BF4588159D6A61F21D15591805 /* pb_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = E065839F49AAEAC5DE9104937C49A9F3 /* pb_decode.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -fno-objc-arc"; }; };
+		55D8D5D912CFD2F3584E4553C2EAD734 /* pb_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B44131AD3A593C92624B8A51A45AF /* pb_encode.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -fno-objc-arc"; }; };
+		61EE8343F2456DCD9CC344AB7D5546C1 /* Zephyr-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9717A21002FA8EF45D828D84F4E13A7 /* Zephyr-dummy.m */; };
+		6AC94BF943476C961062D4AE20D0D977 /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2988B71DA991C335ACF9DFADA214D /* MarkdownView.swift */; };
+		75D0A461B8CF202F41C55CA1E732124C /* DZNEmptyDataSet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0DE2A5C67943D0E7E099F45548536 /* DZNEmptyDataSet-dummy.m */; };
+		783BCEF86CE3C8CF222197933105BCD2 /* Pods-SwipeSpeak-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59831E344EA5AAABC817E6277AD8DB26 /* Pods-SwipeSpeak-dummy.m */; };
+		806BAA4E00218D70995697C4400BE7A0 /* pb_common.h in Headers */ = {isa = PBXBuildFile; fileRef = D71BAAC422A90843C1AB389515859A6B /* pb_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81E4B6988FF26F9249B79C6C8CC667B4 /* GoogleToolboxForMac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 663FFBF8068B36413B431E256A22DCB6 /* GoogleToolboxForMac-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8511E9645F5C2B18746B4B4B29284451 /* UIScrollView+EmptyDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 69E1EEB9F23A98A095A227DD588841F7 /* UIScrollView+EmptyDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D4AF894F4ABFA2D3FB0D0FB3A844E24 /* MarkdownView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 091D2D34A411E2BFA0202F3DC6196893 /* MarkdownView-dummy.m */; };
+		8E31EF89BD192C6AACDE9E0655861D3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
+		93D51748565CFEB9490FBA7DA993C5C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		9B8A08BB088EC1E6F40C0EF8BC893240 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 2041EE1B53E88B4D7D819D7AB55E94A0 /* index.html */; };
+		AAE8392A45D1E7358B5D4108BF39054F /* MarkdownView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D381713F113B639D856D9438CDA8D46D /* MarkdownView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD8AF849CF939A50194FBA25BC952F96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		C55478020D017A2B35C517BC78F3857D /* Zephyr-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C16F03987E1CE07AB383506449A9E4 /* Zephyr-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C577B322B52228B272D52FF32B7BE30C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		DBFECCB0BBE3F11CC41A3C1A8C4879D3 /* GTMNSData+zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 96C3FB49466927961C3D52D47C0324AC /* GTMNSData+zlib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E181395E73163EB702FCE9A21403D67B /* pb_encode.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3EF4F38B094CBC10D93FF4402F9A20 /* pb_encode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0572B84A9AC467EFBC3AA9300B95007 /* Pods-SwipeSpeak-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E98042997F9BECA372284E32C499F867 /* Pods-SwipeSpeak-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7D889906DECB078EAAECB9D4A320E9C /* GTMNSData+zlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB428F71E033768E876D97569B22632 /* GTMNSData+zlib.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F9D92BA503505CB48EF4ECF0DDF57686 /* nanopb-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD6DB238453A7B33FE85CDAA837405CF /* nanopb-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAC3F3CAABA60EF76069431C5BB5032A /* GoogleToolboxForMac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46025030BF79F05A6D333836C957F181 /* GoogleToolboxForMac-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		201003C8A510C182040708749B545924 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4DD95323C54A78F879DAB0F1508B8E7;
+			remoteInfo = nanopb;
+		};
+		23C098BEDD6154B90B13A44098E79C1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00103D6C821BE85971C563025527BA5D;
+			remoteInfo = GoogleToolboxForMac;
+		};
+		5979E4690C80D1FDCC722034AFEA947A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E97CFCA4193A558E62C1C0B6E2A1AB0;
+			remoteInfo = MarkdownView;
+		};
+		992DB3D287A9022B1F11E2318636EAD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D386C75EFD4F03725E4EFB866B600B9A;
+			remoteInfo = DZNEmptyDataSet;
+		};
+		B3283B89351F0A8D2EF58C4BC1A05D4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61AC7428789439D169013C9BF632BF93;
+			remoteInfo = "MarkdownView-MarkdownView";
+		};
+		EF60613E47C71DE9EE857F097DC14F26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BFF5DFCAEDD1A54C44C0A4A267E64A5;
+			remoteInfo = Zephyr;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0006FE3ADED2214D7BDE9960B2F08E39 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		048125904A37D7BC6D26EFAB7CC3328C /* MarkdownView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MarkdownView.bundle; path = MarkdownView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		091D2D34A411E2BFA0202F3DC6196893 /* MarkdownView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MarkdownView-dummy.m"; sourceTree = "<group>"; };
+		0A8763F6C79374B46D65FE1E1A9FA1A8 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DZNEmptyDataSet.framework; path = DZNEmptyDataSet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4B44131AD3A593C92624B8A51A45AF /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_encode.c; sourceTree = "<group>"; };
+		1404C80242C60DD3DF980048EEABAB43 /* MarkdownView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarkdownView-prefix.pch"; sourceTree = "<group>"; };
+		15283056A8D635FBDE2C7C47BB302327 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17A2988B71DA991C335ACF9DFADA214D /* MarkdownView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MarkdownView.swift; path = MarkdownView/MarkdownView.swift; sourceTree = "<group>"; };
+		1AA38247A6370B9D75617C8DB16FF81A /* pb_decode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_decode.h; sourceTree = "<group>"; };
+		1DF12DB647B873E7475108C9F5D283C3 /* pb.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb.h; sourceTree = "<group>"; };
+		1FF706FC84B640BA488B2EB9BA6E2CE9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2041EE1B53E88B4D7D819D7AB55E94A0 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = webassets/dist/index.html; sourceTree = "<group>"; };
+		289AAD6E60194A7B1BDFB4D21EE93F72 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleToolboxForMac.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A83F370C13F7ED18F5802853E0B67A4 /* DZNEmptyDataSet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DZNEmptyDataSet.modulemap; sourceTree = "<group>"; };
+		2AB428F71E033768E876D97569B22632 /* GTMNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSData+zlib.m"; path = "Foundation/GTMNSData+zlib.m"; sourceTree = "<group>"; };
+		2C4103881A435A1A716557E6915502A2 /* GoogleToolboxForMac-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleToolboxForMac-prefix.pch"; sourceTree = "<group>"; };
+		31B245A5F21ED57487D556664C53B83D /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseNanoPB.framework; path = Frameworks/FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		31BAADEFE0C83D8F69967B1CF6C1D208 /* Zephyr.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zephyr.swift; path = Sources/Zephyr.swift; sourceTree = "<group>"; };
+		336D2FA646220B47894AE56BF50ABDCA /* GoogleToolboxForMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = GoogleToolboxForMac.modulemap; sourceTree = "<group>"; };
+		46025030BF79F05A6D333836C957F181 /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
+		49A778930D360AA5DFDE445D81BC8EC0 /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_common.c; sourceTree = "<group>"; };
+		4CE66BA92A0BA57FCF4D4162C3E0D3E3 /* main.js */ = {isa = PBXFileReference; includeInIndex = 1; name = main.js; path = webassets/dist/main.js; sourceTree = "<group>"; };
+		5530D80C5A1FF21F2611ADD20F409876 /* DZNEmptyDataSet-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-umbrella.h"; sourceTree = "<group>"; };
+		5630F83A0C60D2EB534C578F32FE4E65 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56CA1028DC0D8E7968096DDC43259D3B /* main.css */ = {isa = PBXFileReference; includeInIndex = 1; name = main.css; path = webassets/dist/main.css; sourceTree = "<group>"; };
+		59831E344EA5AAABC817E6277AD8DB26 /* Pods-SwipeSpeak-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwipeSpeak-dummy.m"; sourceTree = "<group>"; };
+		64E7ADD2AEC8AB010ACCB566EB391129 /* nanopb-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-prefix.pch"; sourceTree = "<group>"; };
+		663FFBF8068B36413B431E256A22DCB6 /* GoogleToolboxForMac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleToolboxForMac-umbrella.h"; sourceTree = "<group>"; };
+		69E1EEB9F23A98A095A227DD588841F7 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "Source/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		6F630BFEBD902D978425356944C62B84 /* Pods-SwipeSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeSpeak.debug.xcconfig"; sourceTree = "<group>"; };
+		6F790F24B46C8852934CFEA916842898 /* GTMDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		73A16801C72EBF4830FE860833C6EE56 /* Pods-SwipeSpeak.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SwipeSpeak.modulemap"; sourceTree = "<group>"; };
+		7C1E49D677A1EB65F502CD4F6566A4D9 /* Pods-SwipeSpeak-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwipeSpeak-acknowledgements.plist"; sourceTree = "<group>"; };
+		7DEC43E753A03F626690B3367859B82D /* MarkdownView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MarkdownView.modulemap; sourceTree = "<group>"; };
+		7E686DC903B8F1747907819B89F8B050 /* Pods-SwipeSpeak-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwipeSpeak-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8079B7CB4ADB60A0A4DEE6C474A8C650 /* nanopb-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "nanopb-dummy.m"; sourceTree = "<group>"; };
+		809D4D1C98AE377908AEE8A71FFA7805 /* Zephyr-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zephyr-prefix.pch"; sourceTree = "<group>"; };
+		83C16F03987E1CE07AB383506449A9E4 /* Zephyr-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zephyr-umbrella.h"; sourceTree = "<group>"; };
+		845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MarkdownView.xcconfig; sourceTree = "<group>"; };
+		8C7F1AA0359C8F573247AB4D79A99D18 /* Pods_SwipeSpeak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SwipeSpeak.framework; path = "Pods-SwipeSpeak.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D27827A0DF2168414DE632EFA84908A /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Core/Sources/Firebase.h; sourceTree = "<group>"; };
+		8EF0DE2A5C67943D0E7E099F45548536 /* DZNEmptyDataSet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DZNEmptyDataSet-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		96C3FB49466927961C3D52D47C0324AC /* GTMNSData+zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GTMNSData+zlib.h"; path = "Foundation/GTMNSData+zlib.h"; sourceTree = "<group>"; };
+		97251F5E3BE5A74A2BEF1EF793BE0B1E /* Zephyr.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Zephyr.xcconfig; sourceTree = "<group>"; };
+		987050CB1A7B3EE5F2C8D6DF72339F92 /* Pods-SwipeSpeak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeSpeak.release.xcconfig"; sourceTree = "<group>"; };
+		98FA4A70B29A2340F57AFAD4C04CDB8D /* Pods-SwipeSpeak-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeSpeak-frameworks.sh"; sourceTree = "<group>"; };
+		9FC31A0098B214F86F47C8D9EA6DA846 /* ResourceBundle-MarkdownView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MarkdownView-Info.plist"; sourceTree = "<group>"; };
+		A7E42E8656877F7598B80F87BCA2AC98 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		AE6FED20CB5107F9012B884C4A75FD49 /* nanopb.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = nanopb.modulemap; sourceTree = "<group>"; };
+		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B7D7F65495F2C6788E2EA6D2A2BDFA06 /* Zephyr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Zephyr.framework; path = Zephyr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA54727C756B4C29D5BC1087F269BF12 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD27F62836904562AE2A9214574864E3 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		BFED7B8012F2375EE18C3B21049424F7 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		C9717A21002FA8EF45D828D84F4E13A7 /* Zephyr-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Zephyr-dummy.m"; sourceTree = "<group>"; };
+		CCA2EB41EE4126877A343356F53953DF /* nanopb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = nanopb.xcconfig; sourceTree = "<group>"; };
+		CF69199F088AF39AD23EDDE8A70C4576 /* DZNEmptyDataSet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DZNEmptyDataSet.xcconfig; sourceTree = "<group>"; };
+		D2A021D2443D861217A7C3F5816E335E /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+EmptyDataSet.m"; path = "Source/UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		D381713F113B639D856D9438CDA8D46D /* MarkdownView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarkdownView-umbrella.h"; sourceTree = "<group>"; };
+		D55B661ED87D209373D8E5A83E046151 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
+		D71BAAC422A90843C1AB389515859A6B /* pb_common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_common.h; sourceTree = "<group>"; };
+		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DD6DB238453A7B33FE85CDAA837405CF /* nanopb-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-umbrella.h"; sourceTree = "<group>"; };
+		E065839F49AAEAC5DE9104937C49A9F3 /* pb_decode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_decode.c; sourceTree = "<group>"; };
+		E6FD4348E5E00D116010064B8A0B11DA /* DZNEmptyDataSet-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-prefix.pch"; sourceTree = "<group>"; };
+		E98042997F9BECA372284E32C499F867 /* Pods-SwipeSpeak-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwipeSpeak-umbrella.h"; sourceTree = "<group>"; };
+		E9EE90C0D5D59289A3536A6FFF478F12 /* MarkdownView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MarkdownView.framework; path = MarkdownView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EABB09C0853D86C19ECE3A39D3365F98 /* Pods-SwipeSpeak-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeSpeak-resources.sh"; sourceTree = "<group>"; };
+		EE3EF4F38B094CBC10D93FF4402F9A20 /* pb_encode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_encode.h; sourceTree = "<group>"; };
+		F3FBFA9346C14A6E1F89704DFC87F898 /* Zephyr.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Zephyr.modulemap; sourceTree = "<group>"; };
+		F9F4E440B81B204ED1DF99FAB8C13515 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = nanopb.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4924D523292174F607F290CE62943D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE496D27F8C7BB170E94A68DDCB4CEB1 /* GoogleToolboxForMac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleToolboxForMac.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2271854E1C7461B050AF080CEF86D56B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				262342F2175891BFD95297762D51820C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59E0885EF9D269547F22DB9E026FB793 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C577B322B52228B272D52FF32B7BE30C /* Foundation.framework in Frameworks */,
+				8E31EF89BD192C6AACDE9E0655861D3D /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B5B8AB45378389A64550ED435E316C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49713C701C71AA084726B5D48529DCD5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		971041836592E28ADEEDA495A96A62A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B1F02560378D28FEBD4E8F6D293216 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5E641F87E50BD42D970B8F5EECE4DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD8AF849CF939A50194FBA25BC952F96 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0E0E921744B95B3400D5A3F3E757039 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9BC43EEAF05BCB201B3D28C244AA7E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93D51748565CFEB9490FBA7DA993C5C0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FEA72684D0AA741AB90DB29FA3EE1A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA54727C756B4C29D5BC1087F269BF12 /* Info.plist */,
+				7DEC43E753A03F626690B3367859B82D /* MarkdownView.modulemap */,
+				845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */,
+				091D2D34A411E2BFA0202F3DC6196893 /* MarkdownView-dummy.m */,
+				1404C80242C60DD3DF980048EEABAB43 /* MarkdownView-prefix.pch */,
+				D381713F113B639D856D9438CDA8D46D /* MarkdownView-umbrella.h */,
+				9FC31A0098B214F86F47C8D9EA6DA846 /* ResourceBundle-MarkdownView-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MarkdownView";
+			sourceTree = "<group>";
+		};
+		14D896F7CFF8D85ACA339A76CFE96068 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				336D2FA646220B47894AE56BF50ABDCA /* GoogleToolboxForMac.modulemap */,
+				FE496D27F8C7BB170E94A68DDCB4CEB1 /* GoogleToolboxForMac.xcconfig */,
+				46025030BF79F05A6D333836C957F181 /* GoogleToolboxForMac-dummy.m */,
+				2C4103881A435A1A716557E6915502A2 /* GoogleToolboxForMac-prefix.pch */,
+				663FFBF8068B36413B431E256A22DCB6 /* GoogleToolboxForMac-umbrella.h */,
+				1FF706FC84B640BA488B2EB9BA6E2CE9 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GoogleToolboxForMac";
+			sourceTree = "<group>";
+		};
+		185382E6D47F9012787DB18330644AF3 /* decode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = decode;
+			sourceTree = "<group>";
+		};
+		1FD0D66EB5837C31CDC92F39EC533DF9 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				6F790F24B46C8852934CFEA916842898 /* GTMDefines.h */,
+			);
+			name = Defines;
+			sourceTree = "<group>";
+		};
+		292CF39D796765E14114AE1BB09F2C40 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2A83F370C13F7ED18F5802853E0B67A4 /* DZNEmptyDataSet.modulemap */,
+				CF69199F088AF39AD23EDDE8A70C4576 /* DZNEmptyDataSet.xcconfig */,
+				8EF0DE2A5C67943D0E7E099F45548536 /* DZNEmptyDataSet-dummy.m */,
+				E6FD4348E5E00D116010064B8A0B11DA /* DZNEmptyDataSet-prefix.pch */,
+				5530D80C5A1FF21F2611ADD20F409876 /* DZNEmptyDataSet-umbrella.h */,
+				FD4924D523292174F607F290CE62943D /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DZNEmptyDataSet";
+			sourceTree = "<group>";
+		};
+		30C56CA7AB0AF7C3B64F62F5A5F7AC44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52BBFC3CB0974B603D42606984F32895 /* DZNEmptyDataSet */,
+				679068F776F7EECC576E120047ADF2DF /* Firebase */,
+				35CDFB288F807E10827242DCC49C478C /* FirebaseAnalytics */,
+				CEDAB689FDCC06809C0DF6499CE9115C /* FirebaseCore */,
+				EA85CFC3C494A928411E8056E6D846CE /* FirebaseInstanceID */,
+				82CA2336AC6E17937DA1E43995F8F38A /* GoogleToolboxForMac */,
+				D9994D03550F94BAF84E3319BD62AA55 /* MarkdownView */,
+				B544C649B78C16EFB55384697A0992EB /* nanopb */,
+				5481E2CEAC1A8B10DB1BD414DE5F6928 /* Zephyr */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		35CDFB288F807E10827242DCC49C478C /* FirebaseAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				D2BF46E9E6CD5C6AF4E8F74DE4DBBBA2 /* Frameworks */,
+			);
+			name = FirebaseAnalytics;
+			path = FirebaseAnalytics;
+			sourceTree = "<group>";
+		};
+		3D7A1137D2BE5847B6CE38CAA976AA3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD27F62836904562AE2A9214574864E3 /* FirebaseInstanceID.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438B396F6B4147076630CAEFE34282C1 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
+				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		4BE3603574DA77324224E68266EEE7A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8763F6C79374B46D65FE1E1A9FA1A8 /* DZNEmptyDataSet.framework */,
+				289AAD6E60194A7B1BDFB4D21EE93F72 /* GoogleToolboxForMac.framework */,
+				048125904A37D7BC6D26EFAB7CC3328C /* MarkdownView.bundle */,
+				E9EE90C0D5D59289A3536A6FFF478F12 /* MarkdownView.framework */,
+				F9F4E440B81B204ED1DF99FAB8C13515 /* nanopb.framework */,
+				8C7F1AA0359C8F573247AB4D79A99D18 /* Pods_SwipeSpeak.framework */,
+				B7D7F65495F2C6788E2EA6D2A2BDFA06 /* Zephyr.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52BBFC3CB0974B603D42606984F32895 /* DZNEmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				69E1EEB9F23A98A095A227DD588841F7 /* UIScrollView+EmptyDataSet.h */,
+				D2A021D2443D861217A7C3F5816E335E /* UIScrollView+EmptyDataSet.m */,
+				292CF39D796765E14114AE1BB09F2C40 /* Support Files */,
+			);
+			name = DZNEmptyDataSet;
+			path = DZNEmptyDataSet;
+			sourceTree = "<group>";
+		};
+		5481E2CEAC1A8B10DB1BD414DE5F6928 /* Zephyr */ = {
+			isa = PBXGroup;
+			children = (
+				31BAADEFE0C83D8F69967B1CF6C1D208 /* Zephyr.swift */,
+				B6335B346DD4A6CB913DD157A8B1EC85 /* Support Files */,
+			);
+			name = Zephyr;
+			path = Zephyr;
+			sourceTree = "<group>";
+		};
+		5BE5CFC43B3295E6F5642997EE0057AD /* Pods-SwipeSpeak */ = {
+			isa = PBXGroup;
+			children = (
+				15283056A8D635FBDE2C7C47BB302327 /* Info.plist */,
+				73A16801C72EBF4830FE860833C6EE56 /* Pods-SwipeSpeak.modulemap */,
+				7E686DC903B8F1747907819B89F8B050 /* Pods-SwipeSpeak-acknowledgements.markdown */,
+				7C1E49D677A1EB65F502CD4F6566A4D9 /* Pods-SwipeSpeak-acknowledgements.plist */,
+				59831E344EA5AAABC817E6277AD8DB26 /* Pods-SwipeSpeak-dummy.m */,
+				98FA4A70B29A2340F57AFAD4C04CDB8D /* Pods-SwipeSpeak-frameworks.sh */,
+				EABB09C0853D86C19ECE3A39D3365F98 /* Pods-SwipeSpeak-resources.sh */,
+				E98042997F9BECA372284E32C499F867 /* Pods-SwipeSpeak-umbrella.h */,
+				6F630BFEBD902D978425356944C62B84 /* Pods-SwipeSpeak.debug.xcconfig */,
+				987050CB1A7B3EE5F2C8D6DF72339F92 /* Pods-SwipeSpeak.release.xcconfig */,
+			);
+			name = "Pods-SwipeSpeak";
+			path = "Target Support Files/Pods-SwipeSpeak";
+			sourceTree = "<group>";
+		};
+		6756765CCEF3566C9DC2A824E3AFFE7D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8D27827A0DF2168414DE632EFA84908A /* Firebase.h */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		679068F776F7EECC576E120047ADF2DF /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				6756765CCEF3566C9DC2A824E3AFFE7D /* Core */,
+			);
+			name = Firebase;
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				30C56CA7AB0AF7C3B64F62F5A5F7AC44 /* Pods */,
+				4BE3603574DA77324224E68266EEE7A4 /* Products */,
+				EC92491087D80C05C321D7D9A0282CD4 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		82CA2336AC6E17937DA1E43995F8F38A /* GoogleToolboxForMac */ = {
+			isa = PBXGroup;
+			children = (
+				1FD0D66EB5837C31CDC92F39EC533DF9 /* Defines */,
+				D78C8966153E88490248B833065CEE45 /* NSData+zlib */,
+				14D896F7CFF8D85ACA339A76CFE96068 /* Support Files */,
+			);
+			name = GoogleToolboxForMac;
+			path = GoogleToolboxForMac;
+			sourceTree = "<group>";
+		};
+		8D99FE2D5E245F413539EC8C34965926 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D55B661ED87D209373D8E5A83E046151 /* FirebaseCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9FDAFE7321902F074138A1C0093475A3 /* encode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = encode;
+			sourceTree = "<group>";
+		};
+		A55DC1A559F00C0C8ECF007BE30A1E4F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0006FE3ADED2214D7BDE9960B2F08E39 /* Info.plist */,
+				AE6FED20CB5107F9012B884C4A75FD49 /* nanopb.modulemap */,
+				CCA2EB41EE4126877A343356F53953DF /* nanopb.xcconfig */,
+				8079B7CB4ADB60A0A4DEE6C474A8C650 /* nanopb-dummy.m */,
+				64E7ADD2AEC8AB010ACCB566EB391129 /* nanopb-prefix.pch */,
+				DD6DB238453A7B33FE85CDAA837405CF /* nanopb-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/nanopb";
+			sourceTree = "<group>";
+		};
+		B544C649B78C16EFB55384697A0992EB /* nanopb */ = {
+			isa = PBXGroup;
+			children = (
+				1DF12DB647B873E7475108C9F5D283C3 /* pb.h */,
+				49A778930D360AA5DFDE445D81BC8EC0 /* pb_common.c */,
+				D71BAAC422A90843C1AB389515859A6B /* pb_common.h */,
+				E065839F49AAEAC5DE9104937C49A9F3 /* pb_decode.c */,
+				1AA38247A6370B9D75617C8DB16FF81A /* pb_decode.h */,
+				0C4B44131AD3A593C92624B8A51A45AF /* pb_encode.c */,
+				EE3EF4F38B094CBC10D93FF4402F9A20 /* pb_encode.h */,
+				185382E6D47F9012787DB18330644AF3 /* decode */,
+				9FDAFE7321902F074138A1C0093475A3 /* encode */,
+				A55DC1A559F00C0C8ECF007BE30A1E4F /* Support Files */,
+			);
+			name = nanopb;
+			path = nanopb;
+			sourceTree = "<group>";
+		};
+		B6335B346DD4A6CB913DD157A8B1EC85 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5630F83A0C60D2EB534C578F32FE4E65 /* Info.plist */,
+				F3FBFA9346C14A6E1F89704DFC87F898 /* Zephyr.modulemap */,
+				97251F5E3BE5A74A2BEF1EF793BE0B1E /* Zephyr.xcconfig */,
+				C9717A21002FA8EF45D828D84F4E13A7 /* Zephyr-dummy.m */,
+				809D4D1C98AE377908AEE8A71FFA7805 /* Zephyr-prefix.pch */,
+				83C16F03987E1CE07AB383506449A9E4 /* Zephyr-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Zephyr";
+			sourceTree = "<group>";
+		};
+		CEDAB689FDCC06809C0DF6499CE9115C /* FirebaseCore */ = {
+			isa = PBXGroup;
+			children = (
+				8D99FE2D5E245F413539EC8C34965926 /* Frameworks */,
+			);
+			name = FirebaseCore;
+			path = FirebaseCore;
+			sourceTree = "<group>";
+		};
+		D2BF46E9E6CD5C6AF4E8F74DE4DBBBA2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFED7B8012F2375EE18C3B21049424F7 /* FirebaseAnalytics.framework */,
+				A7E42E8656877F7598B80F87BCA2AC98 /* FirebaseCoreDiagnostics.framework */,
+				31B245A5F21ED57487D556664C53B83D /* FirebaseNanoPB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D78C8966153E88490248B833065CEE45 /* NSData+zlib */ = {
+			isa = PBXGroup;
+			children = (
+				96C3FB49466927961C3D52D47C0324AC /* GTMNSData+zlib.h */,
+				2AB428F71E033768E876D97569B22632 /* GTMNSData+zlib.m */,
+			);
+			name = "NSData+zlib";
+			sourceTree = "<group>";
+		};
+		D9994D03550F94BAF84E3319BD62AA55 /* MarkdownView */ = {
+			isa = PBXGroup;
+			children = (
+				17A2988B71DA991C335ACF9DFADA214D /* MarkdownView.swift */,
+				DFC6E481FB0955230AE5834744A6B3EE /* Resources */,
+				08FEA72684D0AA741AB90DB29FA3EE1A /* Support Files */,
+			);
+			name = MarkdownView;
+			path = MarkdownView;
+			sourceTree = "<group>";
+		};
+		DFC6E481FB0955230AE5834744A6B3EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2041EE1B53E88B4D7D819D7AB55E94A0 /* index.html */,
+				56CA1028DC0D8E7968096DDC43259D3B /* main.css */,
+				4CE66BA92A0BA57FCF4D4162C3E0D3E3 /* main.js */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		EA85CFC3C494A928411E8056E6D846CE /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				3D7A1137D2BE5847B6CE38CAA976AA3C /* Frameworks */,
+			);
+			name = FirebaseInstanceID;
+			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		EC92491087D80C05C321D7D9A0282CD4 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5BE5CFC43B3295E6F5642997EE0057AD /* Pods-SwipeSpeak */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		009166E7A68512E0ED36D54FA3B30BD0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE8392A45D1E7358B5D4108BF39054F /* MarkdownView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4547B9AF8085A499AA35614798F8F9E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D92BA503505CB48EF4ECF0DDF57686 /* nanopb-umbrella.h in Headers */,
+				392F2CF142BAA751AC1BB61D8B757D98 /* pb.h in Headers */,
+				806BAA4E00218D70995697C4400BE7A0 /* pb_common.h in Headers */,
+				29FEADDF2086FDEA7D5BA87DD23B08C6 /* pb_decode.h in Headers */,
+				E181395E73163EB702FCE9A21403D67B /* pb_encode.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653FFE72514B935712D0CE1053D47AD6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C144355E41C99902528AAD3CF069680 /* DZNEmptyDataSet-umbrella.h in Headers */,
+				8511E9645F5C2B18746B4B4B29284451 /* UIScrollView+EmptyDataSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7104A93C8F597482E4F453ED8F55D4D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55478020D017A2B35C517BC78F3857D /* Zephyr-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72BE586A4065AC115194175B97503473 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0572B84A9AC467EFBC3AA9300B95007 /* Pods-SwipeSpeak-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDA600FDC48ED17BA03DA2D85D4EDA97 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81E4B6988FF26F9249B79C6C8CC667B4 /* GoogleToolboxForMac-umbrella.h in Headers */,
+				541C5362289CC44D4F067D097F231250 /* GTMDefines.h in Headers */,
+				DBFECCB0BBE3F11CC41A3C1A8C4879D3 /* GTMNSData+zlib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		00103D6C821BE85971C563025527BA5D /* GoogleToolboxForMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C43D9CA5106C6CCEF973B7EDF833947B /* Build configuration list for PBXNativeTarget "GoogleToolboxForMac" */;
+			buildPhases = (
+				63D7DA997053F6B5D01DE8CB5817CB51 /* Sources */,
+				F9BC43EEAF05BCB201B3D28C244AA7E1 /* Frameworks */,
+				FDA600FDC48ED17BA03DA2D85D4EDA97 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoogleToolboxForMac;
+			productName = GoogleToolboxForMac;
+			productReference = 289AAD6E60194A7B1BDFB4D21EE93F72 /* GoogleToolboxForMac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1E97CFCA4193A558E62C1C0B6E2A1AB0 /* MarkdownView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C427BE114EF262358BA4E6126F874C8 /* Build configuration list for PBXNativeTarget "MarkdownView" */;
+			buildPhases = (
+				FC42C54125F377C6CE4E48BE662C0CE3 /* Sources */,
+				2271854E1C7461B050AF080CEF86D56B /* Frameworks */,
+				74341939E372075C223EA287CAE1A155 /* Resources */,
+				009166E7A68512E0ED36D54FA3B30BD0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17DAF457D7CDB9833D517F3A281E7C60 /* PBXTargetDependency */,
+			);
+			name = MarkdownView;
+			productName = MarkdownView;
+			productReference = E9EE90C0D5D59289A3536A6FFF478F12 /* MarkdownView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		583726DB2F8149338DFF264D9D953B94 /* Pods-SwipeSpeak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7083577F839C8BC03D70FDE2F724C915 /* Build configuration list for PBXNativeTarget "Pods-SwipeSpeak" */;
+			buildPhases = (
+				4DD0D0D0E19076C37B9C012F1BA8DA94 /* Sources */,
+				BB5E641F87E50BD42D970B8F5EECE4DA /* Frameworks */,
+				72BE586A4065AC115194175B97503473 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E34088B28BB9B0024D5E65109FB52DA /* PBXTargetDependency */,
+				009A24B03E9D82772BE7923E07C60F3C /* PBXTargetDependency */,
+				AF4F1121B1FAB7ED96A63FF453222C4F /* PBXTargetDependency */,
+				717A410AC4B2040FE0B1BE95F98BF0E2 /* PBXTargetDependency */,
+				CEE4E9829773FCD1B83302A9017A00F7 /* PBXTargetDependency */,
+			);
+			name = "Pods-SwipeSpeak";
+			productName = "Pods-SwipeSpeak";
+			productReference = 8C7F1AA0359C8F573247AB4D79A99D18 /* Pods_SwipeSpeak.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5BFF5DFCAEDD1A54C44C0A4A267E64A5 /* Zephyr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043411127389F0A148B20E6711A83BB9 /* Build configuration list for PBXNativeTarget "Zephyr" */;
+			buildPhases = (
+				CF9B366B528B79069AAD0F76A9167A0B /* Sources */,
+				7B5B8AB45378389A64550ED435E316C9 /* Frameworks */,
+				7104A93C8F597482E4F453ED8F55D4D0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Zephyr;
+			productName = Zephyr;
+			productReference = B7D7F65495F2C6788E2EA6D2A2BDFA06 /* Zephyr.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		61AC7428789439D169013C9BF632BF93 /* MarkdownView-MarkdownView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B604EF6EB6D64F51BA67975330BF083 /* Build configuration list for PBXNativeTarget "MarkdownView-MarkdownView" */;
+			buildPhases = (
+				3E55117C1179379944BB22E460DA3B48 /* Sources */,
+				D0E0E921744B95B3400D5A3F3E757039 /* Frameworks */,
+				22508802E1A79043603CA0E9A61270C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MarkdownView-MarkdownView";
+			productName = "MarkdownView-MarkdownView";
+			productReference = 048125904A37D7BC6D26EFAB7CC3328C /* MarkdownView.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC2CBCE24382919CB3DBFC8BB3CC6503 /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */;
+			buildPhases = (
+				5235DD2B24AFCD194FE2DD74A43760D8 /* Sources */,
+				59E0885EF9D269547F22DB9E026FB793 /* Frameworks */,
+				653FFE72514B935712D0CE1053D47AD6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DZNEmptyDataSet;
+			productName = DZNEmptyDataSet;
+			productReference = 0A8763F6C79374B46D65FE1E1A9FA1A8 /* DZNEmptyDataSet.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E4DD95323C54A78F879DAB0F1508B8E7 /* nanopb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F118B0FA84AC9116AB2E480C302C3999 /* Build configuration list for PBXNativeTarget "nanopb" */;
+			buildPhases = (
+				238527BE8D494586023F2A2B8A60D242 /* Sources */,
+				971041836592E28ADEEDA495A96A62A2 /* Frameworks */,
+				4547B9AF8085A499AA35614798F8F9E4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nanopb;
+			productName = nanopb;
+			productReference = F9F4E440B81B204ED1DF99FAB8C13515 /* nanopb.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 4BE3603574DA77324224E68266EEE7A4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */,
+				00103D6C821BE85971C563025527BA5D /* GoogleToolboxForMac */,
+				1E97CFCA4193A558E62C1C0B6E2A1AB0 /* MarkdownView */,
+				61AC7428789439D169013C9BF632BF93 /* MarkdownView-MarkdownView */,
+				E4DD95323C54A78F879DAB0F1508B8E7 /* nanopb */,
+				583726DB2F8149338DFF264D9D953B94 /* Pods-SwipeSpeak */,
+				5BFF5DFCAEDD1A54C44C0A4A267E64A5 /* Zephyr */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22508802E1A79043603CA0E9A61270C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B8A08BB088EC1E6F40C0EF8BC893240 /* index.html in Resources */,
+				278FCB81B4ED6FDE9B99C99808C10BE6 /* main.css in Resources */,
+				4CAFD94A63C20F05452A73C278A5E575 /* main.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74341939E372075C223EA287CAE1A155 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30AF9675293E78F6DE89BDDCBA4DA4A7 /* MarkdownView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		238527BE8D494586023F2A2B8A60D242 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				468DFD90B6C4DA2F7CFA0C1C89F1B615 /* nanopb-dummy.m in Sources */,
+				3A50F5C8ECED9627F2EBD97F61BD376D /* pb_common.c in Sources */,
+				54F580BF4588159D6A61F21D15591805 /* pb_decode.c in Sources */,
+				55D8D5D912CFD2F3584E4553C2EAD734 /* pb_encode.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E55117C1179379944BB22E460DA3B48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DD0D0D0E19076C37B9C012F1BA8DA94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				783BCEF86CE3C8CF222197933105BCD2 /* Pods-SwipeSpeak-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5235DD2B24AFCD194FE2DD74A43760D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75D0A461B8CF202F41C55CA1E732124C /* DZNEmptyDataSet-dummy.m in Sources */,
+				4568C6CC7F78399CA1312B20E26EA8FE /* UIScrollView+EmptyDataSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63D7DA997053F6B5D01DE8CB5817CB51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC3F3CAABA60EF76069431C5BB5032A /* GoogleToolboxForMac-dummy.m in Sources */,
+				F7D889906DECB078EAAECB9D4A320E9C /* GTMNSData+zlib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF9B366B528B79069AAD0F76A9167A0B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61EE8343F2456DCD9CC344AB7D5546C1 /* Zephyr-dummy.m in Sources */,
+				3F2DBD5D0EF19BB46ACAE1643CC56EFA /* Zephyr.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC42C54125F377C6CE4E48BE662C0CE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D4AF894F4ABFA2D3FB0D0FB3A844E24 /* MarkdownView-dummy.m in Sources */,
+				6AC94BF943476C961062D4AE20D0D977 /* MarkdownView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		009A24B03E9D82772BE7923E07C60F3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleToolboxForMac;
+			target = 00103D6C821BE85971C563025527BA5D /* GoogleToolboxForMac */;
+			targetProxy = 23C098BEDD6154B90B13A44098E79C1A /* PBXContainerItemProxy */;
+		};
+		17DAF457D7CDB9833D517F3A281E7C60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MarkdownView-MarkdownView";
+			target = 61AC7428789439D169013C9BF632BF93 /* MarkdownView-MarkdownView */;
+			targetProxy = B3283B89351F0A8D2EF58C4BC1A05D4A /* PBXContainerItemProxy */;
+		};
+		717A410AC4B2040FE0B1BE95F98BF0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Zephyr;
+			target = 5BFF5DFCAEDD1A54C44C0A4A267E64A5 /* Zephyr */;
+			targetProxy = EF60613E47C71DE9EE857F097DC14F26 /* PBXContainerItemProxy */;
+		};
+		8E34088B28BB9B0024D5E65109FB52DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DZNEmptyDataSet;
+			target = D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */;
+			targetProxy = 992DB3D287A9022B1F11E2318636EAD6 /* PBXContainerItemProxy */;
+		};
+		AF4F1121B1FAB7ED96A63FF453222C4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MarkdownView;
+			target = 1E97CFCA4193A558E62C1C0B6E2A1AB0 /* MarkdownView */;
+			targetProxy = 5979E4690C80D1FDCC722034AFEA947A /* PBXContainerItemProxy */;
+		};
+		CEE4E9829773FCD1B83302A9017A00F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nanopb;
+			target = E4DD95323C54A78F879DAB0F1508B8E7 /* nanopb */;
+			targetProxy = 201003C8A510C182040708749B545924 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		053BD00FFC0BBEF6FB19666526846607 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 987050CB1A7B3EE5F2C8D6DF72339F92 /* Pods-SwipeSpeak.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwipeSpeak/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SwipeSpeak;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		060480530CFC66CA7BA742D8A733678F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MarkdownView/MarkdownView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MarkdownView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MarkdownView/MarkdownView.modulemap";
+				PRODUCT_NAME = MarkdownView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1456973998A5F20B4501A680D3794F6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF69199F088AF39AD23EDDE8A70C4576 /* DZNEmptyDataSet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DZNEmptyDataSet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet.modulemap";
+				PRODUCT_NAME = DZNEmptyDataSet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		15C069F155AD7CFEFD1E42E043D24C9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCA2EB41EE4126877A343356F53953DF /* nanopb.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/nanopb/nanopb-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/nanopb/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/nanopb/nanopb.modulemap";
+				PRODUCT_NAME = nanopb;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4FD46B2551582DF47CD95CD77DDF6B34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE496D27F8C7BB170E94A68DDCB4CEB1 /* GoogleToolboxForMac.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GoogleToolboxForMac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac.modulemap";
+				PRODUCT_NAME = GoogleToolboxForMac;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5E675A516EADA4C9F153E1DB2F66179E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97251F5E3BE5A74A2BEF1EF793BE0B1E /* Zephyr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
+				PRODUCT_NAME = Zephyr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		793948A7CE88FCA234DA7EFD60D4178E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF69199F088AF39AD23EDDE8A70C4576 /* DZNEmptyDataSet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DZNEmptyDataSet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DZNEmptyDataSet/DZNEmptyDataSet.modulemap";
+				PRODUCT_NAME = DZNEmptyDataSet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7C07ED8089F70A31B83996A8910D7F18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8A13556494BBDFFF1EB25A65663756FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MarkdownView";
+				INFOPLIST_FILE = "Target Support Files/MarkdownView/ResourceBundle-MarkdownView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = MarkdownView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8ACF6BAB649334FDBB40014D8711D8D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MarkdownView/MarkdownView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MarkdownView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MarkdownView/MarkdownView.modulemap";
+				PRODUCT_NAME = MarkdownView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		98F29E7567052F62660DDD7069ADF73C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		9B08F59FF51AFF627CB714A7411CD158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCA2EB41EE4126877A343356F53953DF /* nanopb.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/nanopb/nanopb-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/nanopb/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/nanopb/nanopb.modulemap";
+				PRODUCT_NAME = nanopb;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B983F182362A9373BD15B7D95A9DEBB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F630BFEBD902D978425356944C62B84 /* Pods-SwipeSpeak.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwipeSpeak/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SwipeSpeak;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D19459BBA4D29829D7678D9CDFE01E64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE496D27F8C7BB170E94A68DDCB4CEB1 /* GoogleToolboxForMac.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GoogleToolboxForMac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GoogleToolboxForMac/GoogleToolboxForMac.modulemap";
+				PRODUCT_NAME = GoogleToolboxForMac;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D1C10CD0A2E1BC04BE4615A2B1A1F420 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97251F5E3BE5A74A2BEF1EF793BE0B1E /* Zephyr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
+				PRODUCT_NAME = Zephyr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D5E5A4EA2F3C3D4F41C739EF272CCD18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845D4F4C9E479CBFDFF2580F3A190671 /* MarkdownView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MarkdownView";
+				INFOPLIST_FILE = "Target Support Files/MarkdownView/ResourceBundle-MarkdownView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = MarkdownView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		043411127389F0A148B20E6711A83BB9 /* Build configuration list for PBXNativeTarget "Zephyr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E675A516EADA4C9F153E1DB2F66179E /* Debug */,
+				D1C10CD0A2E1BC04BE4615A2B1A1F420 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C427BE114EF262358BA4E6126F874C8 /* Build configuration list for PBXNativeTarget "MarkdownView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ACF6BAB649334FDBB40014D8711D8D2 /* Debug */,
+				060480530CFC66CA7BA742D8A733678F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C07ED8089F70A31B83996A8910D7F18 /* Debug */,
+				98F29E7567052F62660DDD7069ADF73C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7083577F839C8BC03D70FDE2F724C915 /* Build configuration list for PBXNativeTarget "Pods-SwipeSpeak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B983F182362A9373BD15B7D95A9DEBB9 /* Debug */,
+				053BD00FFC0BBEF6FB19666526846607 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B604EF6EB6D64F51BA67975330BF083 /* Build configuration list for PBXNativeTarget "MarkdownView-MarkdownView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A13556494BBDFFF1EB25A65663756FD /* Debug */,
+				D5E5A4EA2F3C3D4F41C739EF272CCD18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC2CBCE24382919CB3DBFC8BB3CC6503 /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				793948A7CE88FCA234DA7EFD60D4178E /* Debug */,
+				1456973998A5F20B4501A680D3794F6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C43D9CA5106C6CCEF973B7EDF833947B /* Build configuration list for PBXNativeTarget "GoogleToolboxForMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D19459BBA4D29829D7678D9CDFE01E64 /* Debug */,
+				4FD46B2551582DF47CD95CD77DDF6B34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F118B0FA84AC9116AB2E480C302C3999 /* Build configuration list for PBXNativeTarget "nanopb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B08F59FF51AFF627CB714A7411CD158 /* Debug */,
+				15C069F155AD7CFEFD1E42E043D24C9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
