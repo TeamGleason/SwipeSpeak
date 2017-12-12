@@ -192,7 +192,7 @@
 				TargetAttributes = {
 					DA57B1F51F0D9EC100895E18 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QC5E2933GC;
+						DevelopmentTeam = 8YQUDE4F8S;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -465,7 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/Resources/SwipeSpeak.entitlements;
-				DEVELOPMENT_TEAM = QC5E2933GC;
+				DEVELOPMENT_TEAM = 8YQUDE4F8S;
 				INFOPLIST_FILE = SwipeSpeak/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -482,7 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwipeSpeak/Resources/SwipeSpeak.entitlements;
-				DEVELOPMENT_TEAM = QC5E2933GC;
+				DEVELOPMENT_TEAM = 8YQUDE4F8S;
 				INFOPLIST_FILE = SwipeSpeak/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
