@@ -3,10 +3,12 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 11/9/17.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,9 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Set default settings value to true.
-        UserDefaults.standard.register(defaults: ["audioCueNumLetterSwitch" : true,
-                                                  "buildWordPauseSwitch"    : true])
+        
+        FirebaseApp.configure()
+
+        window?.tintColor = UIColor.lightGray
+        
+        if #available(iOS 11, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
         
         return true
     }
@@ -44,6 +51,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
