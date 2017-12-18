@@ -753,9 +753,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 Keys" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tj-9N-kAh">
-                                                    <rect key="frame" x="16" y="54" width="90" height="40"/>
+                                                    <rect key="frame" x="16" y="54" width="209" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="GKE-sR-12i"/>
                                                         <constraint firstAttribute="height" constant="40" id="gbg-2B-20f"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -771,6 +770,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ubz-iF-MFo" firstAttribute="leading" secondItem="5Tj-9N-kAh" secondAttribute="trailing" constant="8" id="2Mo-q2-f35"/>
                                                 <constraint firstItem="5Tj-9N-kAh" firstAttribute="centerY" secondItem="wwa-Tf-E81" secondAttribute="centerY" id="AyH-9S-Gw5"/>
                                                 <constraint firstItem="ubz-iF-MFo" firstAttribute="centerY" secondItem="wwa-Tf-E81" secondAttribute="centerY" id="EMw-tJ-bN1"/>
                                                 <constraint firstItem="5Tj-9N-kAh" firstAttribute="leading" secondItem="wwa-Tf-E81" secondAttribute="leadingMargin" id="S9j-Tc-b5f"/>
@@ -786,9 +786,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 Keys" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7o-dN-GeI">
-                                                    <rect key="frame" x="16" y="54" width="90" height="40"/>
+                                                    <rect key="frame" x="16" y="54" width="189" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="EO5-hx-324"/>
                                                         <constraint firstAttribute="height" constant="40" id="z8h-Ii-ewY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -804,6 +803,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="hVW-6I-gdg" firstAttribute="leading" secondItem="f7o-dN-GeI" secondAttribute="trailing" constant="8" id="DQZ-aY-CQC"/>
                                                 <constraint firstItem="hVW-6I-gdg" firstAttribute="centerY" secondItem="IEG-AW-EhS" secondAttribute="centerY" id="MPp-2L-xYG"/>
                                                 <constraint firstAttribute="trailing" secondItem="hVW-6I-gdg" secondAttribute="trailing" constant="32" id="TfV-rd-qGs"/>
                                                 <constraint firstItem="f7o-dN-GeI" firstAttribute="centerY" secondItem="IEG-AW-EhS" secondAttribute="centerY" id="WLY-QK-Vkg"/>
@@ -819,9 +819,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8 Keys" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aln-vF-qBq">
-                                                    <rect key="frame" x="16" y="54" width="90" height="40"/>
+                                                    <rect key="frame" x="16" y="54" width="189" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="FJl-Kx-GDf"/>
                                                         <constraint firstAttribute="height" constant="40" id="eaA-W4-qQr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -837,6 +836,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="210-Nf-3MC" firstAttribute="leading" secondItem="Aln-vF-qBq" secondAttribute="trailing" constant="8" id="LNY-fA-jIm"/>
                                                 <constraint firstItem="Aln-vF-qBq" firstAttribute="centerY" secondItem="FDy-sa-WQD" secondAttribute="centerY" id="TVh-uu-8e5"/>
                                                 <constraint firstItem="Aln-vF-qBq" firstAttribute="leading" secondItem="FDy-sa-WQD" secondAttribute="leadingMargin" id="XFn-8m-OU2"/>
                                                 <constraint firstAttribute="trailing" secondItem="210-Nf-3MC" secondAttribute="trailing" constant="32" id="hDG-Qz-Oxf"/>
@@ -852,9 +852,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Strokes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YT-y6-g8a">
-                                                    <rect key="frame" x="16" y="54" width="90" height="40"/>
+                                                    <rect key="frame" x="16" y="54" width="189" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="iCR-U3-cwE"/>
                                                         <constraint firstAttribute="height" constant="40" id="vsV-iL-IhJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -873,6 +872,7 @@
                                                 <constraint firstItem="6YT-y6-g8a" firstAttribute="leading" secondItem="W4d-RH-Nnp" secondAttribute="leadingMargin" id="8HJ-Io-UFu"/>
                                                 <constraint firstItem="LCz-yY-V41" firstAttribute="centerY" secondItem="W4d-RH-Nnp" secondAttribute="centerY" id="JNd-KM-0US"/>
                                                 <constraint firstAttribute="trailing" secondItem="LCz-yY-V41" secondAttribute="trailing" constant="32" id="Kc0-Xv-WT2"/>
+                                                <constraint firstItem="LCz-yY-V41" firstAttribute="leading" secondItem="6YT-y6-g8a" secondAttribute="trailing" constant="8" id="VJG-Ik-fkQ"/>
                                                 <constraint firstItem="6YT-y6-g8a" firstAttribute="centerY" secondItem="W4d-RH-Nnp" secondAttribute="centerY" id="lz2-qd-DWv"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -888,7 +888,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oML-n1-QOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2836" y="-319"/>
+            <point key="canvasLocation" x="2836" y="-319.79010494752629"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RGv-dD-nrN">
