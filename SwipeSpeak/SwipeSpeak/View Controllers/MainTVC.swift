@@ -96,16 +96,18 @@ class MainTVC: UITableViewController {
         wordPredictionEngine = WordPredictionEngine()
         wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping)
         
-        if let filePath = Bundle.main.path(forResource: "WordList", ofType: "csv") {
-            if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
-                for pair in wordAndFrequencyList {
-                    wordPredictionEngine.insert(pair.0, frequency: pair.1)
+        DispatchQueue.global(qos: .userInitiated).async {
+            for word in UserPreferences.shared.userAddedWords {
+                self.wordPredictionEngine.insert(word, frequency: Constants.addedWordFreq)
+            }
+            
+            if let filePath = Bundle.main.path(forResource: "WordList", ofType: "csv") {
+                if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
+                    for pair in wordAndFrequencyList {
+                        self.wordPredictionEngine.insert(pair.0, frequency: pair.1)
+                    }
                 }
             }
-        }
-        
-        for word in UserPreferences.shared.userAddedWords {
-            wordPredictionEngine.insert(word, frequency: Constants.addedWordFreq)
         }
     }
     
@@ -423,8 +425,6 @@ class MainTVC: UITableViewController {
         }
     }
     
-    
-    
     // MARK: - Scanning Mode
     
     @IBAction func buildWordButtonTouched() {
@@ -537,13 +537,15 @@ class MainTVC: UITableViewController {
         }
     }
     
-    /*
+    // MARK: - Table View
+
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -553,7 +555,7 @@ class MainTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
- */
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
