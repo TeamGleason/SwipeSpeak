@@ -91,7 +91,7 @@ class UserPreferences {
 
     private init() {
         userDefaults.register(defaults: [
-            Keys.keyboardLayout: KeyboardLayout.keys4.rawValue,
+            Keys.keyboardLayout: KeyboardLayout.strokes2,
             
             Keys.announceLettersCount: true,
             Keys.vibrate: false,
