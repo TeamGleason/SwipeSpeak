@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,33 +19,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgl-B8-Ur0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7n-ph-JbO">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="SwipeSpeak" id="aV0-RS-RZC"/>
-                                </items>
-                            </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwipeSpeak" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                <rect key="frame" x="0.0" y="202" width="375" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swipespeak_app_icon_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="192-Rj-aVP">
+                                <rect key="frame" x="137.5" y="283" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="M6l-6l-6AB"/>
+                                    <constraint firstAttribute="width" constant="100" id="Neg-O0-CAT"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pgl-B8-Ur0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="5r0-Au-gNV"/>
-                            <constraint firstItem="pgl-B8-Ur0" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="CFV-6R-Kef"/>
-                            <constraint firstItem="Q7n-ph-JbO" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="Hfr-VF-L03"/>
-                            <constraint firstItem="Q7n-ph-JbO" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="VgO-ll-qIk"/>
-                            <constraint firstAttribute="trailing" secondItem="pgl-B8-Ur0" secondAttribute="trailing" id="ZYU-Yd-uAN"/>
-                            <constraint firstItem="Q7n-ph-JbO" firstAttribute="top" secondItem="pgl-B8-Ur0" secondAttribute="bottom" id="aWT-Uo-DmR"/>
-                            <constraint firstItem="Q7n-ph-JbO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="qP3-Vy-18n"/>
+                            <constraint firstItem="192-Rj-aVP" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="38" id="2St-Bc-Iei"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t"/>
+                            <constraint firstItem="192-Rj-aVP" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="vcU-b3-gOX"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="x7j-FC-K8j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-460" y="377"/>
+            <point key="canvasLocation" x="-586" y="325"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="swipespeak_app_icon_transparent" width="166" height="100"/>
+    </resources>
 </document>
