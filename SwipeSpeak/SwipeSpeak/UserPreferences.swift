@@ -91,7 +91,7 @@ class UserPreferences {
 
     private init() {
         userDefaults.register(defaults: [
-            Keys.keyboardLayout: KeyboardLayout.strokes2,
+            Keys.keyboardLayout: KeyboardLayout.strokes2.rawValue,
             
             Keys.announceLettersCount: true,
             Keys.vibrate: false,
@@ -112,10 +112,7 @@ class UserPreferences {
     
     var keyboardLayout: KeyboardLayout {
         get {
-            guard let layout = KeyboardLayout(rawValue: userDefaults.integer(forKey: Keys.keyboardLayout)) else {
-                return KeyboardLayout.keys4
-            }
-            return layout
+            return KeyboardLayout(rawValue: userDefaults.integer(forKey: Keys.keyboardLayout))!
         }
         set(newValue) {
             userDefaults.set(newValue.rawValue, forKey: Keys.keyboardLayout)

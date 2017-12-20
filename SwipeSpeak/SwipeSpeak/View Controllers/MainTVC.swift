@@ -9,15 +9,13 @@
 
 import UIKit
 
-private let numPredictionLabels = 8
-
 class MainTVC: UITableViewController {
     
     // MARK: Constants
     
-    static let buildWordButtonText = "Build Word"
+    private static let buildWordButtonText = "Build Word"
 
-    // MARK: Properties
+    // MARK: - Properties
     
     // Keys
     @IBOutlet var keysView4Keys: UIView!
@@ -30,17 +28,17 @@ class MainTVC: UITableViewController {
     @IBOutlet weak var backspaceButton: UIButton!
     var wordPredictionView: UIView!
     
-    var swipeView: SwipeView!
-    var settingsButton = UIButton()
+    private var swipeView: SwipeView!
+    private var settingsButton = UIButton()
     
     // Predictive Text Dictionary
-    var wordPredictionEngine: WordPredictionEngine!
-    var enteredKeyList = [Int]()
-    var keyViewList = [UILabel]()
-    var keyboardView: UIView!
+    private var wordPredictionEngine: WordPredictionEngine!
+    private var enteredKeyList = [Int]()
+    private var keyViewList = [UILabel]()
+    private var keyboardView: UIView!
     @IBOutlet weak var keyboardContainerView: UIView!
     
-    var keyLetterGrouping = [String]()
+    private var keyLetterGrouping = [String]()
     @IBOutlet var predictionLabels: [UILabel]!
     
     // Build Word Mode
@@ -48,14 +46,21 @@ class MainTVC: UITableViewController {
     @IBOutlet weak var buildWordConfirmButton: UIButton!
     @IBOutlet weak var buildWordCancelButton: UIButton!
     
-    var inBuildWordMode = false
+    private var inBuildWordMode = false
 
-    var buildWordTimer = Timer()
-    var buildWordProgressIndex = 0
-    var buildWordLetterIndex = -1
-    var buildWordResult = ""
-    var buildWordPauseSeconds = 3.5
+    private var buildWordTimer = Timer()
+    private var buildWordProgressIndex = 0
+    private var buildWordLetterIndex = -1
+    private var buildWordResult = ""
+    private var buildWordPauseSeconds = 3.5
 
+    // when selecting a word..
+    private var highlightedLabel: UILabel?
+
+    var numPredictionLabels: Int {
+        return predictionLabels.count
+    }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -98,13 +103,13 @@ class MainTVC: UITableViewController {
         
         DispatchQueue.global(qos: .userInitiated).async {
             for word in UserPreferences.shared.userAddedWords {
-                self.wordPredictionEngine.insert(word, frequency: Constants.addedWordFreq)
+                self.wordPredictionEngine.insert(word, Constants.addedWordFreq)
             }
             
-            if let filePath = Bundle.main.path(forResource: "WordList", ofType: "csv") {
+            if let filePath = Bundle.main.path(forResource: "word_frequency_english_kilgarriff", ofType: "csv") {
                 if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
-                    for pair in wordAndFrequencyList {
-                        self.wordPredictionEngine.insert(pair.0, frequency: pair.1)
+                    for (word, frequency) in wordAndFrequencyList {
+                        self.wordPredictionEngine.insert(word, frequency)
                     }
                 }
             }
@@ -128,8 +133,8 @@ class MainTVC: UITableViewController {
         
         for label in predictionLabels {
             label.isUserInteractionEnabled = true
-            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readAloudLabel)))
-            label.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.addWordToSentence)))
+            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didPressPredictionLabel)))
+            label.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(addWordToSentence(_:))))
         }
         
         if let buildTitleLabel = buildWordButton.titleLabel {
@@ -139,6 +144,7 @@ class MainTVC: UITableViewController {
         
         backspaceAll()
         resetBuildWordMode()
+        dehighlightLabel()
     }
     
     func setupKeyboard() {
@@ -275,10 +281,20 @@ class MainTVC: UITableViewController {
         SpeechSynthesizer.shared.speak(text)
     }
     
-    @IBAction func readAloudLabel(_ sender: UITapGestureRecognizer) {
+    @IBAction func didPressPredictionLabel(_ sender: UITapGestureRecognizer) {
+        if let label = sender.view as? UILabel, predictionLabels.contains(label) {
+            if highlightedLabel != nil && highlightedLabel == label {
+                addWordToSentence(from: label)
+                return
+            } else {
+                highlight(label: label)
+            }
+        }
         if let word = (sender.view as! UILabel).text {
             readAloudText(word)
         }
+        
+
     }
     
     @IBAction func sentenceLabelTouched() {
@@ -300,6 +316,7 @@ class MainTVC: UITableViewController {
     }
     
     func resetAfterWordAdded() {
+        dehighlightLabel()
         enteredKeyList = [Int]()
         wordLabel.text = ""
         for label in predictionLabels {
@@ -310,20 +327,26 @@ class MainTVC: UITableViewController {
     
     // Interpreter add word to sentence by long press.
     @IBAction func addWordToSentence(_ sender: UILongPressGestureRecognizer) {
-        if (sender.state == .began){
-            if let word = (sender.view as! UILabel).text {
-                // Audio feedback after adding a word.
-                if UserPreferences.shared.audioFeedback {
-                    playSoundWordAdded()
-                }
-                sentenceLabel.text! += (word + " ")
-                resetAfterWordAdded()
-                resetBuildWordMode()
-            }
+        guard sender.state == .began else { return }
+        
+        if let label = sender.view as? UILabel{
+            addWordToSentence(from: label)
         }
     }
     
-    
+    private func addWordToSentence(from label: UILabel) {
+        guard let word = label.text else { return }
+        
+        dehighlightLabel()
+        
+        // Audio feedback after adding a word.
+        if UserPreferences.shared.audioFeedback {
+            playSoundWordAdded()
+        }
+        sentenceLabel.text! += (word + " ")
+        resetAfterWordAdded()
+        resetBuildWordMode()
+    }
     
     // Update input box and predictions
     func updatePredictions() {
@@ -423,6 +446,19 @@ class MainTVC: UITableViewController {
         for i in 0 ..< min(numPredictionLabels - 1, prediction.count) {
             predictionLabels[i].text = prediction[i].0
         }
+    }
+    
+    private func highlight(label: UILabel) {
+        dehighlightLabel()
+        highlightedLabel = label
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize+4)
+    }
+    
+    private func dehighlightLabel() {
+        guard highlightedLabel != nil else { return }
+        
+        highlightedLabel!.font = UIFont.preferredFont(forTextStyle: .body)
+        highlightedLabel = nil
     }
     
     // MARK: - Scanning Mode
@@ -539,7 +575,7 @@ class MainTVC: UITableViewController {
     
     // MARK: - Table View
 
-    
+    /*
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
@@ -555,7 +591,7 @@ class MainTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
-    
+    */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {

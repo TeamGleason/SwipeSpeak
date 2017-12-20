@@ -87,7 +87,7 @@ class WordPredictionEngine {
         node.words.append(wordToInsert)
     }
     
-    func insert(_ word: String, frequency: Int) {
+    func insert(_ word: String, _ frequency: Int) {
         let nodeToAddWord = findNodeToAddWord(word, node: rootNode)
         insertWordIntoNodeByFrequency(nodeToAddWord, word: word, useFrequency: frequency)
     }
