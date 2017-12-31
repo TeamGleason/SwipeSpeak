@@ -216,7 +216,7 @@ class MainTVC: UITableViewController {
         }
     }
     
-    @objc func keyEntered(_ notification:NSNotification) {
+    @objc func keyEntered(_ notification: NSNotification) {
         let key = (notification.object! as! NSNumber).intValue
         enteredKeyList.append(key)
         // Update predictive text for key list.
@@ -237,8 +237,8 @@ class MainTVC: UITableViewController {
         if enteredKeyList.count == 0 { return }
         
         // Remove first stroke.
-        if swipeView.firstStroke != -1 {
-            swipeView.firstStroke = -1
+        if swipeView.firstStroke != nil {
+            swipeView.firstStroke = nil
         } else { // Remove last character.
             enteredKeyList.remove(at: enteredKeyList.endIndex - 1)
             updatePredictions()
@@ -262,7 +262,7 @@ class MainTVC: UITableViewController {
         enteredKeyList.removeAll()
         updatePredictions()
         updateKeyboardIndicator(-1)
-        swipeView.firstStroke = -1
+        swipeView.firstStroke = nil
     }
     
     // Input box should has same length as entered keys.

@@ -59,6 +59,12 @@ extension UIViewController {
     }
 }
 
+extension String {
+    subscript (i: Int) -> Character {
+        return self[self.index(self.startIndex, offsetBy: i)]
+    }
+}
+
 var appVersion: String {
     guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return "" }
     return version

@@ -8,21 +8,16 @@
 
 import Foundation
 
-class TrieNode {
-    var children = [Int: TrieNode]()
-    var words = [(String, Int)]()
-}
-
-extension String {
-    subscript (i: Int) -> Character {
-        return self[self.index(self.startIndex, offsetBy: i)]
-    }
-}
-
 class WordPredictionEngine {
-    var rootNode = TrieNode()
     
-    var keyLetterGrouping = [Character:Int]()
+    private class TrieNode {
+        var children = [Int: TrieNode]()
+        var words = [(String, Int)]()
+    }
+
+    private var rootNode = TrieNode()
+    
+    private var keyLetterGrouping = [Character:Int]()
     
     func setKeyLetterGrouping(_ grouping: [String]) {
         if UserPreferences.shared.keyboardLayout == .strokes2 {
@@ -40,7 +35,7 @@ class WordPredictionEngine {
         }
     }
     
-    func findNodeToAddWord(_ word: String, node: TrieNode) -> TrieNode {
+    private func findNodeToAddWord(_ word: String, node: TrieNode) -> TrieNode {
         var node = node
         
         // Traverse existing nodes as far as possible.
@@ -72,7 +67,7 @@ class WordPredictionEngine {
         return node;
     }
     
-    func insertWordIntoNodeByFrequency(_ node: TrieNode, word: String, useFrequency: Int) {
+    private func insertWordIntoNodeByFrequency(_ node: TrieNode, word: String, useFrequency: Int) {
         let wordToInsert = (word, useFrequency)
         for i in 0 ..< node.words.count {
             let comparedFrequency = node.words[i].1
