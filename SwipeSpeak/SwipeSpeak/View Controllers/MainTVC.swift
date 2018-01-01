@@ -179,7 +179,7 @@ class MainTVC: UITableViewController {
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
-        swipeParentView.addSubview(swipeView)
+        swipeParentView.superview!.addSubview(swipeView)
  
         if isSmallScreen {
             swipeParentView.transform = CGAffineTransform(scaleX: 0.725, y: 0.725)
