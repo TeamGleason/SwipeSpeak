@@ -761,7 +761,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Keyboard4" translatesAutoresizingMaskIntoConstraints="NO" id="ubz-iF-MFo">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard_4" translatesAutoresizingMaskIntoConstraints="NO" id="ubz-iF-MFo">
                                                     <rect key="frame" x="233" y="9" width="110" height="130"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="7H3-uk-JKm"/>
@@ -794,7 +794,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Keyboard6" translatesAutoresizingMaskIntoConstraints="NO" id="hVW-6I-gdg">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard_6" translatesAutoresizingMaskIntoConstraints="NO" id="hVW-6I-gdg">
                                                     <rect key="frame" x="213" y="9" width="130" height="130"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="130" id="4g4-h0-VsO"/>
@@ -827,7 +827,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Keyboard8" translatesAutoresizingMaskIntoConstraints="NO" id="210-Nf-3MC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard_8" translatesAutoresizingMaskIntoConstraints="NO" id="210-Nf-3MC">
                                                     <rect key="frame" x="213" y="9" width="130" height="130"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="HoX-WT-l9X"/>
@@ -860,7 +860,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KeyboardTwoStrokes" translatesAutoresizingMaskIntoConstraints="NO" id="LCz-yY-V41">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard_2_strokes" translatesAutoresizingMaskIntoConstraints="NO" id="LCz-yY-V41">
                                                     <rect key="frame" x="213" y="30" width="130" height="88"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="88" id="2Oq-cc-0sd"/>
@@ -890,10 +890,10 @@
             </objects>
             <point key="canvasLocation" x="2836" y="-319.79010494752629"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Rotation HelperNVC-->
         <scene sceneID="RGv-dD-nrN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v6X-bQ-ltf" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v6X-bQ-ltf" customClass="RotationHelperNVC" customModule="SwipeSpeak" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VW4-lx-I6S">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -928,10 +928,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Keyboard4" width="284" height="309"/>
-        <image name="Keyboard6" width="304" height="304"/>
-        <image name="Keyboard8" width="274" height="304"/>
-        <image name="KeyboardTwoStrokes" width="187" height="124"/>
         <image name="ic_add_box" width="24" height="24"/>
         <image name="ic_cloud" width="24" height="24"/>
         <image name="ic_history" width="24" height="24"/>
@@ -942,6 +938,10 @@
         <image name="ic_speaker_phone" width="24" height="24"/>
         <image name="ic_vibration" width="24" height="24"/>
         <image name="ic_view_module" width="24" height="24"/>
+        <image name="keyboard_2_strokes" width="320" height="234"/>
+        <image name="keyboard_4" width="293" height="330"/>
+        <image name="keyboard_6" width="318" height="236"/>
+        <image name="keyboard_8" width="318" height="318"/>
         <image name="swipespeak_app_icon_transparent" width="166" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>

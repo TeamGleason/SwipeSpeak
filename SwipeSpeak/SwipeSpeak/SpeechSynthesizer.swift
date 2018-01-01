@@ -13,7 +13,7 @@ class SpeechSynthesizer {
     
     static let shared = SpeechSynthesizer()
 
-    let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer = AVSpeechSynthesizer()
 
     private init() { }
     

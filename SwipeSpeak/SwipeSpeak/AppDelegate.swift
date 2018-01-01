@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         window?.tintColor = UIColor.lightGray
+        window?.backgroundColor = UIColor.white
         
         if #available(iOS 11, *) {
             UIScrollView.appearance().contentInsetAdjustmentBehavior = .never

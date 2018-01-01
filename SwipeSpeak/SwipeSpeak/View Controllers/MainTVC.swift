@@ -17,6 +17,8 @@ class MainTVC: UITableViewController {
 
     // MARK: - Properties
     
+    private var viewDidAppear = false
+    
     // Keys
     @IBOutlet var keysView4Keys: UIView!
     @IBOutlet var keysView6Keys: UIView!
@@ -54,11 +56,15 @@ class MainTVC: UITableViewController {
     private var buildWordResult = ""
     private var buildWordPauseSeconds = 3.5
 
-    // when selecting a word..
+    // When selecting a word
     private var highlightedLabel: UILabel?
 
     var numPredictionLabels: Int {
         return predictionLabels.count
+    }
+    
+    private var isSmallScreen: Bool {
+        return UIScreen.main.bounds.size.height < 600
     }
     
     // MARK: - Lifecycle
@@ -66,16 +72,26 @@ class MainTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        setupWordPredictionEngine()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyEntered), name: NSNotification.Name(rawValue: "KeyEntered"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(firstStrokeEntered), name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(secondStrokeEntered), name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyEntered),
+                                               name: NSNotification.Name(rawValue: "KeyEntered"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(firstStrokeEntered),
+                                               name: NSNotification.Name(rawValue: "FirstStrokeEntered"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(secondStrokeEntered),
+                                               name: NSNotification.Name(rawValue: "SecondStrokeEntered"),
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !viewDidAppear {
+            // This will be animated to value 1.0 in `viewDidAppear`
+            self.view.alpha = 0.0
+        }
         
         if userAddedWordListUpdated || keyboardSettingsUpdated {
             setupUI()
@@ -91,13 +107,47 @@ class MainTVC: UITableViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !viewDidAppear {
+            viewDidAppear = true
+            
+            setupUI()
+            setupWordPredictionEngine()
+            
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: [.curveEaseIn],
+                           animations: { self.view.alpha = 1.0 },
+                           completion: nil)
+        }
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context) in
+            self.view.alpha = 0.0   
+        }) { (context) in
+            self.setupUI()
+
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: [.curveEaseIn],
+                           animations: { self.view.alpha = 1.0 },
+                           completion: { (completed) in
+            })
+        }
+    }
+    
     // MARK: - Setup
 
-    func setupWordPredictionEngine() {
+    private func setupWordPredictionEngine() {
         wordPredictionEngine = WordPredictionEngine()
         wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping)
         
@@ -116,19 +166,25 @@ class MainTVC: UITableViewController {
         }
     }
     
-    func setupUI() {
-        if UIScreen.main.bounds.size.height > 600 {
-            tableView.isScrollEnabled = false
-        }
+    private func setupUI() {
+        tableView.isScrollEnabled = false
+        
+        keyboardContainerView.backgroundColor = UIColor.white
         
         setupKeyboard()
         
-        swipeView = SwipeView(frame: keyboardView.frame,
+        let swipeParentView = keyboardContainerView!
+        
+        swipeView = SwipeView(frame: swipeParentView.frame,
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
-        keyboardView.superview!.addSubview(swipeView)
-        
+        swipeParentView.addSubview(swipeView)
+ 
+        if isSmallScreen {
+            swipeParentView.transform = CGAffineTransform(scaleX: 0.725, y: 0.725)
+        }
+
         sentenceLabel.text = ""
         
         for label in predictionLabels {
@@ -147,7 +203,7 @@ class MainTVC: UITableViewController {
         dehighlightLabel()
     }
     
-    func setupKeyboard() {
+    private func setupKeyboard() {
         if keyboardView != nil && keyboardView.superview != nil {
             swipeView.removeFromSuperview()
             keyboardView.removeFromSuperview()
@@ -174,6 +230,8 @@ class MainTVC: UITableViewController {
         }
         
         keyboardContainerView.addSubview(keyboardView)
+        keyboardView.center = CGPoint(x: keyboardContainerView.superview!.bounds.width/2.0,
+                                      y: keyboardContainerView.superview!.bounds.height/2.0)
         
         for subview in keyboardView.subviews {
             guard let label = subview as? UILabel else { continue }
@@ -190,7 +248,7 @@ class MainTVC: UITableViewController {
         performSegue(withIdentifier: "showSettingsVC", sender: self)
     }
     
-    func updateKeyboardIndicator(_ index: Int) {
+    private func updateKeyboardIndicator(_ index: Int) {
         resetKeysBoarder()
         
         if index != -1 {
@@ -268,7 +326,7 @@ class MainTVC: UITableViewController {
     // Input box should has same length as entered keys.
     // E.g. if key list is [down, right, left], "unit" is the first prediction.
     // But there are only 3 keys in list, so we should show "uni" in input box.
-    func trimmedStringForwordLabel(_ result: String) -> String {
+    private func trimmedStringForwordLabel(_ result: String) -> String {
         guard !result.isEmpty else {
             return ""
         }
@@ -277,7 +335,7 @@ class MainTVC: UITableViewController {
         return String(result[..<toIndex])
     }
     
-    func readAloudText(_ text: String) {
+    private func readAloudText(_ text: String) {
         SpeechSynthesizer.shared.speak(text)
     }
     
@@ -349,7 +407,7 @@ class MainTVC: UITableViewController {
     }
     
     // Update input box and predictions
-    func updatePredictions() {
+    private func updatePredictions() {
         // Initialize.
         var prediction = [(String, Int)]()
         for label in predictionLabels {
@@ -497,7 +555,7 @@ class MainTVC: UITableViewController {
         }
     }
     
-    func resetBuildWordMode() {
+    private func resetBuildWordMode() {
         buildWordTimer.invalidate()
         buildWordProgressIndex = 0
         buildWordLetterIndex = -1
@@ -506,7 +564,7 @@ class MainTVC: UITableViewController {
         resetKeysBoarder()
     }
     
-    func resetKeysBoarder() {
+    private func resetKeysBoarder() {
         for key in keyViewList {
             key.layer.borderWidth = 0
         }
@@ -553,7 +611,11 @@ class MainTVC: UITableViewController {
             self.readAloudText(word + " Next Letter")
             
             sleep(UInt32(self.buildWordResult.count / 2))
-            self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
+            self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds,
+                                                       target: self,
+                                                       selector: #selector(self.scanningLettersOnKey),
+                                                       userInfo: nil,
+                                                       repeats: true)
         }
     }
     
@@ -600,7 +662,7 @@ class MainTVC: UITableViewController {
         case 3:
             return inBuildWordMode ? 44 : 0
         case 4:
-            return 348
+            return isSmallScreen ? 240 : 340
         default:
             return 44
         }

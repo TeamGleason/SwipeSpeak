@@ -10,7 +10,6 @@ import UIKit
 
 class AboutVC: UITableViewController {
     
-    
     @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
