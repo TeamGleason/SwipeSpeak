@@ -73,11 +73,11 @@ mean,2250
 right,2209
 which,2208
 from,2178
-going*,2174
+going,2174
 say,2116
 been,2082
 people,2063
-because*,2039
+because,2039
 some,1986
 could,1949
 will,1890
@@ -98,11 +98,12 @@ has,1598
 good,1566
 as,1558
 does,1549
-cos*,1535
+cos,1535
 any,1484
 down,1472
 where,1380
-~na*,1376
+gonna,1376
+wanna,1375
 him,1348
 his,1333
 other,1313
@@ -113,12 +114,11 @@ their,1284
 these,1269
 our,1253
 way,1252
-ca~,1248
 actually,1239
 back,1211
 four,1199
 should,1173
-gon~,1154
+gon,1154
 take,1149
 thing,1136
 look,1123
@@ -133,10 +133,10 @@ us,1059
 quite,1050
 hundred,1023
 right,1019
-lot*,992
+lot,992
 make,977
 first,957
-okay*,950
+okay,950
 more,949
 doing,943
 done,931
@@ -170,11 +170,11 @@ than,683
 tell,668
 many,654
 same,651
-her*,644
+her,644
 another,640
 money,637
 point,637
-bit*,635
+bit,635
 being,634
 anything,633
 week,631
@@ -197,7 +197,6 @@ nine,571
 Mr,565
 seven,565
 also,556
-wo~,552
 big,549
 over,543
 of course,543
@@ -244,7 +243,7 @@ away,433
 much,432
 school,431
 sorry,431
-C / c,431
+c,431
 talking,428
 looking,428
 council,424
@@ -257,11 +256,11 @@ whether,413
 mum,410
 though,410
 somebody,409
-alright*,408
-A / a,405
+alright,408
+a,405
 man,405
 nothing,403
-let's,401
+lets,401
 so,400
 ask,399
 try,396
@@ -272,16 +271,14 @@ car,379
 side,374
 seen,371
 nineteen,370
-~n~*,367
 children,367
-alright*,366
 start,365
 long,365
 feel,364
 great,363
 told,362
 please,361
-P / p,359
+p,359
 everything,359
 area,356
 part,355
@@ -293,11 +290,11 @@ off,341
 able,339
 between,338
 its,338
-B / b,337
+b,337
 Road,336
 comes,328
 pound,327
-~ta*,326
+ta,326
 days,318
 ones,318
 before,316
@@ -337,7 +334,7 @@ back,270
 kind,270
 at all,270
 dad,268
-S / s,267
+s,267
 everybody,267
 already,267
 talk,266
@@ -345,7 +342,7 @@ home,265
 am,264
 shall,264
 wrong,263
-E / e,263
+e,263
 together,262
 buy,261
 started,261
@@ -368,14 +365,14 @@ world,248
 whole,248
 bloody,247
 mind,246
-T / t,245
-O / o,245
+t,245
+o,245
 round,245
 person,244
 only,244
 case,243
 each,243
-M / m,242
+m,242
 enough,241
 help,239
 home,237
@@ -390,7 +387,6 @@ heard,232
 taken,231
 so that,231
 lovely,231
-wan~,231
 before,230
 far,229
 all,229
@@ -410,7 +406,6 @@ second,224
 taking,224
 men,223
 policy,223
-ai~*,221
 hand,221
 couple,220
 before,220
@@ -418,7 +413,7 @@ hello,220
 problems,220
 ha,220
 book,220
-me*,219
+me,219
 minute,219
 asked,218
 best,217
@@ -461,12 +456,11 @@ play,194
 bought,194
 Christmas,194
 hour,194
-I / i,193
-in~*,191
+i,193
 hours,191
 system,189
 both,189
-o'clock,188
+oclock,188
 shop,188
 fine,187
 committee,187
@@ -475,9 +469,9 @@ police,186
 high,185
 mother,184
 absolutely,183
-D / d,183
+d,183
 yourself,182
-G / g,182
+g,182
 someone,181
 line,181
 young,180
@@ -517,12 +511,12 @@ indeed,166
 cut,165
 national,165
 at least,165
-du~*,165
+dunno,165
 level,164
 head,164
 mind,164
 paid,163
-of*,162
+of,162
 thanks,162
 makes,162
 general,162
@@ -536,7 +530,7 @@ myself,159
 mummy,159
 town,159
 company,158
-N / n,157
+n,157
 million,157
 dear,157
 using,157
@@ -551,7 +545,7 @@ finished,155
 plan,155
 health,154
 eleven,154
-R / r,154
+r,154
 long,153
 particularly,153
 York,153
@@ -560,7 +554,6 @@ putting,153
 questions,153
 during,152
 therefore,152
-~no*,152
 worked,152
 forward,151
 up,151
@@ -624,7 +617,7 @@ form,133
 supposed,133
 main,133
 centre,133
-U / u,133
+u,133
 interest,133
 fair,133
 real,132
@@ -642,7 +635,7 @@ position,130
 power,130
 ready,130
 box,129
-okay*,129
+okay,129
 dog,128
 plus,128
 speak,128
@@ -660,11 +653,11 @@ special,125
 listen,125
 themselves,124
 wonder,124
-X / x,124
+x,124
 age,124
 ought,123
 towards,123
-H / h,123
+h,123
 till,122
 building,122
 unless,122
@@ -673,7 +666,7 @@ knows,122
 trade,122
 behind,121
 price,121
-F / f,121
+f,121
 changed,120
 piece,120
 less,119
@@ -686,7 +679,7 @@ everyone,118
 schools,118
 authority,118
 along,118
-labour*,118
+labour,118
 hell,118
 district,118
 anyone,118
@@ -792,7 +785,7 @@ quid,103
 yo,103
 friend,102
 term,102
-V / v,102
+v,102
 public,102
 late,102
 management,101
@@ -840,7 +833,7 @@ straight,95
 onto,95
 card,95
 Wednesday,95
-K / k,94
+k,94
 basis,94
 bus,94
 worry,94
@@ -850,7 +843,7 @@ written,94
 single,94
 court,94
 support,93
-L / l,93
+l,93
 baby,93
 imagine,93
 team,93
@@ -998,7 +991,7 @@ example,76
 opportunity,75
 check,75
 slightly,75
-course*,75
+course,75
 tend,75
 post,75
 afford,75
@@ -1054,12 +1047,11 @@ value,70
 environment,70
 benefit,70
 deal,70
-Y / y,70
+y,70
 pull,70
 history,70
 ideas,70
 beautiful,70
-all right*,70
 Mark,70
 European,69
 expensive,69
@@ -1154,7 +1146,7 @@ standing,63
 upstairs,63
 guy,63
 front,63
-further*,63
+further,63
 dead,63
 writing,63
 ring,63
@@ -1231,7 +1223,7 @@ Tony,58
 clothes,58
 follow,58
 past,58
-labour*,58
+labour,58
 weather,58
 current,58
 specific,58
@@ -1304,7 +1296,6 @@ worried,54
 for instance,54
 feeling,54
 unfortunately,53
-more than*,53
 meetings,53
 sheet,53
 eye,53
@@ -1405,7 +1396,7 @@ wide,48
 trees,48
 rates,48
 unit,48
-W / w,48
+w,48
 reports,48
 levels,48
 yellow,48
@@ -1480,7 +1471,6 @@ mate,45
 responsible,45
 catch,45
 chicken,45
-no one*,45
 population,45
 property,45
 huge,45
@@ -1512,7 +1502,7 @@ energy,44
 leaving,44
 chocolate,44
 file,44
-Q / q,44
+q,44
 material,44
 hill,43
 sound,43
@@ -1572,7 +1562,7 @@ waste,42
 enjoyed,42
 cover,42
 tells,42
-miss*,42
+miss,42
 rain,42
 forgotten,42
 etcetera,42
@@ -1814,7 +1804,7 @@ parties,36
 spell,36
 United,36
 standards,36
-conservative*,36
+conservative,36
 dangerous,36
 deep,35
 lives,35
@@ -2032,7 +2022,7 @@ fortnight,31
 joined,31
 Jenny,31
 treatment,31
-lead*,31
+lead,31
 potatoes,31
 cupboard,31
 cheque,31
@@ -2147,7 +2137,7 @@ drugs,29
 longer,29
 southern,29
 clients,29
-his*,29
+his,29
 master,29
 reform,29
 credit,29
@@ -2283,7 +2273,7 @@ ya,27
 highly,27
 practical,27
 councillors,27
-J / j,27
+j,27
 identify,27
 filled,27
 pop,27
@@ -2406,7 +2396,7 @@ motor,25
 progress,25
 camera,25
 root,25
-liberal*,25
+liberal,25
 reduced,25
 occasion,25
 dress,25
@@ -2574,7 +2564,6 @@ screen,23
 firms,23
 Fred,23
 release,23
-C. / c.,23
 pie,23
 acceptable,23
 offices,23
@@ -2652,13 +2641,12 @@ appears,22
 travel,22
 tools,22
 photograph,22
-OK*,22
+OK,22
 objective,22
 heaven,22
 seats,22
 pensions,22
 cause,22
-K. / k.,22
 players,22
 unusual,22
 situations,22
@@ -2811,10 +2799,9 @@ cow,20
 William,20
 inner,20
 recession,20
-X. / x.,20
 applied,20
 level,20
-need*,20
+need,20
 wider,20
 surface,20
 ignore,20
@@ -2939,7 +2926,6 @@ Russell,19
 nan,19
 answered,19
 twelfth,19
-A. / a.,19
 adults,19
 wake,19
 appeal,19
@@ -3172,7 +3158,7 @@ talks,17
 jumper,17
 wire,17
 smoke,17
-y'know,17
+yknow,17
 Glasgow,17
 gift,17
 belong,17
@@ -3467,10 +3453,9 @@ confirm,15
 excuse,15
 burnt,15
 fees,15
-Les*,15
+Les,15
 Adam,15
 resource,15
-B. / b.,15
 nervous,15
 fishing,15
 subject to,15
@@ -3483,7 +3468,7 @@ locked,15
 cycle,15
 earning,15
 bang,15
-Z / z,15
+z,15
 accidents,15
 collecting,15
 leaders,15
@@ -3544,7 +3529,6 @@ guide,15
 pizza,15
 guidelines,15
 Roy,15
-sha~,15
 Philip,15
 sin,15
 memories,15
@@ -3641,7 +3625,7 @@ leisure,14
 prepare,14
 severe,14
 ladder,14
-y'know,14
+yknow,14
 tie,14
 adult,14
 Nottinghamshire,14
@@ -3862,7 +3846,6 @@ in charge of,13
 och,13
 experiences,13
 criterion,13
-de*,13
 Americans,13
 announced,13
 dentist,13
@@ -4191,7 +4174,7 @@ existence,12
 whichever,12
 significantly,12
 theme,12
-Jan*,12
+Jan,12
 mid,12
 toys,12
 anxiety,12
@@ -4311,7 +4294,6 @@ Joy,11
 outside of,11
 tongue,11
 phoning,11
-no-one*,11
 integrate,11
 lamb,11
 trolley,11
@@ -4418,7 +4400,6 @@ miners,11
 threatened,11
 productivity,11
 generous,11
-dun~,11
 tone,11
 shelf,11
 dishes,11
@@ -4476,7 +4457,6 @@ posts,11
 valley,11
 pits,11
 burning,11
-T. / t.,11
 retain,11
 bearing,11
 navy,11
@@ -4589,7 +4569,6 @@ thirds,10
 categories,10
 burden,10
 continued,10
-E. / e.,10
 seed,10
 recycling,10
 influence,10
@@ -4629,7 +4608,6 @@ driven,10
 Spencers,10
 storage,10
 rush,10
-S. / s.,10
 at present,10
 in addition to,10
 Suffolk,10
@@ -4674,7 +4652,6 @@ Kyle,10
 Tommy,10
 demonstrate,10
 fives,10
-O. / o.,10
 Russian,10
 cheek,10
 kicking,10

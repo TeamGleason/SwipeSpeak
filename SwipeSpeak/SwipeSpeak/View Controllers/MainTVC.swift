@@ -153,13 +153,25 @@ class MainTVC: UITableViewController {
         
         DispatchQueue.global(qos: .userInitiated).async {
             for word in UserPreferences.shared.userAddedWords {
-                self.wordPredictionEngine.insert(word, Constants.addedWordFreq)
+                do {
+                    try self.wordPredictionEngine.insert(word, Constants.maxWordFrequency)
+                } catch WordPredictionError.unsupportedWord(let invalidChar) {
+                    print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
+                } catch {
+                    print("Cannot add word '\(word)', error: \(error)")
+                }
             }
             
-            if let filePath = Bundle.main.path(forResource: "word_frequency_english_kilgarriff", ofType: "csv") {
+            if let filePath = Bundle.main.path(forResource: "word_frequency_english_ucrel", ofType: "csv") {
                 if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
                     for (word, frequency) in wordAndFrequencyList {
-                        self.wordPredictionEngine.insert(word, frequency)
+                        do {
+                            try self.wordPredictionEngine.insert(word, frequency)
+                        } catch WordPredictionError.unsupportedWord(let invalidChar) {
+                            print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
+                        } catch {
+                            print("Cannot add word '\(word)', error: \(error)")
+                        }
                     }
                 }
             }

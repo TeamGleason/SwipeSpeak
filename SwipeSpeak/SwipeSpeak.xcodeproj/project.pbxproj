@@ -24,7 +24,6 @@
 		DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700181F0DA06B003BEE3D /* SwipeView.swift */; };
 		DA07001B1F0DA0C2003BEE3D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001A1F0DA0C2003BEE3D /* Utility.swift */; };
 		DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */; };
-		DA07001F1F0DA72A003BEE3D /* word_frequency_english_kilgarriff.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA07001E1F0DA72A003BEE3D /* word_frequency_english_kilgarriff.csv */; };
 		DA0700211F0DA84A003BEE3D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700201F0DA84A003BEE3D /* SettingsVC.swift */; };
 		DA0700231F0DA889003BEE3D /* KeyboardSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700221F0DA889003BEE3D /* KeyboardSettingsVC.swift */; };
 		DA0700251F0DA98F003BEE3D /* UserAddedWordListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700241F0DA98F003BEE3D /* UserAddedWordListVC.swift */; };
@@ -233,7 +232,6 @@
 			files = (
 				DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */,
 				B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */,
-				DA07001F1F0DA72A003BEE3D /* word_frequency_english_kilgarriff.csv in Resources */,
 				B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */,
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
 				B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */,

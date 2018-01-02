@@ -3,10 +3,15 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 1/2/18.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import Foundation
+
+enum WordPredictionError: Error {
+    case unsupportedWord(invalidChar: Character)
+}
 
 class WordPredictionEngine {
     
@@ -35,15 +40,20 @@ class WordPredictionEngine {
         }
     }
     
-    private func findNodeToAddWord(_ word: String, node: TrieNode) -> TrieNode {
+    private func findNodeToAddWord(_ word: String, node: TrieNode) throws -> TrieNode {
         var node = node
         
         // Traverse existing nodes as far as possible.
         var i = 0
         let length = word.count
         while (i < length) {
-            var key:Int
-            key = keyLetterGrouping[word[i]]!
+            let char = word[i]
+            
+            guard keyLetterGrouping.keys.contains(char) else {
+                throw WordPredictionError.unsupportedWord(invalidChar: char)
+            }
+            
+            let key = keyLetterGrouping[char]!
             
             let c = node.children[key]
             if (c != nil) {
@@ -55,8 +65,13 @@ class WordPredictionEngine {
         }
         
         while (i < length) {
-            var key:Int
-            key = keyLetterGrouping[word[i]]!
+            let char = word[i]
+
+            guard keyLetterGrouping.keys.contains(char) else {
+                throw WordPredictionError.unsupportedWord(invalidChar: char)
+            }
+            
+            let key = keyLetterGrouping[word[i]]!
             
             let newNode = TrieNode()
             node.children[key] = newNode
@@ -73,7 +88,7 @@ class WordPredictionEngine {
             let comparedFrequency = node.words[i].1
             let insertFrequency = wordToInsert.1
             
-            if(insertFrequency >= comparedFrequency) {
+            if insertFrequency >= comparedFrequency {
                 node.words.insert(wordToInsert, at: i)
                 return
             }
@@ -82,8 +97,8 @@ class WordPredictionEngine {
         node.words.append(wordToInsert)
     }
     
-    func insert(_ word: String, _ frequency: Int) {
-        let nodeToAddWord = findNodeToAddWord(word, node: rootNode)
+    func insert(_ word: String, _ frequency: Int) throws {
+        let nodeToAddWord = try findNodeToAddWord(word, node: rootNode)
         insertWordIntoNodeByFrequency(nodeToAddWord, word: word, useFrequency: frequency)
     }
     
@@ -100,6 +115,7 @@ class WordPredictionEngine {
         
         return node.words
     }
+    
     /*
     func getSuggestionsFromLetter(_ keyString: [Int]) -> [(String, Int)] {
         var inputString = ""
@@ -109,4 +125,5 @@ class WordPredictionEngine {
         print(inputString)
         return [(inputString, 200), ("dsd", 200), ("ss", 200), ("wwe", 200)]
     }*/
+    
 }

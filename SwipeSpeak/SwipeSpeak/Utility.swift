@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 import AVFoundation
 
-struct Constants {
-    static let addedWordFreq = 9999999
+struct Constants {    
+    static let maxWordFrequency = 99999
 
     static let keyLetterGrouping4Keys = ["abcdef", "ghijkl", "mnopqrs", "tuvwxyz"]
     static let keyLetterGrouping6Keys = ["abcd", "efgh", "ijkl", "mnop", "qrstu", "vwxyz"]
@@ -32,7 +32,7 @@ func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
         if let frequency = Int(pair[1]) {
             wordAndFrequencyList.append((pair[0].lowercased(), frequency))
         } else {
-            wordAndFrequencyList.append((pair[0].lowercased(), Constants.addedWordFreq))
+            wordAndFrequencyList.append((pair[0].lowercased(), Constants.maxWordFrequency))
         }
     }
     return wordAndFrequencyList
