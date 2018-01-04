@@ -53,7 +53,5 @@ class KeyboardSettingsVC: UITableViewController {
             
             UserPreferences.shared.keyboardLayout = rowLayoutMap[indexPath.row]!
         }
-        
-        keyboardSettingsUpdated = true
     }
 }

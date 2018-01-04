@@ -36,9 +36,14 @@ struct SentenceKeys {
     static let date     = "date"
 }
 
+extension NSNotification.Name {
+    static let KeyboardLayoutDidChange = NSNotification.Name(rawValue: "KeyboardLayoutDidChange")
+    static let UserAddedWordsUpdated = NSNotification.Name(rawValue: "UserAddedWordsUpdated")
+}
+
 private struct Keys {
     
-    static let keyboardLayout   = "keyboardLayout"
+    static let keyboardLayout = "keyboardLayout"
 
     static let announceLettersCount      = "announceLettersCount"
     static let vibrate                   = "vibrate"
@@ -104,8 +109,21 @@ class UserPreferences {
             Keys.enableCloudSync: true,
             ])
         
+        if self.enableCloudSync {
+            enableZephyr()
+        }
+    }
+    
+    // MARK: Zephyr
+
+    private func enableZephyr() {
         Zephyr.debugEnabled = true
-        Zephyr.sync(keys: Keys.iCloudSyncKeys())
+        Zephyr.addKeysToBeMonitored(keys: Keys.iCloudSyncKeys())
+    }
+    
+    private func disableZephyr() {
+        Zephyr.debugEnabled = true
+        Zephyr.removeKeysFromBeingMonitored(keys: Keys.iCloudSyncKeys())
     }
     
     // MARK: Properties
@@ -116,6 +134,8 @@ class UserPreferences {
         }
         set(newValue) {
             userDefaults.set(newValue.rawValue, forKey: Keys.keyboardLayout)
+            
+            NotificationCenter.default.post(name: Notification.Name.KeyboardLayoutDidChange, object: self)
         }
     }
     
@@ -188,6 +208,12 @@ class UserPreferences {
         }
         set(newValue) {
             userDefaults.set(newValue, forKey: Keys.enableCloudSync)
+            
+            if newValue {
+                enableZephyr()
+            } else {
+                disableZephyr()
+            }
         }
     }
     
@@ -215,6 +241,8 @@ class UserPreferences {
         }
         
         userAddedWords = newArray
+        
+        NotificationCenter.default.post(name: Notification.Name.UserAddedWordsUpdated, object: self)
     }
     
     func removeWord(_ index: Int) {

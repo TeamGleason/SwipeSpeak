@@ -75,8 +75,6 @@ class UserAddedWordListVC: UITableViewController {
             self.loadUserAddedWords()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             self.tableView.reloadEmptyDataSet()
-            
-            userAddedWordListUpdated = true
         }
         
         saveAction.isEnabled = false

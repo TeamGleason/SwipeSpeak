@@ -20,9 +20,6 @@ struct Constants {
     static let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
 }
 
-var userAddedWordListUpdated = false
-var keyboardSettingsUpdated = false
-
 func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
     let contents = try? String(contentsOfFile: filepath)
     let lines = contents?.components(separatedBy: CharacterSet.newlines).filter{!$0.isEmpty}

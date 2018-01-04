@@ -35,7 +35,7 @@ class MainTVC: UITableViewController {
     
     // Predictive Text Dictionary
     private var wordPredictionEngine: WordPredictionEngine!
-    private var enteredKeyList = [Int]()
+    fileprivate var enteredKeyList = [Int]()
     private var keyViewList = [UILabel]()
     private var keyboardView: UIView!
     @IBOutlet weak var keyboardContainerView: UIView!
@@ -68,21 +68,21 @@ class MainTVC: UITableViewController {
     }
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyEntered),
-                                               name: NSNotification.Name(rawValue: "KeyEntered"),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardLayoutDidChange(_:)),
+                                               name: NSNotification.Name.KeyboardLayoutDidChange,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(firstStrokeEntered),
-                                               name: NSNotification.Name(rawValue: "FirstStrokeEntered"),
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userAddedWordsUpdated(_:)),
+                                               name: NSNotification.Name.UserAddedWordsUpdated,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(secondStrokeEntered),
-                                               name: NSNotification.Name(rawValue: "SecondStrokeEntered"),
-                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,13 +91,6 @@ class MainTVC: UITableViewController {
         if !viewDidAppear {
             // This will be animated to value 1.0 in `viewDidAppear`
             self.view.alpha = 0.0
-        }
-        
-        if userAddedWordListUpdated || keyboardSettingsUpdated {
-            setupUI()
-            setupWordPredictionEngine()
-            userAddedWordListUpdated = false
-            keyboardSettingsUpdated = false
         }
         
         if UserPreferences.shared.longerPauseBetweenLetters {
@@ -168,7 +161,7 @@ class MainTVC: UITableViewController {
                         do {
                             try self.wordPredictionEngine.insert(word, frequency)
                         } catch WordPredictionError.unsupportedWord(let invalidChar) {
-                            print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
+                            //print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
                         } catch {
                             print("Cannot add word '\(word)', error: \(error)")
                         }
@@ -191,6 +184,8 @@ class MainTVC: UITableViewController {
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
+        swipeView.delegate = self
+        
         swipeParentView.superview!.addSubview(swipeView)
  
         if isSmallScreen {
@@ -254,6 +249,18 @@ class MainTVC: UITableViewController {
         }
     }
     
+    // MARK: - Notifications
+
+    @objc private func keyboardLayoutDidChange(_ notification: Notification) {
+        setupUI()
+        setupWordPredictionEngine()
+    }
+    
+    @objc private func userAddedWordsUpdated(_ notification: Notification) {
+        setupUI()
+        setupWordPredictionEngine()
+    }
+    
     // MARK: - UI Interaction
     
     @objc func settingsButtonTouched() {
@@ -266,36 +273,6 @@ class MainTVC: UITableViewController {
         if index != -1 {
             // Visual indicator
             keyViewList[index].layer.borderWidth = 3
-        }
-    }
-    
-    @objc func firstStrokeEntered(_ notification:NSNotification) {
-        let key = (notification.object! as! NSNumber).intValue
-        updateKeyboardIndicator(key)
-    }
-    
-    @objc func secondStrokeEntered(_ notification:NSNotification) {
-        let letter = (notification.object! as! NSNumber).intValue
-        enteredKeyList.append(letter)
-        updateKeyboardIndicator(-1)
-        updatePredictions()
-        
-        // Indicate how many letter entered, if enabled in settings.
-        if UserPreferences.shared.announceLettersCount {
-            readAloudText("Letter " + String(enteredKeyList.count + 1))
-        }
-    }
-    
-    @objc func keyEntered(_ notification: NSNotification) {
-        let key = (notification.object! as! NSNumber).intValue
-        enteredKeyList.append(key)
-        // Update predictive text for key list.
-        updatePredictions()
-        updateKeyboardIndicator(key)
-        
-        // Indicate how many letter entered, if enabled in settings.
-        if UserPreferences.shared.announceLettersCount {
-            readAloudText("Letter " + String(enteredKeyList.count + 1))
         }
     }
     
@@ -681,4 +658,33 @@ class MainTVC: UITableViewController {
     }
 }
 
-
+// MARK: - SwipeViewDelegate
+extension MainTVC: SwipeViewDelegate {
+    
+    func keyEntered(key: Int) {
+        enteredKeyList.append(key)
+        // Update predictive text for key list.
+        updatePredictions()
+        updateKeyboardIndicator(key)
+        
+        // Indicate how many letter entered, if enabled in settings.
+        if UserPreferences.shared.announceLettersCount {
+            readAloudText("Letter " + String(enteredKeyList.count + 1))
+        }
+    }
+    
+    func firstStrokeEntered(key: Int) {
+        updateKeyboardIndicator(key)
+    }
+    
+    func secondStrokeEntered(key: Int) {
+        enteredKeyList.append(key)
+        updateKeyboardIndicator(-1)
+        updatePredictions()
+        
+        // Indicate how many letter entered, if enabled in settings.
+        if UserPreferences.shared.announceLettersCount {
+            readAloudText("Letter " + String(enteredKeyList.count + 1))
+        }
+    }
+}

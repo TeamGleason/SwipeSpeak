@@ -10,33 +10,50 @@
 import Foundation
 import UIKit
 
+protocol SwipeViewDelegate {
+    func keyEntered(key: Int)
+    func firstStrokeEntered(key: Int)
+    func secondStrokeEntered(key: Int)
+}
+
 class SwipeView: UIView {
-    
+
     // MARK: - Properties
 
     private var swipeDirectionList = [Int]()
     var firstStroke: Int?
     
     private var path = UIBezierPath()
-    private var previousPoint: CGPoint
+    private var previousPoint: CGPoint = CGPoint.zero
     
     private var keyboardView = UIView()
     private var keyViewList = [UILabel]()
     
+    var delegate: SwipeViewDelegate?
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
-        previousPoint = CGPoint.zero
         super.init(frame: frame)
+        setup()
     }
     
     init(frame: CGRect, keyboardView: UIView, keyViewList: [UILabel], isTwoStrokes: Bool) {
-        previousPoint = CGPoint.zero
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
         
         self.keyboardView = keyboardView
         self.keyViewList = keyViewList
+        
+        setup(isTwoStrokes: isTwoStrokes)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup(isTwoStrokes: Bool = false) {
+        self.backgroundColor = UIColor.clear
         
         self.isUserInteractionEnabled = true
         
@@ -52,11 +69,6 @@ class SwipeView: UIView {
             pan.maximumNumberOfTouches = 1
             self.addGestureRecognizer(pan)
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        previousPoint = CGPoint.zero
-        super.init(coder: aDecoder)
     }
     
     // MARK: - UIViewRendering
@@ -78,7 +90,7 @@ class SwipeView: UIView {
                     playSoundClick()
                 }
 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: i)
+                delegate?.keyEntered(key: i)
                 return
             }
         }
@@ -110,8 +122,8 @@ class SwipeView: UIView {
         case .ended:
             // When user completes swipe gesture, find the majority velocity direction during the swipe.
             let majorityDirection = swipeDirectionList.index(of: swipeDirectionList.max()!)!
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "KeyEntered"), object: majorityDirection)
-            
+            delegate?.keyEntered(key: majorityDirection)
+
             if UserPreferences.shared.vibrate {
                 vibrate()
             }
@@ -174,7 +186,7 @@ class SwipeView: UIView {
             let majorityDirection = swipeDirectionList.index(of: swipeDirectionList.max()!)!
             
             if firstStroke == nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FirstStrokeEntered"), object: majorityDirection)
+                delegate?.firstStrokeEntered(key: majorityDirection)
                 firstStroke = majorityDirection
                 
                 if UserPreferences.shared.vibrate {
@@ -186,7 +198,8 @@ class SwipeView: UIView {
                 }
             } else {
                 let letterValue = Int((UnicodeScalar(String(Constants.keyLetterGroupingSteve[firstStroke!][majorityDirection]))?.value)!)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SecondStrokeEntered"), object: letterValue)
+                delegate?.secondStrokeEntered(key: letterValue)
+
                 firstStroke = nil
                 
                 if UserPreferences.shared.vibrate {
