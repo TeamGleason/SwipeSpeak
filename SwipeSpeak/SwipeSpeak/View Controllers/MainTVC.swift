@@ -8,7 +8,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 class MainTVC: UITableViewController {
     
     // MARK: Constants
@@ -65,6 +65,10 @@ class MainTVC: UITableViewController {
     
     private var isSmallScreen: Bool {
         return UIScreen.main.bounds.size.height < 600
+    }
+    
+    private var isBigScreen: Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
     }
     
     // MARK: - Lifecycle
@@ -185,11 +189,19 @@ class MainTVC: UITableViewController {
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
         swipeView.delegate = self
-        
+    
         swipeParentView.superview!.addSubview(swipeView)
  
         if isSmallScreen {
-            swipeParentView.transform = CGAffineTransform(scaleX: 0.725, y: 0.725)
+            let scale = CGFloat(0.725)
+            swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        } else if isBigScreen {
+            let a = keyboardView.bounds.size.height
+            let b = swipeView.bounds.size.height
+            
+            let c = AVSpeechUtteranceDefaultSpeechRate
+            let scale = CGFloat((b/a*0.9))
+            swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
 
         sentenceLabel.text = ""
@@ -651,7 +663,7 @@ class MainTVC: UITableViewController {
         case 3:
             return inBuildWordMode ? 44 : 0
         case 4:
-            return isSmallScreen ? 240 : 340
+            return 600//isSmallScreen ? 240 : 340
         default:
             return 44
         }
