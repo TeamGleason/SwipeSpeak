@@ -9,11 +9,12 @@
 
 import UIKit
 import AVFoundation
+
 class MainTVC: UITableViewController {
     
     // MARK: Constants
     
-    private static let buildWordButtonText = "Build Word"
+    private static let buildWordButtonText = NSLocalizedString("Build Word", comment: "")
 
     // MARK: - Properties
     
@@ -35,7 +36,6 @@ class MainTVC: UITableViewController {
     
     @IBOutlet weak var sentencePlaceholderTF: UITextField!
     @IBOutlet weak var wordPlaceholderTF: UITextField!
-    
     
     // Predictive Text Dictionary
     private var wordPredictionEngine: WordPredictionEngine!
@@ -60,19 +60,13 @@ class MainTVC: UITableViewController {
     private var buildWordResult = ""
     private var buildWordPauseSeconds = 3.5
 
+    private var changedLabelFonts = false
+
     // When selecting a word
     private var highlightedLabel: UILabel?
 
     var numPredictionLabels: Int {
         return predictionLabels.count
-    }
-    
-    private var isSmallScreen: Bool {
-        return UIScreen.main.bounds.size.height < 600
-    }
-    
-    private var isBigScreen: Bool {
-        return UIDevice.current.userInterfaceIdiom == .pad
     }
     
     // MARK: - Lifecycle
@@ -168,7 +162,7 @@ class MainTVC: UITableViewController {
                     for (word, frequency) in wordAndFrequencyList {
                         do {
                             try self.wordPredictionEngine.insert(word, frequency)
-                        } catch WordPredictionError.unsupportedWord(let invalidChar) {
+                        } catch WordPredictionError.unsupportedWord(_) {
                             //print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
                         } catch {
                             print("Cannot add word '\(word)', error: \(error)")
@@ -182,32 +176,19 @@ class MainTVC: UITableViewController {
     private func setupUI() {
         tableView.isScrollEnabled = false
         
-        keyboardContainerView.backgroundColor = UIColor.yellow
-        
         setupKeyboard()
         
-        let swipeParentView = keyboardView.superview!//self.view!
+        let swipeParentView = self.view! //keyboardView.superview!
         
         swipeView = SwipeView(frame: swipeParentView.frame,
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
+        swipeView.vv = self.view
         swipeView.delegate = self
     
         swipeParentView.superview!.addSubview(swipeView)
  
-        if isSmallScreen {
-            let scale = CGFloat(0.725)
-            swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
-        } else if isBigScreen {
-            let a = keyboardView.bounds.size.height
-            let b = swipeView.bounds.size.height
-            
-           // let c = AVSpeechUtteranceDefaultSpeechRate
-            //let scale = CGFloat((b/a*0.9))
-            //swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
-        }
-
         setSentenceText("")
         
         for label in predictionLabels {
@@ -252,19 +233,53 @@ class MainTVC: UITableViewController {
             break
         }
         
-        keyboardView.backgroundColor = UIColor.red
-        keyboardView.frame = keyboardContainerView.bounds//CGRect.init(x: 0, y: 0, width: 200, height: 100)
+        keyboardContainerView.backgroundColor = UIColor.white
+        keyboardView.backgroundColor = UIColor.white
+        
+        let width = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
+        var height = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
+        
+        if UserPreferences.shared.keyboardLayout == .keys6 ||
+            UserPreferences.shared.keyboardLayout == .strokes2 {
+            height *= 0.7
+        }
+        
+        keyboardView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
         keyboardContainerView.addSubview(keyboardView)
-        //keyboardView.center = CGPoint(x: keyboardContainerView.superview!.bounds.width/2.0,
-        //                              y: keyboardContainerView.superview!.bounds.height/2.0)
+        
+        keyboardView.center = CGPoint(x: keyboardContainerView.bounds.width/2.0,
+                                      y: keyboardContainerView.bounds.height/2.0)
         
         for subview in keyboardView.subviews {
             guard let label = subview as? UILabel else { continue }
+            
             label.isUserInteractionEnabled = true
             label.layer.borderColor = UIColor.green.cgColor
             
             keyViewList.append(label)
         }
+        
+        adjustKeysFont()
+    }
+    
+    private func adjustKeysFont() {
+        guard !changedLabelFonts else { return }
+        
+        guard traitCollection.horizontalSizeClass == .regular &&
+            traitCollection.verticalSizeClass == .regular else { return }
+        
+        let keyboardViews = [keysView4Keys, keysView6Keys, keysView8Keys, keysView2Strokes]
+        
+        for keyboardView in keyboardViews {
+            for subview in keyboardView!.subviews {
+                guard let label = subview as? UILabel else { continue }
+                
+                label.font = label.font.withSize(label.font.pointSize * 1.5)
+            }
+        }
+        
+        changedLabelFonts = true
     }
     
     // MARK: - Notifications
@@ -517,7 +532,7 @@ class MainTVC: UITableViewController {
     private func highlight(label: UILabel) {
         dehighlightLabel()
         highlightedLabel = label
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize+4)
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize + 4)
     }
     
     private func dehighlightLabel() {
@@ -552,27 +567,31 @@ class MainTVC: UITableViewController {
 //        buildWordCancelButton.isHidden = false
         
         buildWordProgressIndex = 0
-        buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
-        DispatchQueue.main.async {
-            self.setWordText(NSLocalizedString("Build Word", comment: ""))
-            self.readAloudText(self.wordLabel.text!)
-        }
+        buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds,
+                                              target: self,
+                                              selector: #selector(self.scanningLettersOnKey),
+                                              userInfo: nil,
+                                              repeats: true)
+
+        self.setWordText(NSLocalizedString("Build Word", comment: ""))
+        self.readAloudText(self.wordLabel.text!)
     }
     
     @objc func scanningLettersOnKey() {
         let enteredKey = enteredKeyList[buildWordProgressIndex]
         let lettersOnKey = keyLetterGrouping[enteredKey]
+      
         buildWordLetterIndex += 1
         buildWordLetterIndex %= lettersOnKey.count
+       
         let letter = lettersOnKey[buildWordLetterIndex]
-        DispatchQueue.main.async {
-            self.readAloudText(String(letter))
-            self.setWordText(self.buildWordResult + String(letter))
-
-            self.resetKeysBoarder()
-            
-            self.keyViewList[enteredKey].layer.borderWidth = 3
-        }
+     
+        self.readAloudText(String(letter))
+        self.setWordText(self.buildWordResult + String(letter))
+        
+        self.resetKeysBoarder()
+        
+        self.keyViewList[enteredKey].layer.borderWidth = 3
     }
     
     private func resetBuildWordMode() {
@@ -597,47 +616,43 @@ class MainTVC: UITableViewController {
         buildWordResult.append(letter)
         
         // Complete the whole word
-        if buildWordResult.count == enteredKeyList.count {
-            DispatchQueue.main.async {
-                self.setWordText(self.buildWordResult)
-
-                UserPreferences.shared.addWord(self.buildWordResult)
-                //addWordToCSV(self.buildWordResult)
-                
-                var word = ""
-                for letter in self.buildWordResult {
-                    word += (String(letter) + ", ")
-                }
-                self.readAloudText(word + self.buildWordResult)
-                
-                self.setSentenceText(self.sentenceLabel.text! + self.buildWordResult + " ")
-
-                self.buildWordCancelButtonTouched()
+        guard buildWordResult.count < enteredKeyList.count else {
+            let buildWordResult = String(self.buildWordResult)
+            UserPreferences.shared.addWord(self.buildWordResult)
+         
+            setWordText(buildWordResult)
+            
+            var word = ""
+            for letter in buildWordResult {
+                word += (String(letter) + ", ")
             }
+            readAloudText(word + buildWordResult)
+            
+            setSentenceText(sentenceLabel.text! + buildWordResult + " ")
+            
+            buildWordCancelButtonTouched()
             return
         }
         
         buildWordProgressIndex += 1
         buildWordLetterIndex = -1
         
-        DispatchQueue.main.async {
-            self.setWordText(self.buildWordResult)
-
-            self.buildWordTimer.invalidate()
-            
-            var word = ""
-            for letter in self.buildWordResult {
-                word += (String(letter) + ", ")
-            }
-            self.readAloudText(word + " " + NSLocalizedString("Next Letter", comment: ""))
-            
-            sleep(UInt32(self.buildWordResult.count / 2))
-            self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds,
-                                                       target: self,
-                                                       selector: #selector(self.scanningLettersOnKey),
-                                                       userInfo: nil,
-                                                       repeats: true)
+        setWordText(buildWordResult)
+        
+        buildWordTimer.invalidate()
+        
+        var word = ""
+        for letter in buildWordResult {
+            word += (String(letter) + ", ")
         }
+        readAloudText(word + " " + NSLocalizedString("Next Letter", comment: ""))
+        
+        sleep(UInt32(buildWordResult.count / 2))
+        buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds,
+                                              target: self,
+                                              selector: #selector(self.scanningLettersOnKey),
+                                              userInfo: nil,
+                                              repeats: true)
     }
     
     @IBAction func buildWordCancelButtonTouched() {
@@ -646,15 +661,13 @@ class MainTVC: UITableViewController {
         inBuildWordMode = false
         tableView.reloadData()
         
-        DispatchQueue.main.async {
-            self.setWordText("")
-
-            for label in self.predictionLabels {
-                label.text = ""
-            }
-            
-            self.buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
+        self.setWordText("")
+        
+        for label in self.predictionLabels {
+            label.text = ""
         }
+        
+        self.buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
     }
     
     // MARK: - Table View
@@ -684,7 +697,7 @@ class MainTVC: UITableViewController {
         case 3:
             return inBuildWordMode ? 44 : 0
         case 4:
-            return 600//isSmallScreen ? 240 : 340
+            return view.bounds.height - 255 - 25
         default:
             return 44
         }

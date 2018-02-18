@@ -16,9 +16,11 @@ protocol SwipeViewDelegate {
     func secondStrokeEntered(key: Int)
 }
 
+// MARK: -
+
 class SwipeView: UIView {
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private var swipeDirectionList = [Int]()
     var firstStroke: Int?
@@ -28,6 +30,8 @@ class SwipeView: UIView {
     
     private var keyboardView = UIView()
     private var keyViewList = [UILabel]()
+    
+    var vv: UIView!
     
     var delegate: SwipeViewDelegate?
 
@@ -96,7 +100,7 @@ class SwipeView: UIView {
         }
     }
     
-    @objc func handleSwipe(_ recognizer:UIPanGestureRecognizer) {
+    @objc func handleSwipe(_ recognizer: UIPanGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
         let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
                                y: (previousPoint.y + currentPoint.y) / 2)
