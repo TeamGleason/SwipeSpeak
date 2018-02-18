@@ -182,7 +182,7 @@ class MainTVC: UITableViewController {
         
         setupKeyboard()
         
-        let swipeParentView = keyboardContainerView!
+        let swipeParentView = keyboardView.superview!//self.view!
         
         swipeView = SwipeView(frame: swipeParentView.frame,
                               keyboardView: keyboardView,
@@ -199,9 +199,9 @@ class MainTVC: UITableViewController {
             let a = keyboardView.bounds.size.height
             let b = swipeView.bounds.size.height
             
-            let c = AVSpeechUtteranceDefaultSpeechRate
-            let scale = CGFloat((b/a*0.9))
-            swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
+           // let c = AVSpeechUtteranceDefaultSpeechRate
+            //let scale = CGFloat((b/a*0.9))
+            //swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
 
         sentenceLabel.text = ""
@@ -417,7 +417,7 @@ class MainTVC: UITableViewController {
         
         buildWordButton.setTitle("", for: .normal)
 
-        if (enteredKeyList.count == 0) {
+        if enteredKeyList.count == 0 {
             wordLabel.text = ""
             return
         }
@@ -431,7 +431,7 @@ class MainTVC: UITableViewController {
         let results = wordPredictionEngine.getSuggestions(enteredKeyList)
         
         // Show first result in input box.
-        if (results.count >= numPredictionLabels) {
+        if results.count >= numPredictionLabels {
             // If we already get enough results, we do not need add characters to search predictions.
             wordLabel.text = results[0].0
             // Results is already sorted.
@@ -494,7 +494,7 @@ class MainTVC: UITableViewController {
             }
             
             let firstPrediction = prediction[0].0
-            if (firstPrediction.count >= enteredKeyList.count) {
+            if firstPrediction.count >= enteredKeyList.count {
                 wordLabel.text = trimmedStringForwordLabel(firstPrediction)
             } else {
                 wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
@@ -523,7 +523,9 @@ class MainTVC: UITableViewController {
     // MARK: - Scanning Mode
     
     @IBAction func buildWordButtonTouched() {
-        if (enteredKeyList.count == 0) { return }
+        guard enteredKeyList.count > 0 else {
+            return
+        }
         
         inBuildWordMode = true
         tableView.reloadData()
@@ -535,8 +537,8 @@ class MainTVC: UITableViewController {
         buildWordProgressIndex = 0
         buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
         DispatchQueue.main.async {
-            self.wordLabel.text = "Build Word"
-            self.readAloudText("Build Word")
+            self.wordLabel.text = NSLocalizedString("Build Word", comment: "")
+            self.readAloudText(self.wordLabel.text!)
         }
     }
     
@@ -578,7 +580,7 @@ class MainTVC: UITableViewController {
         buildWordResult.append(letter)
         
         // Complete the whole word
-        if (buildWordResult.count == enteredKeyList.count) {
+        if buildWordResult.count == enteredKeyList.count {
             DispatchQueue.main.async {
                 self.wordLabel.text = self.buildWordResult
                 
@@ -609,7 +611,7 @@ class MainTVC: UITableViewController {
             for letter in self.buildWordResult {
                 word += (String(letter) + ", ")
             }
-            self.readAloudText(word + " Next Letter")
+            self.readAloudText(word + " " + NSLocalizedString("Next Letter", comment: ""))
             
             sleep(UInt32(self.buildWordResult.count / 2))
             self.buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds,
