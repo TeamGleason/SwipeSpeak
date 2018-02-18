@@ -10,6 +10,7 @@
 		B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */; };
 		B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */; };
 		B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */; };
+		B952C901200FB0380020161E /* german_wordlist.csv in Resources */ = {isa = PBXBuildFile; fileRef = B952C900200FB0370020161E /* german_wordlist.csv */; };
 		B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95CB4171FAFBCAA00F705EB /* Settings.storyboard */; };
 		B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */; };
 		B95CB41D1FAFC50E00F705EB /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */; };
@@ -38,6 +39,7 @@
 		B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-SwipeSpeak-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsVC.swift; sourceTree = "<group>"; };
+		B952C900200FB0370020161E /* german_wordlist.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = german_wordlist.csv; sourceTree = "<group>"; };
 		B95CB4181FAFBCAA00F705EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesVC.swift; sourceTree = "<group>"; };
 		B95CB41C1FAFC50E00F705EB /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				B95CB4201FB041C900F705EB /* SwipeSpeak.entitlements */,
 				DA07001E1F0DA72A003BEE3D /* word_frequency_english_kilgarriff.csv */,
 				B9E23BDA1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv */,
+				B952C900200FB0370020161E /* german_wordlist.csv */,
 				B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */,
 			);
 			path = Resources;
@@ -236,6 +239,7 @@
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
 				B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */,
 				B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */,
+				B952C901200FB0380020161E /* german_wordlist.csv in Resources */,
 				B98C67B61FD87AD600C35FE5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
