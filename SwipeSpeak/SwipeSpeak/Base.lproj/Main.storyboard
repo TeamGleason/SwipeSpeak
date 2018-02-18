@@ -28,23 +28,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMp-bB-EC9" customClass="PlaceholderLabel" customModule="PlaceholderLabel">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMp-bB-EC9">
                                                     <rect key="frame" x="16" y="11" width="343" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Sentence"/>
-                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outletCollection property="gestureRecognizers" destination="DRx-7B-w5v" appends="YES" id="K5V-Tg-aF5"/>
                                                         <outletCollection property="gestureRecognizers" destination="RmF-LQ-uXL" appends="YES" id="3Aw-LV-7pa"/>
                                                     </connections>
                                                 </label>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sentence" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GX8-my-KOl">
+                                                    <rect key="frame" x="16" y="11" width="343" height="22"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PMp-bB-EC9" firstAttribute="top" secondItem="GXC-fe-1FD" secondAttribute="topMargin" id="2Ix-qX-U5b"/>
+                                                <constraint firstItem="GX8-my-KOl" firstAttribute="leading" secondItem="GXC-fe-1FD" secondAttribute="leadingMargin" id="4QA-7v-xAw"/>
+                                                <constraint firstItem="GX8-my-KOl" firstAttribute="trailing" secondItem="GXC-fe-1FD" secondAttribute="trailingMargin" id="C2X-z3-NVN"/>
                                                 <constraint firstItem="PMp-bB-EC9" firstAttribute="leading" secondItem="GXC-fe-1FD" secondAttribute="leadingMargin" id="Gy0-Kq-f2R"/>
+                                                <constraint firstItem="GX8-my-KOl" firstAttribute="top" secondItem="GXC-fe-1FD" secondAttribute="topMargin" id="cf7-vh-p5v"/>
+                                                <constraint firstItem="GX8-my-KOl" firstAttribute="bottom" secondItem="GXC-fe-1FD" secondAttribute="bottomMargin" id="gPB-u8-eUx"/>
                                                 <constraint firstItem="PMp-bB-EC9" firstAttribute="bottom" secondItem="GXC-fe-1FD" secondAttribute="bottomMargin" id="gf3-ra-9GX"/>
                                                 <constraint firstItem="PMp-bB-EC9" firstAttribute="trailing" secondItem="GXC-fe-1FD" secondAttribute="trailingMargin" id="i2p-J1-Orz"/>
                                             </constraints>
@@ -75,23 +86,34 @@
                                                         <outletCollection property="gestureRecognizers" destination="ziA-AC-nAc" appends="YES" id="Sff-nc-Cp4"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ct-COQ" customClass="PlaceholderLabel" customModule="PlaceholderLabel">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ct-COQ">
                                                     <rect key="frame" x="16" y="11" width="299" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Word"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Word" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOT-Lm-YIR">
+                                                    <rect key="frame" x="16" y="11" width="299" height="22"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        <bool key="isElement" value="NO"/>
+                                                    </accessibility>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="XBE-ct-COQ" firstAttribute="bottom" secondItem="tLQ-4A-HCh" secondAttribute="bottomMargin" id="4ts-BG-RPT"/>
                                                 <constraint firstItem="XBE-ct-COQ" firstAttribute="top" secondItem="tLQ-4A-HCh" secondAttribute="topMargin" id="52B-vc-79J"/>
                                                 <constraint firstItem="vgb-4U-cBD" firstAttribute="centerY" secondItem="tLQ-4A-HCh" secondAttribute="centerY" id="DMr-Kd-4Zx"/>
+                                                <constraint firstItem="bOT-Lm-YIR" firstAttribute="leading" secondItem="tLQ-4A-HCh" secondAttribute="leadingMargin" id="O8F-mB-OD5"/>
+                                                <constraint firstItem="vgb-4U-cBD" firstAttribute="leading" secondItem="bOT-Lm-YIR" secondAttribute="trailing" constant="8" id="QDz-rN-nli"/>
                                                 <constraint firstItem="XBE-ct-COQ" firstAttribute="leading" secondItem="tLQ-4A-HCh" secondAttribute="leadingMargin" id="RgS-Yw-lro"/>
                                                 <constraint firstItem="vgb-4U-cBD" firstAttribute="leading" secondItem="XBE-ct-COQ" secondAttribute="trailing" constant="8" id="V8G-a9-14a"/>
                                                 <constraint firstAttribute="trailing" secondItem="vgb-4U-cBD" secondAttribute="trailing" constant="8" id="cMm-sP-kzc"/>
+                                                <constraint firstItem="bOT-Lm-YIR" firstAttribute="top" secondItem="tLQ-4A-HCh" secondAttribute="topMargin" id="fA6-7N-UgV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bOT-Lm-YIR" secondAttribute="bottom" id="whi-pU-BgQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -469,7 +491,9 @@
                         <outlet property="keysView6Keys" destination="T0o-Qy-VBy" id="PTz-gB-mXE"/>
                         <outlet property="keysView8Keys" destination="f37-I5-Djk" id="xgX-i6-d4Y"/>
                         <outlet property="sentenceLabel" destination="PMp-bB-EC9" id="Iw4-86-g0a"/>
+                        <outlet property="sentencePlaceholderTF" destination="GX8-my-KOl" id="KSl-7a-aqJ"/>
                         <outlet property="wordLabel" destination="XBE-ct-COQ" id="Dsv-WK-4fi"/>
+                        <outlet property="wordPlaceholderTF" destination="bOT-Lm-YIR" id="xtO-g7-3gZ"/>
                         <outletCollection property="predictionLabels" destination="Vwj-de-oAL" collectionClass="NSMutableArray" id="P8G-A6-xr6"/>
                         <outletCollection property="predictionLabels" destination="79D-qH-52e" collectionClass="NSMutableArray" id="dJw-S2-19S"/>
                         <outletCollection property="predictionLabels" destination="6H5-Pb-MRy" collectionClass="NSMutableArray" id="Q9n-TQ-EYp"/>
@@ -870,7 +894,7 @@ Z   X   Y</string>
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="13.043478260869566" y="598.36956521739137"/>
+            <point key="canvasLocation" x="12" y="597.75112443778119"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Xdp-cH-Jcm">

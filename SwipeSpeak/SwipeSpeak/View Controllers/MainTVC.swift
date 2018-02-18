@@ -33,6 +33,10 @@ class MainTVC: UITableViewController {
     private var swipeView: SwipeView!
     private var settingsButton = UIButton()
     
+    @IBOutlet weak var sentencePlaceholderTF: UITextField!
+    @IBOutlet weak var wordPlaceholderTF: UITextField!
+    
+    
     // Predictive Text Dictionary
     private var wordPredictionEngine: WordPredictionEngine!
     fileprivate var enteredKeyList = [Int]()
@@ -178,7 +182,7 @@ class MainTVC: UITableViewController {
     private func setupUI() {
         tableView.isScrollEnabled = false
         
-        keyboardContainerView.backgroundColor = UIColor.white
+        keyboardContainerView.backgroundColor = UIColor.yellow
         
         setupKeyboard()
         
@@ -204,7 +208,7 @@ class MainTVC: UITableViewController {
             //swipeParentView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
 
-        sentenceLabel.text = ""
+        setSentenceText("")
         
         for label in predictionLabels {
             label.isUserInteractionEnabled = true
@@ -248,9 +252,11 @@ class MainTVC: UITableViewController {
             break
         }
         
+        keyboardView.backgroundColor = UIColor.red
+        keyboardView.frame = keyboardContainerView.bounds//CGRect.init(x: 0, y: 0, width: 200, height: 100)
         keyboardContainerView.addSubview(keyboardView)
-        keyboardView.center = CGPoint(x: keyboardContainerView.superview!.bounds.width/2.0,
-                                      y: keyboardContainerView.superview!.bounds.height/2.0)
+        //keyboardView.center = CGPoint(x: keyboardContainerView.superview!.bounds.width/2.0,
+        //                              y: keyboardContainerView.superview!.bounds.height/2.0)
         
         for subview in keyboardView.subviews {
             guard let label = subview as? UILabel else { continue }
@@ -371,13 +377,13 @@ class MainTVC: UITableViewController {
         //addSentenceToCSV(sentenceLabel.text!)
         
         resetAfterWordAdded()
-        sentenceLabel.text = ""
+        setSentenceText("")
     }
     
     func resetAfterWordAdded() {
         dehighlightLabel()
         enteredKeyList = [Int]()
-        wordLabel.text = ""
+        setWordText("")
         for label in predictionLabels {
             label.text = ""
         }
@@ -402,7 +408,8 @@ class MainTVC: UITableViewController {
         if UserPreferences.shared.audioFeedback {
             playSoundWordAdded()
         }
-        sentenceLabel.text! += (word + " ")
+        setSentenceText(sentenceLabel.text! + word + " ")
+
         resetAfterWordAdded()
         resetBuildWordMode()
     }
@@ -418,7 +425,7 @@ class MainTVC: UITableViewController {
         buildWordButton.setTitle("", for: .normal)
 
         if enteredKeyList.count == 0 {
-            wordLabel.text = ""
+            setWordText("")
             return
         }
         
@@ -433,7 +440,7 @@ class MainTVC: UITableViewController {
         // Show first result in input box.
         if results.count >= numPredictionLabels {
             // If we already get enough results, we do not need add characters to search predictions.
-            wordLabel.text = results[0].0
+            setWordText(results[0].0)
             // Results is already sorted.
             for i in 0 ..< numPredictionLabels {
                 prediction.append(results[i])
@@ -489,15 +496,15 @@ class MainTVC: UITableViewController {
             
             // Cannot find any prediction.
             if (prediction.count == 0) {
-                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                setWordText(trimmedStringForwordLabel(self.wordLabel.text! + "?"))
                 return
             }
             
             let firstPrediction = prediction[0].0
             if firstPrediction.count >= enteredKeyList.count {
-                wordLabel.text = trimmedStringForwordLabel(firstPrediction)
+                setWordText(trimmedStringForwordLabel(firstPrediction))
             } else {
-                wordLabel.text = trimmedStringForwordLabel(self.wordLabel.text! + "?")
+                setWordText(trimmedStringForwordLabel(self.wordLabel.text! + "?"))
             }
         }
         
@@ -520,6 +527,16 @@ class MainTVC: UITableViewController {
         highlightedLabel = nil
     }
     
+    private func setSentenceText(_ text: String) {
+        sentencePlaceholderTF.placeholder = text.isEmpty ? NSLocalizedString("Sentence", comment: "") : ""
+        sentenceLabel.text = text
+    }
+    
+    private func setWordText(_ text: String) {
+        wordPlaceholderTF.placeholder = text.isEmpty ? NSLocalizedString("Word", comment: "") : ""
+        wordLabel.text = text
+    }
+    
     // MARK: - Scanning Mode
     
     @IBAction func buildWordButtonTouched() {
@@ -537,7 +554,7 @@ class MainTVC: UITableViewController {
         buildWordProgressIndex = 0
         buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds, target: self, selector: #selector(self.scanningLettersOnKey), userInfo: nil, repeats: true)
         DispatchQueue.main.async {
-            self.wordLabel.text = NSLocalizedString("Build Word", comment: "")
+            self.setWordText(NSLocalizedString("Build Word", comment: ""))
             self.readAloudText(self.wordLabel.text!)
         }
     }
@@ -550,8 +567,8 @@ class MainTVC: UITableViewController {
         let letter = lettersOnKey[buildWordLetterIndex]
         DispatchQueue.main.async {
             self.readAloudText(String(letter))
-            self.wordLabel.text = self.buildWordResult + String(letter)
-            
+            self.setWordText(self.buildWordResult + String(letter))
+
             self.resetKeysBoarder()
             
             self.keyViewList[enteredKey].layer.borderWidth = 3
@@ -582,8 +599,8 @@ class MainTVC: UITableViewController {
         // Complete the whole word
         if buildWordResult.count == enteredKeyList.count {
             DispatchQueue.main.async {
-                self.wordLabel.text = self.buildWordResult
-                
+                self.setWordText(self.buildWordResult)
+
                 UserPreferences.shared.addWord(self.buildWordResult)
                 //addWordToCSV(self.buildWordResult)
                 
@@ -593,8 +610,8 @@ class MainTVC: UITableViewController {
                 }
                 self.readAloudText(word + self.buildWordResult)
                 
-                self.sentenceLabel.text! += (self.buildWordResult + " ")
-                
+                self.setSentenceText(self.sentenceLabel.text! + self.buildWordResult + " ")
+
                 self.buildWordCancelButtonTouched()
             }
             return
@@ -604,7 +621,8 @@ class MainTVC: UITableViewController {
         buildWordLetterIndex = -1
         
         DispatchQueue.main.async {
-            self.wordLabel.text = self.buildWordResult
+            self.setWordText(self.buildWordResult)
+
             self.buildWordTimer.invalidate()
             
             var word = ""
@@ -629,7 +647,8 @@ class MainTVC: UITableViewController {
         tableView.reloadData()
         
         DispatchQueue.main.async {
-            self.wordLabel.text = ""
+            self.setWordText("")
+
             for label in self.predictionLabels {
                 label.text = ""
             }

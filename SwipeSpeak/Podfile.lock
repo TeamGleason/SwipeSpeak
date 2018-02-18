@@ -21,14 +21,12 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - PlaceholderLabel (1.1.0)
   - Zephyr (3.0.1)
 
 DEPENDENCIES:
   - DZNEmptyDataSet (= 1.8.1)
   - Firebase/Core
   - MarkdownView (= 1.1.0)
-  - PlaceholderLabel (= 1.1.0)
   - Zephyr (= 3.0.1)
 
 SPEC CHECKSUMS:
@@ -40,9 +38,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   MarkdownView: 80db8e9a27a6c6cc22615e644e3e85c06065bab7
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PlaceholderLabel: 1ef9fb90347fb8da223ccf39e32fe5345f549bbe
   Zephyr: 75c8eba16dd6b65c53bcab98e1fbe115020e832a
 
-PODFILE CHECKSUM: a0fe328f143fef7f5da4d9a537829d64724e3ca7
+PODFILE CHECKSUM: 170386cc56b0fec535343b62fe5744679ace372a
 
 COCOAPODS: 1.4.0
