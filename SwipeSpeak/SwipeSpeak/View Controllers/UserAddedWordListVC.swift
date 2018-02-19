@@ -19,8 +19,10 @@ class UserAddedWordListVC: UITableViewController {
         
         self.title = NSLocalizedString("Added Words", comment: "")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addWordButtonTouched))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGray
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add,
+                                                                   target: self,
+                                                                   action: #selector(self.addWordButtonTouched)),
+                                                   self.editButtonItem]
         
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self

@@ -24,7 +24,9 @@ class SentenceHistoryVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Sentence History"
+        self.navigationItem.title = NSLocalizedString("Sentence History", comment: "")
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         self.tableView.emptyDataSetSource = self
         
@@ -35,7 +37,12 @@ class SentenceHistoryVC: UITableViewController {
         super.viewWillAppear(animated)
         
         if isPresentedModaly {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissViewController))
+            let closeBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"),
+                                                     style: .plain,
+                                                     target: self,
+                                                     action: #selector(self.dismissViewController))
+            closeBarButtonItem.accessibilityLabel = NSLocalizedString("Close", comment: "")
+            self.navigationItem.leftBarButtonItem = closeBarButtonItem
         }
         
         loadSentenceHistory()

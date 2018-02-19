@@ -19,9 +19,9 @@ protocol SwipeViewDelegate {
 // MARK: -
 
 class SwipeView: UIView {
-
+    
     // MARK: Properties
-
+    
     private var swipeDirectionList = [Int]()
     var firstStroke: Int?
     
@@ -31,12 +31,30 @@ class SwipeView: UIView {
     private var keyboardView = UIView()
     private var keyViewList = [UILabel]()
     
-    var vv: UIView!
+    var keyViewListSuperView: UIView?
     
     var delegate: SwipeViewDelegate?
-
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let hitView = keyViewListSuperView?.hitTest(point, with: event) else {
+            return super.hitTest(point, with: event)
+        }
+        
+        for keyView in keyViewList {
+            if keyView === hitView {
+                return super.hitTest(point, with: event)
+            }
+        }
+        
+        if hitView is UILabel || hitView is UIButton {
+            return hitView
+        }
+        
+        return super.hitTest(point, with: event)
+    }
+    
     // MARK: - Initialization
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -76,7 +94,7 @@ class SwipeView: UIView {
     }
     
     // MARK: - UIViewRendering
-
+    
     override func draw(_ rect: CGRect) {
         UIColor.red.setStroke()
         path.lineWidth = 4.0
@@ -84,16 +102,20 @@ class SwipeView: UIView {
     }
     
     // MARK: - Handle Swipe
+    
+    @objc func handleTap(_ recognizer: UITapGestureRecognizer) {
+        let currentPoint = recognizer.location(in: keyViewListSuperView)
 
-    @objc func handleTap(_ recognizer:UITapGestureRecognizer) {
-        let currentPoint = recognizer.location(in: self)
-        let pointInKeyboardView = CGPoint(x: currentPoint.x - keyboardView.frame.minX, y: currentPoint.y - keyboardView.frame.minY)
+        guard let hitView = keyViewListSuperView?.hitTest(currentPoint, with: nil) else {
+            return
+        }
+        
         for i in 0 ..< keyViewList.count {
-            if keyViewList[i].frame.contains(pointInKeyboardView) {
+            if hitView === keyViewList[i] {
                 if UserPreferences.shared.audioFeedback {
                     playSoundClick()
                 }
-
+                
                 delegate?.keyEntered(key: i)
                 return
             }
@@ -125,9 +147,13 @@ class SwipeView: UIView {
             break
         case .ended:
             // When user completes swipe gesture, find the majority velocity direction during the swipe.
-            let majorityDirection = swipeDirectionList.index(of: swipeDirectionList.max()!)!
+            guard let max = swipeDirectionList.max(), max > 0 else {
+                return
+            }
+            
+            let majorityDirection = swipeDirectionList.index(of: max)!
             delegate?.keyEntered(key: majorityDirection)
-
+            
             if UserPreferences.shared.vibrate {
                 vibrate()
             }
@@ -187,7 +213,11 @@ class SwipeView: UIView {
             break
         case .ended:
             // When user completes swipe gesture, find the majority velocity direction during the swipe.
-            let majorityDirection = swipeDirectionList.index(of: swipeDirectionList.max()!)!
+            guard let max = swipeDirectionList.max(), max > 0 else {
+                return
+            }
+            
+            let majorityDirection = swipeDirectionList.index(of: max)!
             
             if firstStroke == nil {
                 delegate?.firstStrokeEntered(key: majorityDirection)
@@ -203,7 +233,7 @@ class SwipeView: UIView {
             } else {
                 let letterValue = Int((UnicodeScalar(String(Constants.keyLetterGroupingSteve[firstStroke!][majorityDirection]))?.value)!)
                 delegate?.secondStrokeEntered(key: letterValue)
-
+                
                 firstStroke = nil
                 
                 if UserPreferences.shared.vibrate {
@@ -233,7 +263,7 @@ class SwipeView: UIView {
 // MARK: - Helper
 
 extension SwipeView {
-
+    
     fileprivate static func keyIndexForSwipe(velocity: CGPoint, numberOfKeys: Int) -> Int {
         var degree = Double(atan2(velocity.y, velocity.x)) * 180 / Double.pi
         if (degree < 0) {
@@ -327,3 +357,4 @@ extension SwipeView {
     }
     
 }
+

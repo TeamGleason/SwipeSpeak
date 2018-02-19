@@ -74,6 +74,9 @@ class MainTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize the speech engine
+        _ = SpeechSynthesizer.shared
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardLayoutDidChange(_:)),
                                                name: NSNotification.Name.KeyboardLayoutDidChange,
                                                object: nil)
@@ -184,7 +187,7 @@ class MainTVC: UITableViewController {
                               keyboardView: keyboardView,
                               keyViewList:  keyViewList,
                               isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
-        swipeView.vv = self.view
+        swipeView.keyViewListSuperView = self.view
         swipeView.delegate = self
     
         swipeParentView.superview!.addSubview(swipeView)
@@ -313,6 +316,8 @@ class MainTVC: UITableViewController {
         if inBuildWordMode { return }
         //if !buildWordConfirmButton.isHidden { return }
 
+        dehighlightLabel()
+
         updateKeyboardIndicator(-1)
         if enteredKeyList.count == 0 { return }
         
@@ -378,9 +383,9 @@ class MainTVC: UITableViewController {
     }
     
     @IBAction func sentenceLabelTouched() {
-        if sentenceLabel.text == "" { return }
-        
-        readAloudText(sentenceLabel.text!)
+        guard let text = sentenceLabel.text, !text.isEmpty else { return }
+
+        readAloudText(text)
         sentenceLabelLongPressed()
     }
     
@@ -399,9 +404,13 @@ class MainTVC: UITableViewController {
         dehighlightLabel()
         enteredKeyList = [Int]()
         setWordText("")
+        
         for label in predictionLabels {
             label.text = ""
         }
+        
+        buildWordButton.setTitle("", for: .normal)
+
         updateKeyboardIndicator(-1)
     }
     
