@@ -118,7 +118,10 @@ class UserPreferences {
     // MARK: Zephyr
 
     private func enableZephyr() {
-        Zephyr.debugEnabled = true
+        #if DEBUG
+            Zephyr.debugEnabled = true
+        #endif
+        
         Zephyr.sync(keys: Keys.iCloudSyncKeys())
         Zephyr.addKeysToBeMonitored(keys: Keys.iCloudSyncKeys())
     }
