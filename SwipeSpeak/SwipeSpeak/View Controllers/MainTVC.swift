@@ -227,15 +227,8 @@ class MainTVC: UITableViewController {
         keyboardContainerView.backgroundColor = UIColor.white
         keyboardView.backgroundColor = UIColor.white
         
-        let width = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
-        var height = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
-        
-        if UserPreferences.shared.keyboardLayout == .keys6 ||
-            UserPreferences.shared.keyboardLayout == .strokes2 {
-            height *= 0.7
-        }
-        
-        keyboardView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let keyboardSize = MainTVC.keyboardSize(keyboardContainerView)
+        keyboardView.frame = CGRect(x: 0, y: 0, width: keyboardSize.width, height: keyboardSize.height)
         
         keyboardContainerView.addSubview(keyboardView)
         
@@ -254,11 +247,68 @@ class MainTVC: UITableViewController {
         adjustKeysFont()
     }
     
+    private static func keyboardSize(_ keyboardContainerView: UIView) -> CGSize {
+        let containerWidth = keyboardContainerView.frame.width
+        let containerHeight = keyboardContainerView.frame.height
+        
+        var width = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
+        var height = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
+        
+        if UserPreferences.shared.keyboardLayout == .keys6 ||
+            UserPreferences.shared.keyboardLayout == .strokes2 {
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                // iPhone 8 Plus
+                if containerHeight > 390 {
+                    height *= 0.7
+                }
+                // iPhone 8
+                else if containerHeight > 322 {
+                    height *= 0.7
+                    width *= 1.1
+                }
+                // iPhone 5
+                else {
+                    height *= 0.9
+                    width *= 1.4
+                }
+            } else if UIDevice.current.userInterfaceIdiom == .pad {
+                let landscape = containerWidth/containerHeight > 2.0
+                
+                if landscape {
+                    height *= 0.9
+                    width *= 1.3
+                } else {
+                    height *= 0.75
+                    width *= 1.05
+                }
+            }
+        }
+        
+        // Just in case, make sure the size is within bounds
+        width = min(width, containerWidth)
+        height = min(height, containerHeight)
+
+        return CGSize(width: width, height: height)
+    }
+    
     private func adjustKeysFont() {
         guard !changedLabelFonts else { return }
         
-        guard traitCollection.horizontalSizeClass == .regular &&
-            traitCollection.verticalSizeClass == .regular else { return }
+        let iPhone5ScreenHeight: CGFloat = 568
+        let multiplier: CGFloat
+        
+        // Make fonts bigger for bigger devices (iPads)
+        if traitCollection.horizontalSizeClass == .regular &&
+            traitCollection.verticalSizeClass == .regular {
+            multiplier = 1.5
+        }
+        // Make fonts smaller for small devices (iPhone 5 and below)
+        else if UIScreen.main.bounds.size.height <= iPhone5ScreenHeight {
+            multiplier = 0.9
+        } else {
+            return
+        }
         
         let keyboardViews = [keysView4Keys, keysView6Keys, keysView8Keys, keysView2Strokes]
         
@@ -266,7 +316,7 @@ class MainTVC: UITableViewController {
             for subview in keyboardView!.subviews {
                 guard let label = subview as? UILabel else { continue }
                 
-                label.font = label.font.withSize(label.font.pointSize * 1.5)
+                label.font = label.font.withSize(label.font.pointSize * multiplier)
             }
         }
         

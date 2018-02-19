@@ -19,11 +19,6 @@ class UserAddedWordListVC: UITableViewController {
         
         self.title = NSLocalizedString("Added Words", comment: "")
         
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add,
-                                                                   target: self,
-                                                                   action: #selector(self.addWordButtonTouched)),
-                                                   self.editButtonItem]
-        
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
     }
@@ -33,6 +28,18 @@ class UserAddedWordListVC: UITableViewController {
 
         loadUserAddedWords()
         self.tableView.reloadData()
+        
+        configureRightBarButtonItems()
+    }
+    
+    private func configureRightBarButtonItems() {
+        var rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .add,
+                                                   target: self,
+                                                   action: #selector(self.addWordButtonTouched))]
+        if !userAddedWords.isEmpty {
+            rightBarButtonItems.append(self.editButtonItem)
+        }
+        self.navigationItem.rightBarButtonItems = rightBarButtonItems
     }
     
     private func loadUserAddedWords() {
@@ -59,6 +66,7 @@ class UserAddedWordListVC: UITableViewController {
             loadUserAddedWords()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadEmptyDataSet()
+            configureRightBarButtonItems()
         }
     }
     
@@ -79,6 +87,7 @@ class UserAddedWordListVC: UITableViewController {
             
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             self.tableView.reloadEmptyDataSet()
+            self.configureRightBarButtonItems()
         }
         
         saveAction.isEnabled = false

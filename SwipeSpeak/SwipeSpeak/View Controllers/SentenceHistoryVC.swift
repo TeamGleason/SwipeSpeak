@@ -26,11 +26,7 @@ class SentenceHistoryVC: UITableViewController {
         
         self.navigationItem.title = NSLocalizedString("Sentence History", comment: "")
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         self.tableView.emptyDataSetSource = self
-        
-        loadSentenceHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +43,13 @@ class SentenceHistoryVC: UITableViewController {
         
         loadSentenceHistory()
         self.tableView.reloadData()
+        
+        if !sentenceHistory.isEmpty {
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
     }
     
-    func loadSentenceHistory() {
+    private func loadSentenceHistory() {
         sentenceHistory = Array(UserPreferences.shared.sentenceHistory)
     }
     
