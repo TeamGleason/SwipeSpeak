@@ -112,7 +112,6 @@
 		B9FD99F41FAE387600E34F9F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */,
 				B991E2271FAEE26F0038074E /* MainTVC.swift */,
 				DA0700201F0DA84A003BEE3D /* SettingsVC.swift */,
 				DA0700221F0DA889003BEE3D /* KeyboardSettingsVC.swift */,
@@ -122,6 +121,7 @@
 				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
 				B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */,
 				B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */,
+				B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

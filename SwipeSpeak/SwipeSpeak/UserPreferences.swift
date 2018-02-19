@@ -78,6 +78,7 @@ private struct Keys {
             Keys.sentenceHistory,
         ]
     }
+    
 }
 
 class UserPreferences {

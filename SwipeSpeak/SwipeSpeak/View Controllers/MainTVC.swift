@@ -19,8 +19,11 @@ class MainTVC: UITableViewController {
     // MARK: - Properties
     
     private var viewDidAppear = false
-    
+    private var changedLabelFonts = false
+
     // Keys
+    private var swipeView: SwipeView!
+
     @IBOutlet var keysView4Keys: UIView!
     @IBOutlet var keysView6Keys: UIView!
     @IBOutlet var keysView8Keys: UIView!
@@ -28,19 +31,16 @@ class MainTVC: UITableViewController {
 
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
-    @IBOutlet weak var backspaceButton: UIButton!
-    var wordPredictionView: UIView!
-    
-    private var swipeView: SwipeView!
-    private var settingsButton = UIButton()
     
     @IBOutlet weak var sentencePlaceholderTF: UITextField!
     @IBOutlet weak var wordPlaceholderTF: UITextField!
     
+    @IBOutlet weak var backspaceButton: UIButton!
+    
     // Predictive Text Dictionary
     private var wordPredictionEngine: WordPredictionEngine!
     fileprivate var enteredKeyList = [Int]()
-    private var keyViewList = [UILabel]()
+    private var keyboardLabels = [UILabel]()
     private var keyboardView: UIView!
     @IBOutlet weak var keyboardContainerView: UIView!
     
@@ -59,8 +59,6 @@ class MainTVC: UITableViewController {
     private var buildWordLetterIndex = -1
     private var buildWordResult = ""
     private var buildWordPauseSeconds = 3.5
-
-    private var changedLabelFonts = false
 
     // When selecting a word
     private var highlightedLabel: UILabel?
@@ -97,12 +95,6 @@ class MainTVC: UITableViewController {
             // This will be animated to value 1.0 in `viewDidAppear`
             self.view.alpha = 0.0
         }
-        
-        if UserPreferences.shared.longerPauseBetweenLetters {
-            buildWordPauseSeconds = 3.5
-        } else {
-            buildWordPauseSeconds = 2.0
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,6 +103,8 @@ class MainTVC: UITableViewController {
         if !viewDidAppear {
             viewDidAppear = true
             
+            buildWordPauseSeconds = UserPreferences.shared.longerPauseBetweenLetters ? 3.5 : 2.0
+
             setupUI()
             setupWordPredictionEngine()
             
@@ -120,10 +114,6 @@ class MainTVC: UITableViewController {
                            animations: { self.view.alpha = 1.0 },
                            completion: nil)
         }
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -160,17 +150,16 @@ class MainTVC: UITableViewController {
                 }
             }
             
-            if let filePath = Bundle.main.path(forResource: "word_frequency_english_ucrel", ofType: "csv") {
-                if let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) {
-                    for (word, frequency) in wordAndFrequencyList {
-                        do {
-                            try self.wordPredictionEngine.insert(word, frequency)
-                        } catch WordPredictionError.unsupportedWord(_) {
-                            //print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
-                        } catch {
-                            print("Cannot add word '\(word)', error: \(error)")
-                        }
-                    }
+            guard let filePath = Bundle.main.path(forResource: "word_frequency_english_ucrel", ofType: "csv") else { return }
+            guard let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) else { return }
+            
+            for (word, frequency) in wordAndFrequencyList {
+                do {
+                    try self.wordPredictionEngine.insert(word, frequency)
+                } catch WordPredictionError.unsupportedWord(_) {
+                    //print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
+                } catch {
+                    print("Cannot add word '\(word)', error: \(error)")
                 }
             }
         }
@@ -184,11 +173,10 @@ class MainTVC: UITableViewController {
         let swipeParentView = self.view! //keyboardView.superview!
         
         swipeView = SwipeView(frame: swipeParentView.frame,
-                              keyboardView: keyboardView,
-                              keyViewList:  keyViewList,
-                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
-        swipeView.keyViewListSuperView = self.view
-        swipeView.delegate = self
+                              keyboardContainerView: self.view,
+                              keyboardLabels:  keyboardLabels,
+                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2,
+                              delegate: self)
     
         swipeParentView.superview!.addSubview(swipeView)
  
@@ -214,7 +202,7 @@ class MainTVC: UITableViewController {
         if keyboardView != nil && keyboardView.superview != nil {
             swipeView.removeFromSuperview()
             keyboardView.removeFromSuperview()
-            keyViewList.removeAll()
+            keyboardLabels.removeAll()
         }
         
         switch UserPreferences.shared.keyboardLayout {
@@ -260,7 +248,7 @@ class MainTVC: UITableViewController {
             label.isUserInteractionEnabled = true
             label.layer.borderColor = UIColor.green.cgColor
             
-            keyViewList.append(label)
+            keyboardLabels.append(label)
         }
         
         adjustKeysFont()
@@ -299,16 +287,12 @@ class MainTVC: UITableViewController {
     
     // MARK: - UI Interaction
     
-    @objc func settingsButtonTouched() {
-        performSegue(withIdentifier: "showSettingsVC", sender: self)
-    }
-    
     private func updateKeyboardIndicator(_ index: Int) {
         resetKeysBoarder()
         
         if index != -1 {
             // Visual indicator
-            keyViewList[index].layer.borderWidth = 3
+            keyboardLabels[index].layer.borderWidth = 3
         }
     }
     
@@ -375,11 +359,10 @@ class MainTVC: UITableViewController {
                 highlight(label: label)
             }
         }
+        
         if let word = (sender.view as! UILabel).text {
             readAloudText(word)
         }
-        
-
     }
     
     @IBAction func sentenceLabelTouched() {
@@ -391,10 +374,8 @@ class MainTVC: UITableViewController {
     
     @IBAction func sentenceLabelLongPressed() {
         guard let text = sentenceLabel.text, !text.isEmpty else { return }
-        //if sentenceLabel.text == "" { return }
         
         UserPreferences.shared.addSentence(text)
-        //addSentenceToCSV(sentenceLabel.text!)
         
         resetAfterWordAdded()
         setSentenceText("")
@@ -571,10 +552,6 @@ class MainTVC: UITableViewController {
         inBuildWordMode = true
         tableView.reloadData()
         
-//        wordPredictionView.isHidden = true
-//        buildWordConfirmButton.isHidden = false
-//        buildWordCancelButton.isHidden = false
-        
         buildWordProgressIndex = 0
         buildWordTimer = Timer.scheduledTimer(timeInterval: buildWordPauseSeconds,
                                               target: self,
@@ -582,7 +559,7 @@ class MainTVC: UITableViewController {
                                               userInfo: nil,
                                               repeats: true)
 
-        self.setWordText(NSLocalizedString("Build Word", comment: ""))
+        self.setWordText(MainTVC.buildWordButtonText)
         self.readAloudText(self.wordLabel.text!)
     }
     
@@ -600,7 +577,7 @@ class MainTVC: UITableViewController {
         
         self.resetKeysBoarder()
         
-        self.keyViewList[enteredKey].layer.borderWidth = 3
+        self.keyboardLabels[enteredKey].layer.borderWidth = 3
     }
     
     private func resetBuildWordMode() {
@@ -613,13 +590,13 @@ class MainTVC: UITableViewController {
     }
     
     private func resetKeysBoarder() {
-        for key in keyViewList {
+        for key in keyboardLabels {
             key.layer.borderWidth = 0
         }
     }
     
     @IBAction func buildWordConfirmButtonTouched() {
-        if buildWordLetterIndex == -1 { return }
+        guard buildWordLetterIndex != -1 else { return }
         
         let letter = keyLetterGrouping[enteredKeyList[buildWordProgressIndex]][buildWordLetterIndex]
         buildWordResult.append(letter)
@@ -676,36 +653,18 @@ class MainTVC: UITableViewController {
             label.text = ""
         }
         
-        self.buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
+        buildWordButton.setTitle("", for: .normal)
     }
     
     // MARK: - Table View
 
-    /*
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView(frame: .zero)
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView(frame: .zero)
-    }
-    */
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 2:
+        case 2: // Prediction labels
             return inBuildWordMode ? 0 : 44
-        case 3:
+        case 3: // Build word buttons
             return inBuildWordMode ? 44 : 0
-        case 4:
+        case 4: // Keyboard view
             return view.bounds.height - 255 - 25
         default:
             return 44
@@ -724,7 +683,7 @@ extension MainTVC: SwipeViewDelegate {
         
         // Indicate how many letter entered, if enabled in settings.
         if UserPreferences.shared.announceLettersCount {
-            readAloudText("Letter " + String(enteredKeyList.count + 1))
+            readAloudText(NSLocalizedString("Letter", comment: "") + " " + String(enteredKeyList.count + 1))
         }
     }
     
@@ -739,7 +698,7 @@ extension MainTVC: SwipeViewDelegate {
         
         // Indicate how many letter entered, if enabled in settings.
         if UserPreferences.shared.announceLettersCount {
-            readAloudText("Letter " + String(enteredKeyList.count + 1))
+            readAloudText(NSLocalizedString("Letter", comment: "") + " " + String(enteredKeyList.count + 1))
         }
     }
 }

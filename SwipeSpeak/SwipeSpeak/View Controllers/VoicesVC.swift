@@ -12,6 +12,7 @@ import AVFoundation
 class VoicesVC: UITableViewController {
 
     private lazy var voices: [AVSpeechSynthesisVoice] = {
+        // Return all english voices
         return AVSpeechSynthesisVoice.speechVoices().filter({ (voice) -> Bool in
             return voice.language.range(of: "en-") != nil
         })
@@ -54,7 +55,7 @@ class VoicesVC: UITableViewController {
 
         UserPreferences.shared.voiceIdentifier = voice.identifier
         
-        SpeechSynthesizer.shared.speak(NSLocalizedString("Hello, this is \(voice.name)", comment: ""), voice.identifier)
+        SpeechSynthesizer.shared.speak(NSLocalizedString("Hello, this is \(voice.name).", comment: ""), voice.identifier)
         
         for cell in tableView.visibleCells {
             if tableView.indexPath(for: cell) == indexPath {
@@ -66,6 +67,5 @@ class VoicesVC: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
-
+    
 }

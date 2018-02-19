@@ -17,10 +17,6 @@ class KeyboardSettingsVC: UITableViewController {
                                                        2: .keys8,
                                                        3: .strokes2]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

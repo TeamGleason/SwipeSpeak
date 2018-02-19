@@ -28,49 +28,29 @@ class SwipeView: UIView {
     private var path = UIBezierPath()
     private var previousPoint: CGPoint = CGPoint.zero
     
-    private var keyboardView = UIView()
-    private var keyViewList = [UILabel]()
-    
-    var keyViewListSuperView: UIView?
+    private let keyboardContainerView: UIView?
+    private let keyboardLabels: [UILabel]
     
     var delegate: SwipeViewDelegate?
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard let hitView = keyViewListSuperView?.hitTest(point, with: event) else {
-            return super.hitTest(point, with: event)
-        }
-        
-        for keyView in keyViewList {
-            if keyView === hitView {
-                return super.hitTest(point, with: event)
-            }
-        }
-        
-        if hitView is UILabel || hitView is UIButton {
-            return hitView
-        }
-        
-        return super.hitTest(point, with: event)
-    }
-    
     // MARK: - Initialization
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    init(frame: CGRect, keyboardView: UIView, keyViewList: [UILabel], isTwoStrokes: Bool) {
-        super.init(frame: frame)
+    init(frame: CGRect, keyboardContainerView: UIView, keyboardLabels: [UILabel], isTwoStrokes: Bool, delegate: SwipeViewDelegate) {
+        self.keyboardContainerView = keyboardContainerView
+        self.keyboardLabels = keyboardLabels
+        self.delegate = delegate
         
-        self.keyboardView = keyboardView
-        self.keyViewList = keyViewList
+        super.init(frame: frame)
         
         setup(isTwoStrokes: isTwoStrokes)
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.keyboardContainerView = nil
+        self.keyboardLabels = []
+
         super.init(coder: aDecoder)
+        
         setup()
     }
     
@@ -93,6 +73,28 @@ class SwipeView: UIView {
         }
     }
     
+    // MARK: - UIView
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let hitView = keyboardContainerView?.hitTest(point, with: event) else {
+            return super.hitTest(point, with: event)
+        }
+        
+        // Pass pass through events to keyboard labels
+        for keyView in keyboardLabels {
+            if keyView === hitView {
+                return super.hitTest(point, with: event)
+            }
+        }
+        
+        // Pass pass through events to labels and buttons
+        if hitView is UILabel || hitView is UIButton {
+            return hitView
+        }
+        
+        return super.hitTest(point, with: event)
+    }
+    
     // MARK: - UIViewRendering
     
     override func draw(_ rect: CGRect) {
@@ -104,14 +106,14 @@ class SwipeView: UIView {
     // MARK: - Handle Swipe
     
     @objc func handleTap(_ recognizer: UITapGestureRecognizer) {
-        let currentPoint = recognizer.location(in: keyViewListSuperView)
+        let currentPoint = recognizer.location(in: keyboardContainerView)
 
-        guard let hitView = keyViewListSuperView?.hitTest(currentPoint, with: nil) else {
+        guard let hitView = keyboardContainerView?.hitTest(currentPoint, with: nil) else {
             return
         }
         
-        for i in 0 ..< keyViewList.count {
-            if hitView === keyViewList[i] {
+        for i in 0 ..< keyboardLabels.count {
+            if hitView === keyboardLabels[i] {
                 if UserPreferences.shared.audioFeedback {
                     playSoundClick()
                 }
@@ -176,7 +178,7 @@ class SwipeView: UIView {
         self.setNeedsDisplay()
     }
     
-    @objc func handleSwipeTwoStrokes(_ recognizer:UIPanGestureRecognizer) {
+    @objc func handleSwipeTwoStrokes(_ recognizer: UIPanGestureRecognizer) {
         let currentPoint = recognizer.location(in: self)
         let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
                                y: (previousPoint.y + currentPoint.y) / 2)

@@ -83,6 +83,7 @@ class SentenceHistoryVC: UITableViewController {
         if editingStyle == .delete {
             UserPreferences.shared.removeSentence(indexPath.row)
             loadSentenceHistory()
+            
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadEmptyDataSet()
         }

@@ -477,12 +477,12 @@
                     <navigationItem key="navigationItem" title="SwipeSpeak" id="hL1-iS-GF0">
                         <barButtonItem key="leftBarButtonItem" image="ic_history" id="dE8-cF-6OY">
                             <connections>
-                                <segue destination="Ph3-Mg-vio" kind="presentation" modalPresentationStyle="formSheet" id="bLR-bq-Sgc"/>
+                                <segue destination="Ph3-Mg-vio" kind="presentation" identifier="toSentenceHistoryVC" modalPresentationStyle="formSheet" id="bLR-bq-Sgc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_settings" id="GKk-sp-s3S">
                             <connections>
-                                <segue destination="6tf-5h-2xL" kind="presentation" modalPresentationStyle="formSheet" id="Mbn-50-vIx"/>
+                                <segue destination="6tf-5h-2xL" kind="presentation" identifier="toSettingsVC" modalPresentationStyle="formSheet" id="Mbn-50-vIx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

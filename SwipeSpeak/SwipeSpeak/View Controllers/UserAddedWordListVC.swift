@@ -63,24 +63,26 @@ class UserAddedWordListVC: UITableViewController {
     }
     
     @objc func addWordButtonTouched() {
-        let alertController = UIAlertController(title: "Add Word",
-                                                message: "Please do not include punctuations or spaces",
+        let alertController = UIAlertController(title: NSLocalizedString("Add Word", comment: ""),
+                                                message: NSLocalizedString("Please do not include punctuations or spaces", comment: ""),
                                                 preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Add", style: .default) { (_) in
+        let saveAction = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { (_) in
             guard let textFields = alertController.textFields else { return }
             guard let textField = textFields.first else { return }
             guard let text = textField.text else { return }
             guard isWordValid(text) else { return }
+            guard !UserPreferences.shared.userAddedWords.contains(text) else { return }
 
             UserPreferences.shared.addWord(text)
             self.loadUserAddedWords()
+            
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             self.tableView.reloadEmptyDataSet()
         }
         
         saveAction.isEnabled = false
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { (_) in }
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
@@ -88,7 +90,6 @@ class UserAddedWordListVC: UITableViewController {
         alertController.addTextField { (textField) in
             textField.text = ""
             textField.clearButtonMode = .whileEditing
-            //textField.keyboardType = .asciiCapable
             
             NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main, using: { _ in
                 if let text = textField.text, isWordValid(text) {
@@ -102,29 +103,6 @@ class UserAddedWordListVC: UITableViewController {
         present(alertController, animated: true, completion: nil)
         alertController.view.tintColor = UIColor.darkGray
     }
-    
-    /*
-    @objc func clearWordsButtonTouched() {
-        let alertController = UIAlertController(title: "Clear Words",
-                                                message: "Are you sure you want to clear all added words?",
-                                                preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Clear", style: .destructive) { (_) in
-            UserPreferences.shared.clearWords()
-            self.loadUserAddedWords()
-            self.tableView.reloadData()
-            self.tableView.reloadEmptyDataSet()
-            
-            userAddedWordListUpdated = true
-        }
-        alertController.addAction(saveAction)
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-        alertController.addAction(cancelAction)
-
-        self.present(alertController, animated: true, completion: nil)
-    }
- */
     
 }
 
