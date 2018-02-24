@@ -14,7 +14,7 @@ class SentenceHistoryVC: UITableViewController {
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
+        dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
@@ -87,6 +87,15 @@ class SentenceHistoryVC: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadEmptyDataSet()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sentenceObject = sentenceHistory[indexPath.row]
+        if let sentence = sentenceObject[SentenceKeys.sentence] as? String, !sentence.isEmpty {
+            SpeechSynthesizer.shared.speak(sentence)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

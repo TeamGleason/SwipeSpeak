@@ -70,6 +70,15 @@ class UserAddedWordListVC: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = userAddedWords[indexPath.row]
+        if !word.isEmpty {
+            SpeechSynthesizer.shared.speak(word)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     @objc func addWordButtonTouched() {
         let alertController = UIAlertController(title: NSLocalizedString("Add Word", comment: ""),
                                                 message: NSLocalizedString("Please do not include punctuations or spaces", comment: ""),
