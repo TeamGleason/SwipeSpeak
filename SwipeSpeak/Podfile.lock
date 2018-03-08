@@ -1,14 +1,14 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
-  - Firebase/Core (4.9.0):
-    - FirebaseAnalytics (= 4.0.9)
-    - FirebaseCore (= 4.0.15)
-  - FirebaseAnalytics (4.0.9):
+  - Firebase/Core (4.10.0):
+    - FirebaseAnalytics (= 4.1.0)
+    - FirebaseCore (= 4.0.16)
+  - FirebaseAnalytics (4.1.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.15):
+  - FirebaseCore (4.0.16):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (2.0.9):
     - FirebaseCore (~> 4.0)
@@ -31,9 +31,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
-  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
-  FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
+  Firebase: c98c8b1fbcbdccd82539a36c2b17a9b1bb0ee798
+  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
+  FirebaseCore: eb9e1a56733ff1094ecf3e28af9069c344b25239
   FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   MarkdownView: 80db8e9a27a6c6cc22615e644e3e85c06065bab7

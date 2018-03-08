@@ -116,6 +116,14 @@ class MainTVC: UITableViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if inBuildWordMode {
+            cancelBuildWordMode()
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -614,12 +622,16 @@ class MainTVC: UITableViewController {
     }
     
     @objc func scanningLettersOnKey() {
+        guard enteredKeyList.indices.contains(buildWordProgressIndex) else { return }
         let enteredKey = enteredKeyList[buildWordProgressIndex]
+        
+        guard keyLetterGrouping.indices.contains(enteredKey) else { return }
         let lettersOnKey = keyLetterGrouping[enteredKey]
       
         buildWordLetterIndex += 1
         buildWordLetterIndex %= lettersOnKey.count
        
+        guard buildWordLetterIndex < lettersOnKey.count else { return }
         let letter = lettersOnKey[buildWordLetterIndex]
      
         self.readAloudText(String(letter))
@@ -627,6 +639,7 @@ class MainTVC: UITableViewController {
         
         self.resetKeysBoarder()
         
+        guard keyboardLabels.indices.contains(enteredKey) else { return }
         self.keyboardLabels[enteredKey].layer.borderWidth = 3
     }
     
@@ -666,7 +679,7 @@ class MainTVC: UITableViewController {
             
             setSentenceText(sentenceLabel.text! + buildWordResult + " ")
             
-            buildWordCancelButtonTouched()
+            cancelBuildWordMode()
             return
         }
         
@@ -691,7 +704,7 @@ class MainTVC: UITableViewController {
                                               repeats: true)
     }
     
-    @IBAction func buildWordCancelButtonTouched() {
+    @IBAction func cancelBuildWordMode() {
         resetBuildWordMode()
         
         inBuildWordMode = false

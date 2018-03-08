@@ -416,7 +416,7 @@
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <state key="normal" title="Cancel"/>
                                                                     <connections>
-                                                                        <action selector="buildWordCancelButtonTouched" destination="9Am-1Y-Xgg" eventType="touchUpInside" id="GR8-J3-55e"/>
+                                                                        <action selector="cancelBuildWordMode" destination="9Am-1Y-Xgg" eventType="touchUpInside" id="fDa-nP-DNY"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
