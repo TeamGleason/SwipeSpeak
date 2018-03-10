@@ -1,0 +1,11 @@
+platform :ios, '9.0'
+
+target 'SwipeSpeak' do
+  use_frameworks!
+
+  pod 'DZNEmptyDataSet',  '1.8.1'
+  pod 'Zephyr',           '3.0.1'
+  pod 'MarkdownView',     '1.1.0'
+
+  pod 'Firebase/Core'
+end

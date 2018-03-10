@@ -3,29 +3,29 @@
 //  SwipeSpeak
 //
 //  Created by Xiaoyi Zhang on 7/5/17.
+//  Updated by Daniel Tsirulnikov on 1/2/18.
 //  Copyright © 2017 TeamGleason. All rights reserved.
 //
 
 import Foundation
 
-class TrieNode {
-    var children = [Int: TrieNode]()
-    var words = [(String, Int)]()
-}
-
-extension String {
-    subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
-    }
+enum WordPredictionError: Error {
+    case unsupportedWord(invalidChar: Character)
 }
 
 class WordPredictionEngine {
-    var rootNode = TrieNode()
     
-    var keyLetterGrouping = [Character:Int]()
+    private class TrieNode {
+        var children = [Int: TrieNode]()
+        var words = [(String, Int)]()
+    }
+
+    private var rootNode = TrieNode()
+    
+    private var keyLetterGrouping = [Character:Int]()
     
     func setKeyLetterGrouping(_ grouping: [String]) {
-        if getNumberOfKeys() == -1 {
+        if UserPreferences.shared.keyboardLayout == .strokes2 {
             keyLetterGrouping = [Character:Int]()
             for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
                 keyLetterGrouping[Character(UnicodeScalar(letterValue)!)] = Int(letterValue)
@@ -33,22 +33,27 @@ class WordPredictionEngine {
         } else {
             keyLetterGrouping = [Character:Int]()
             for i in 0 ..< grouping.count {
-                for letter in grouping[i].characters {
+                for letter in grouping[i] {
                     keyLetterGrouping[letter] = i
                 }
             }
         }
     }
     
-    func findNodeToAddWord(_ word: String, node: TrieNode) -> TrieNode {
+    private func findNodeToAddWord(_ word: String, node: TrieNode) throws -> TrieNode {
         var node = node
         
         // Traverse existing nodes as far as possible.
         var i = 0
-        let length = word.characters.count
+        let length = word.count
         while (i < length) {
-            var key:Int
-            key = keyLetterGrouping[word[i]]!
+            let char = word[i]
+            
+            guard keyLetterGrouping.keys.contains(char) else {
+                throw WordPredictionError.unsupportedWord(invalidChar: char)
+            }
+            
+            let key = keyLetterGrouping[char]!
             
             let c = node.children[key]
             if (c != nil) {
@@ -60,8 +65,13 @@ class WordPredictionEngine {
         }
         
         while (i < length) {
-            var key:Int
-            key = keyLetterGrouping[word[i]]!
+            let char = word[i]
+
+            guard keyLetterGrouping.keys.contains(char) else {
+                throw WordPredictionError.unsupportedWord(invalidChar: char)
+            }
+            
+            let key = keyLetterGrouping[word[i]]!
             
             let newNode = TrieNode()
             node.children[key] = newNode
@@ -72,13 +82,13 @@ class WordPredictionEngine {
         return node;
     }
     
-    func insertWordIntoNodeByFrequency(_ node: TrieNode, word: String, useFrequency: Int) {
+    private func insertWordIntoNodeByFrequency(_ node: TrieNode, word: String, useFrequency: Int) {
         let wordToInsert = (word, useFrequency)
         for i in 0 ..< node.words.count {
             let comparedFrequency = node.words[i].1
             let insertFrequency = wordToInsert.1
             
-            if(insertFrequency >= comparedFrequency) {
+            if insertFrequency >= comparedFrequency {
                 node.words.insert(wordToInsert, at: i)
                 return
             }
@@ -87,8 +97,8 @@ class WordPredictionEngine {
         node.words.append(wordToInsert)
     }
     
-    func insert(_ word: String, frequency: Int) {
-        let nodeToAddWord = findNodeToAddWord(word, node: rootNode)
+    func insert(_ word: String, _ frequency: Int) throws {
+        let nodeToAddWord = try findNodeToAddWord(word, node: rootNode)
         insertWordIntoNodeByFrequency(nodeToAddWord, word: word, useFrequency: frequency)
     }
     
@@ -105,6 +115,7 @@ class WordPredictionEngine {
         
         return node.words
     }
+    
     /*
     func getSuggestionsFromLetter(_ keyString: [Int]) -> [(String, Int)] {
         var inputString = ""
@@ -114,4 +125,5 @@ class WordPredictionEngine {
         print(inputString)
         return [(inputString, 200), ("dsd", 200), ("ss", 200), ("wwe", 200)]
     }*/
+    
 }
