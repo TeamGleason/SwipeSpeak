@@ -890,10 +890,10 @@
             </objects>
             <point key="canvasLocation" x="2836" y="-319.79010494752629"/>
         </scene>
-        <!--Rotation HelperNVC-->
+        <!--Navigation Controller-->
         <scene sceneID="RGv-dD-nrN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v6X-bQ-ltf" customClass="RotationHelperNVC" customModule="SwipeSpeak" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v6X-bQ-ltf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VW4-lx-I6S">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

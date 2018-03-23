@@ -18,7 +18,6 @@
 		B98C67B61FD87AD600C35FE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B98C67B51FD87AD600C35FE5 /* GoogleService-Info.plist */; };
 		B991E2281FAEE26F0038074E /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991E2271FAEE26F0038074E /* MainTVC.swift */; };
 		B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */ = {isa = PBXBuildFile; fileRef = B9E23BDA1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv */; };
-		B9F557D31FFA2DCD003DA8AF /* RotationHelperNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */; };
 		B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */; };
 		D6E2115834A64202A7D846AC /* Pods_SwipeSpeak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2DB48CB6BFD706DC18DD1B /* Pods_SwipeSpeak.framework */; };
 		DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700181F0DA06B003BEE3D /* SwipeView.swift */; };
@@ -48,7 +47,6 @@
 		B98C67B51FD87AD600C35FE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B991E2271FAEE26F0038074E /* MainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		B9E23BDA1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = word_frequency_english_ucrel.csv; sourceTree = "<group>"; };
-		B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationHelperNVC.swift; sourceTree = "<group>"; };
 		B9FD99F21FADFFEB00E34F9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C45FDF6BDB14ABD71E7730E4 /* Pods-SwipeSpeak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.release.xcconfig"; sourceTree = "<group>"; };
 		DA0700181F0DA06B003BEE3D /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
 				B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */,
 				B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */,
-				B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 				DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */,
 				DA0700231F0DA889003BEE3D /* KeyboardSettingsVC.swift in Sources */,
 				B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */,
-				B9F557D31FFA2DCD003DA8AF /* RotationHelperNVC.swift in Sources */,
 				DA0700271F0DB116003BEE3D /* SentenceHistoryVC.swift in Sources */,
 				DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */,
 				B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */,

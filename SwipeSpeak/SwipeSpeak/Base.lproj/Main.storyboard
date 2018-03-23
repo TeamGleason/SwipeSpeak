@@ -870,20 +870,16 @@ Z X Y</string>
             </objects>
             <point key="canvasLocation" x="619" y="449"/>
         </scene>
-        <!--Rotation HelperNVC-->
+        <!--Navigation Controller-->
         <scene sceneID="fQ9-u3-RaG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3dp-xf-2SI" customClass="RotationHelperNVC" customModule="SwipeSpeak" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3dp-xf-2SI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="W7l-7t-utP">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="rotatePhone" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="rotatePad" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="9Am-1Y-Xgg" kind="relationship" relationship="rootViewController" id="KvU-8k-kmw"/>
                     </connections>
