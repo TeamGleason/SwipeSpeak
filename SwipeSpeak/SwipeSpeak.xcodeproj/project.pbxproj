@@ -173,7 +173,6 @@
 				DA57B1F31F0D9EC100895E18 /* Frameworks */,
 				DA57B1F41F0D9EC100895E18 /* Resources */,
 				BF9DC38AD4ACB38871A3E0D0 /* [CP] Embed Pods Frameworks */,
-				06CC2F4A3980085F49A87F9D /* [CP] Copy Pods Resources */,
 				B9C89C842064D509008D12E6 /* ShellScript */,
 			);
 			buildRules = (
@@ -197,7 +196,6 @@
 				TargetAttributes = {
 					DA57B1F51F0D9EC100895E18 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8YQUDE4F8S;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -243,21 +241,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06CC2F4A3980085F49A87F9D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B9C89C842064D509008D12E6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
