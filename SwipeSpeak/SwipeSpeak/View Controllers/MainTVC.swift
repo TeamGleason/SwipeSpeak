@@ -148,9 +148,12 @@ class MainTVC: UITableViewController {
         wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping)
         
         DispatchQueue.global(qos: .userInitiated).async {
-            for word in UserPreferences.shared.userAddedWords {
+            for wordDict in UserPreferences.shared.userAddedWords {
+                let word = wordDict[WordKeys.word] as! String
+                let freq = wordDict[WordKeys.frequency] as! Int
+                
                 do {
-                    try self.wordPredictionEngine.insert(word, Constants.maxWordFrequency)
+                    try self.wordPredictionEngine.insert(word, freq)
                 } catch WordPredictionError.unsupportedWord(let invalidChar) {
                     print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
                 } catch {
@@ -190,6 +193,8 @@ class MainTVC: UITableViewController {
  
         setSentenceText("")
         
+        wordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wordLabelTouched(_:))))
+
         for label in predictionLabels {
             label.isUserInteractionEnabled = true
             label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didPressPredictionLabel)))
@@ -343,43 +348,42 @@ class MainTVC: UITableViewController {
         setupWordPredictionEngine()
     }
     
-    // MARK: - UI Interaction
-    
-    private func updateKeyboardIndicator(_ index: Int) {
-        resetKeysBoarder()
-        
-        if index != -1 {
-            // Visual indicator
-            keyboardLabels[index].layer.borderWidth = 3
-        }
-    }
-    
+    // MARK: User Interaction
+
     @IBAction func backspace() {
         if inBuildWordMode { return }
         //if !buildWordConfirmButton.isHidden { return }
-
+        
         dehighlightLabel()
-
+        
         updateKeyboardIndicator(-1)
-        if enteredKeyList.count == 0 { return }
+        if enteredKeyList.count == 0 && !wordLabelContainsArrowSuffix() {
+            return
+        }
         
         // Remove first stroke.
         if swipeView.firstStroke != nil {
             swipeView.firstStroke = nil
         } else { // Remove last character.
-            enteredKeyList.remove(at: enteredKeyList.endIndex - 1)
+            enteredKeyList.removeLast()
             updatePredictions()
         }
         
         if UserPreferences.shared.audioFeedback {
             playSoundBackspace()
         }
+        
+        if UserPreferences.shared.keyboardLayout != .strokes2 {
+            removeArrowSuffix()
+        } else {
+            showCurrentArrows()
+        }
     }
     
     @IBAction func backspaceAll() {
         if inBuildWordMode { return }
-       // if !buildWordConfirmButton.isHidden { return }
-
+        // if !buildWordConfirmButton.isHidden { return }
+        
         if !enteredKeyList.isEmpty {
             if UserPreferences.shared.audioFeedback {
                 playSoundBackspace()
@@ -390,6 +394,76 @@ class MainTVC: UITableViewController {
         updatePredictions()
         updateKeyboardIndicator(-1)
         swipeView.firstStroke = nil
+    }
+    
+    // Interpreter add word to sentence by long press.
+    @IBAction func addWordToSentence(_ sender: UILongPressGestureRecognizer) {
+        guard sender.state == .began else { return }
+        
+        if let label = sender.view as? UILabel{
+            addWordToSentence(from: label)
+        }
+    }
+    
+    @IBAction func didPressPredictionLabel(_ sender: UITapGestureRecognizer) {
+        if let label = sender.view as? UILabel, predictionLabels.contains(label) {
+            if highlightedLabel != nil && highlightedLabel == label {
+                addWordToSentence(from: label)
+                return
+            } else {
+                highlight(label: label)
+            }
+        }
+        
+        if let word = (sender.view as! UILabel).text {
+            announce(word)
+        }
+    }
+    
+    @IBAction func wordLabelTouched(_ sender: UITapGestureRecognizer) {
+        guard !wordLabelContainsArrowSuffix() else {
+            return
+        }
+
+        guard let text = wordLabel.text, !text.isEmpty else { return }
+
+        announce(text)
+        addWordToSentence(word: text, playSound: false)
+    }
+    
+    @IBAction func sentenceLabelTouched() {
+        guard let text = sentenceLabel.text, !text.isEmpty else { return }
+        
+        announce(text)
+        sentenceLabelLongPressed()
+    }
+    
+    @IBAction func sentenceLabelLongPressed() {
+        guard let text = sentenceLabel.text, !text.isEmpty else { return }
+        
+        UserPreferences.shared.addSentence(text)
+        
+        resetAfterWordAdded()
+        setSentenceText("")
+    }
+    
+    // MARK: UI Interaction
+
+    private func updateKeyboardIndicator(_ index: Int) {
+        resetKeysBoarder()
+        
+        if index != -1 {
+            // Visual indicator
+            keyboardLabels[index].layer.borderWidth = 3
+        }
+    }
+    
+    private func removeArrowSuffix() {
+        guard wordLabelContainsArrowSuffix(), let wordLabelText = wordLabel.text else {
+            return
+        }
+        
+        setWordText(String(wordLabelText.dropLast()))
     }
     
     // Input box should has same length as entered keys.
@@ -404,42 +478,31 @@ class MainTVC: UITableViewController {
         return String(result[..<toIndex])
     }
     
-    private func readAloudText(_ text: String) {
+    private func announceDirection(for key: Int, with keyboardLayout: KeyboardLayout) {
+        guard UserPreferences.shared.announceLettersCount else {
+            return
+        }
+        
+        let arrows: [Int: String]
+
+        switch keyboardLayout {
+        case .keys4:
+            arrows = MainTVC.arrows4KeysTextMap
+        case .strokes2:
+            arrows = MainTVC.arrows2StrokesTextMap
+        default:
+            return
+        }
+        
+        guard let arrowText = arrows[key] else { return }
+        announce(NSLocalizedString(arrowText, comment: ""))
+    }
+    
+    private func announce(_ text: String) {
         SpeechSynthesizer.shared.speak(text)
     }
     
-    @IBAction func didPressPredictionLabel(_ sender: UITapGestureRecognizer) {
-        if let label = sender.view as? UILabel, predictionLabels.contains(label) {
-            if highlightedLabel != nil && highlightedLabel == label {
-                addWordToSentence(from: label)
-                return
-            } else {
-                highlight(label: label)
-            }
-        }
-        
-        if let word = (sender.view as! UILabel).text {
-            readAloudText(word)
-        }
-    }
-    
-    @IBAction func sentenceLabelTouched() {
-        guard let text = sentenceLabel.text, !text.isEmpty else { return }
-
-        readAloudText(text)
-        sentenceLabelLongPressed()
-    }
-    
-    @IBAction func sentenceLabelLongPressed() {
-        guard let text = sentenceLabel.text, !text.isEmpty else { return }
-        
-        UserPreferences.shared.addSentence(text)
-        
-        resetAfterWordAdded()
-        setSentenceText("")
-    }
-    
-    func resetAfterWordAdded() {
+    private func resetAfterWordAdded() {
         dehighlightLabel()
         enteredKeyList = [Int]()
         setWordText("")
@@ -453,41 +516,42 @@ class MainTVC: UITableViewController {
         updateKeyboardIndicator(-1)
     }
     
-    // Interpreter add word to sentence by long press.
-    @IBAction func addWordToSentence(_ sender: UILongPressGestureRecognizer) {
-        guard sender.state == .began else { return }
-        
-        if let label = sender.view as? UILabel{
-            addWordToSentence(from: label)
-        }
-    }
-    
     private func addWordToSentence(from label: UILabel) {
         guard let word = label.text else { return }
         
+        addWordToSentence(word: word)
+    }
+    
+    private func addWordToSentence(word: String, playSound: Bool = true) {
         dehighlightLabel()
         
         // Audio feedback after adding a word.
-        if UserPreferences.shared.audioFeedback {
+        if playSound && UserPreferences.shared.audioFeedback {
             playSoundWordAdded()
         }
+        
         setSentenceText(sentenceLabel.text! + word + " ")
-
+        
         resetAfterWordAdded()
         resetBuildWordMode()
+        
+        if UserPreferences.shared.userAddedWordsArray.contains(word) {
+            UserPreferences.shared.incrementWord(word)
+        }
+        
+        swipeView.firstStroke = nil
     }
     
     // Update input box and predictions
     private func updatePredictions() {
         // Initialize.
-        var prediction = [(String, Int)]()
         for label in predictionLabels {
             label.text = ""
         }
         
         buildWordButton.setTitle("", for: .normal)
 
-        if enteredKeyList.count == 0 {
+        guard !enteredKeyList.isEmpty else {
             setWordText("")
             return
         }
@@ -500,6 +564,8 @@ class MainTVC: UITableViewController {
         // Possible words from input T9 digits.
         let results = wordPredictionEngine.getSuggestions(enteredKeyList)
         
+        var prediction = [(String, Int)]()
+
         // Show first result in input box.
         if results.count >= numPredictionLabels {
             // If we already get enough results, we do not need add characters to search predictions.
@@ -550,8 +616,9 @@ class MainTVC: UITableViewController {
             if UserPreferences.shared.keyboardLayout == .strokes2 {
                 var inputString = ""
                 for letterValue in enteredKeyList {
-                    inputString += String(describing: UnicodeScalar(letterValue)!)
+                    inputString += letter(from: letterValue)!
                 }
+                
                 if (prediction.count == 0 || prediction[0].0 != inputString) {
                     prediction.insert((inputString, 0), at: 0)
                 }
@@ -600,9 +667,24 @@ class MainTVC: UITableViewController {
         wordLabel.text = text
     }
     
+    private func resetKeysBoarder() {
+        for key in keyboardLabels {
+            key.layer.borderWidth = 0
+        }
+    }
+    
+    private func showCurrentArrows() {
+        let arrows = directionArrows(for: enteredKeyList)
+        setWordText(arrows)
+    }
+    
     // MARK: - Scanning Mode
     
     @IBAction func buildWordButtonTouched() {
+        guard  UserPreferences.shared.keyboardLayout != .strokes2 else {
+            return
+        }
+        
         guard enteredKeyList.count > 0 else {
             return
         }
@@ -618,7 +700,7 @@ class MainTVC: UITableViewController {
                                               repeats: true)
 
         self.setWordText(MainTVC.buildWordButtonText)
-        self.readAloudText(self.wordLabel.text!)
+        self.announce(self.wordLabel.text!)
     }
     
     @objc func scanningLettersOnKey() {
@@ -634,7 +716,7 @@ class MainTVC: UITableViewController {
         guard buildWordLetterIndex < lettersOnKey.count else { return }
         let letter = lettersOnKey[buildWordLetterIndex]
      
-        self.readAloudText(String(letter))
+        self.announce(String(letter))
         self.setWordText(self.buildWordResult + String(letter))
         
         self.resetKeysBoarder()
@@ -650,12 +732,6 @@ class MainTVC: UITableViewController {
         enteredKeyList = [Int]()
         buildWordResult = ""
         resetKeysBoarder()
-    }
-    
-    private func resetKeysBoarder() {
-        for key in keyboardLabels {
-            key.layer.borderWidth = 0
-        }
     }
     
     @IBAction func buildWordConfirmButtonTouched() {
@@ -675,7 +751,7 @@ class MainTVC: UITableViewController {
             for letter in buildWordResult {
                 word += (String(letter) + ", ")
             }
-            readAloudText(word + buildWordResult)
+            announce(word + buildWordResult)
             
             setSentenceText(sentenceLabel.text! + buildWordResult + " ")
             
@@ -694,7 +770,7 @@ class MainTVC: UITableViewController {
         for letter in buildWordResult {
             word += (String(letter) + ", ")
         }
-        readAloudText(word + " " + NSLocalizedString("Next Letter", comment: ""))
+        announce(word + " " + NSLocalizedString("Next Letter", comment: ""))
         
         sleep(UInt32(buildWordResult.count / 2))
         buildWordTimer = Timer.scheduledTimer(timeInterval: self.buildWordPauseSeconds,
@@ -719,6 +795,29 @@ class MainTVC: UITableViewController {
         buildWordButton.setTitle("", for: .normal)
     }
     
+    
+    // MARK: - Helper Methods
+    
+    private func wordLabelContainsArrowSuffix() -> Bool {
+        guard let char = wordLabel.text?.last else { return false }
+        return MainTVC.allArrows.contains(String(char))
+    }
+
+    private func letter(from key: Int) -> String? {
+        guard let scalar = UnicodeScalar(key) else { return nil }
+        return String(describing: scalar)
+    }
+    
+    private func directionArrows(for keys: [Int]) -> String {
+        guard !keys.isEmpty else {
+            return ""
+        }
+        
+        let arrows = keys.map { MainTVC.arrows4KeysMap[$0]! }
+        
+        return arrows.joined(separator: "")
+    }
+    
     // MARK: - Table View
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -733,25 +832,63 @@ class MainTVC: UITableViewController {
             return 44
         }
     }
+    
 }
 
 // MARK: - SwipeViewDelegate
+
 extension MainTVC: SwipeViewDelegate {
     
+    // MARK: Constants
+    
+    static let allArrows = ["↑", "↗︎", "→", "↘︎", "↓", "↙︎", "←", "↖︎"]
+    
+    static let arrows4KeysMap = [0: "↑",
+                                 1: "→",
+                                 2: "←",
+                                 3: "↓"]
+    
+    static let arrows4KeysTextMap = [0: "Up",
+                                     1: "Right",
+                                     2: "Left",
+                                     3: "Down"]
+    
+    static let arrows2StrokesMap = [0: "↗︎",
+                                    1: "↑",
+                                    2: "↖︎",
+                                    3: "↘︎",
+                                    4: "↓",
+                                    5: "↙︎"]
+    
+    static let arrows2StrokesTextMap = [0: "Up Right",
+                                        1: "Up",
+                                        2: "Up Left",
+                                        3: "Down Right",
+                                        4: "Down",
+                                        5: "Down left"]
+    
+    // MARK: Methods
+
     func keyEntered(key: Int) {
         enteredKeyList.append(key)
+        
         // Update predictive text for key list.
         updatePredictions()
         updateKeyboardIndicator(key)
         
-        // Indicate how many letter entered, if enabled in settings.
-        if UserPreferences.shared.announceLettersCount {
-            readAloudText(NSLocalizedString("Letter", comment: "") + " " + String(enteredKeyList.count + 1))
-        }
+        announceDirection(for: key, with: .keys4)
+    
+        showCurrentArrows()
     }
     
     func firstStrokeEntered(key: Int) {
         updateKeyboardIndicator(key)
+        
+        guard let arrow = MainTVC.arrows2StrokesMap[key] else { return }
+        let text = (wordLabel.text ?? "") + arrow
+        setWordText(text)
+        
+        announceDirection(for: key, with: .strokes2)
     }
     
     func secondStrokeEntered(key: Int) {
@@ -759,9 +896,8 @@ extension MainTVC: SwipeViewDelegate {
         updateKeyboardIndicator(-1)
         updatePredictions()
         
-        // Indicate how many letter entered, if enabled in settings.
-        if UserPreferences.shared.announceLettersCount {
-            readAloudText(NSLocalizedString("Letter", comment: "") + " " + String(enteredKeyList.count + 1))
-        }
+        guard let letter = letter(from: key) else { return }
+        announce(letter)
     }
+    
 }

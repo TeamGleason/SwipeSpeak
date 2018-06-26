@@ -43,7 +43,7 @@ class UserAddedWordListVC: UITableViewController {
     }
     
     private func loadUserAddedWords() {
-        userAddedWords = Array(UserPreferences.shared.userAddedWords)
+        userAddedWords = UserPreferences.shared.userAddedWordsArray
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,7 +89,7 @@ class UserAddedWordListVC: UITableViewController {
             guard let textField = textFields.first else { return }
             guard let text = textField.text else { return }
             guard isWordValid(text) else { return }
-            guard !UserPreferences.shared.userAddedWords.contains(text) else { return }
+            guard !UserPreferences.shared.userAddedWordsArray.contains(text) else { return }
 
             UserPreferences.shared.addWord(text)
             self.loadUserAddedWords()
@@ -119,7 +119,6 @@ class UserAddedWordListVC: UITableViewController {
         }
         
         present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = UIColor.darkGray
     }
     
 }

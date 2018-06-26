@@ -19,11 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
 
-        window?.tintColor = UIColor.lightGray
         window?.backgroundColor = UIColor.white
         
         if #available(iOS 11, *) {
             UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
+        
+        // Starting with 1.1 we only use the `keys4` and `strokes2` keyboard layouts
+        if UserPreferences.shared.keyboardLayout != .keys4 &&
+            UserPreferences.shared.keyboardLayout != .strokes2 {
+            UserPreferences.shared.keyboardLayout = .strokes2
         }
         
         return true

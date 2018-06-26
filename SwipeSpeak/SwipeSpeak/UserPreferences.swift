@@ -31,6 +31,12 @@ enum KeyboardLayout: Int {
     }
 }
 
+struct WordKeys {
+    static let word = "sentence"
+    static let frequency = "freq"
+    static let date = "date"
+}
+
 struct SentenceKeys {
     static let sentence = "sentence"
     static let date     = "date"
@@ -56,7 +62,9 @@ private struct Keys {
     
     static let enableCloudSync  = "enableCloudSync"
 
-    static let userAddedWords   = "userAddedWords"
+    static let userAddedWordsLegacy = "userAddedWords"
+    static let userAddedWords       = "userAddedWordsFreq"
+
     static let sentenceHistory  = "sentenceHistory"
     
     static func iCloudSyncKeys() -> [String] {
@@ -113,6 +121,8 @@ class UserPreferences {
         if self.enableCloudSync {
             enableZephyr()
         }
+        
+        importLegacyWordsIfNeeded()
     }
     
     // MARK: Zephyr
@@ -221,54 +231,96 @@ class UserPreferences {
         }
     }
     
-    var userAddedWords: [String] {
+    // MARK: User added words
+    
+    var userAddedWords: [[String: Any]] {
         get {
-            guard let array = userDefaults.array(forKey: Keys.userAddedWords) else { return [] }
-            return array as! [String]
+            guard let array = userDefaults.array(forKey: Keys.userAddedWords) as? [[String: Any]] else { return [] }
+            return array
         }
         set(newValue) {
             userDefaults.set(newValue, forKey: Keys.userAddedWords)
         }
     }
     
-    // User added words
+    var userAddedWordsArray: [String] {
+        guard let array = userDefaults.array(forKey: Keys.userAddedWords) as? [[String: Any]] else { return [] }
+        return array.map { $0[WordKeys.word] as! String }
+    }
     
     private let MaxUserAddedWords = 100
     
     func addWord(_ word: String) {
-        let array = userAddedWords
-        var newArray = Array(array)
-        newArray.insert(word, at: 0)
+        let trimmedWord = word.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        var array = Array(userAddedWords)
         
-        if newArray.count > MaxUserAddedWords {
-            newArray.removeLast()
+        let dict = [WordKeys.word: trimmedWord,
+                    WordKeys.frequency: Constants.defaultWordFrequency,
+                    SentenceKeys.date: Date()] as [String : Any]
+        array.insert(dict, at: 0)
+        
+        if array.count > MaxUserAddedWords {
+            array.removeLast()
         }
         
-        userAddedWords = newArray
+        userAddedWords = array
         
         NotificationCenter.default.post(name: Notification.Name.UserAddedWordsUpdated, object: self)
     }
     
     func removeWord(_ index: Int) {
-        let array = userAddedWords
+        var array = Array(userAddedWords)
         guard index < array.count else { return }
         
-        var newArray = Array(array)
-        newArray.remove(at: index)
+        array.remove(at: index)
         
-        userAddedWords = newArray
+        userAddedWords = array
+    }
+    
+    func incrementWord(_ word: String) {
+        var array = Array(userAddedWords)
+        
+        guard let index = array.index(where: { (wordDict) -> Bool in
+            guard let dictWord = wordDict[WordKeys.word] as? String, dictWord == word else { return false}
+            return true
+        }) else {
+            return
+        }
+        
+        var object = array[index]
+        var freq = object[WordKeys.frequency]! as! Int
+        freq += 1
+        
+        object[WordKeys.frequency] = freq
+        array[index] = object
+        
+        userAddedWords = array
+        
+        NotificationCenter.default.post(name: Notification.Name.UserAddedWordsUpdated, object: self)
     }
     
     func clearWords() {
         userAddedWords = []
     }
     
-    // Sentence history
+    private func importLegacyWordsIfNeeded() {
+        // Previously we were storing words in an array without frequencies
+        guard let legacyWords = userDefaults.array(forKey: Keys.userAddedWordsLegacy) as? [String] else { return }
+        
+        for legacyWord in legacyWords {
+            addWord(legacyWord)
+        }
+        
+        userDefaults.removeObject(forKey: Keys.userAddedWordsLegacy)
+    }
+    
+    // MARK: Sentence history
 
     var sentenceHistory: [[String: Any]] {
         get {
-            guard let array = userDefaults.array(forKey: Keys.sentenceHistory) else { return [] }
-            return array as! [[String: Any]]
+            guard let array = userDefaults.array(forKey: Keys.sentenceHistory) as? [[String: Any]] else { return [] }
+            return array
         }
         set(newValue) {
             userDefaults.set(newValue, forKey: Keys.sentenceHistory)
@@ -278,28 +330,28 @@ class UserPreferences {
     private let MaxSentenceHistory = 100
 
     func addSentence(_ sentence: String) {
-        let array = sentenceHistory
-        var newArray = Array(array)
+        let trimmedSentance = sentence.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        let dict = [SentenceKeys.sentence: sentence,
+        var array = Array(sentenceHistory)
+        
+        let dict = [SentenceKeys.sentence: trimmedSentance,
                     SentenceKeys.date: Date()] as [String : Any]
-        newArray.insert(dict, at: 0)
+        array.insert(dict, at: 0)
         
-        if newArray.count > MaxSentenceHistory {
-            newArray.removeLast()
+        if array.count > MaxSentenceHistory {
+            array.removeLast()
         }
         
-        sentenceHistory = newArray
+        sentenceHistory = array
     }
     
     func removeSentence(_ index: Int) {
-        let array = sentenceHistory
+        var array = Array(sentenceHistory)
         guard index < array.count else { return }
         
-        var newArray = Array(array)
-        newArray.remove(at: index)
+        array.remove(at: index)
         
-        sentenceHistory = newArray
+        sentenceHistory = array
     }
     
     func clearSentenceHistory() {
