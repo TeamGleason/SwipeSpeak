@@ -11,8 +11,7 @@ import AVFoundation
 
 class VoicesVC: UITableViewController {
 
-    private lazy var voices: [AVSpeechSynthesisVoice] = {
-        // Return all english voices
+    private lazy var englishVoices: [AVSpeechSynthesisVoice] = {
         return AVSpeechSynthesisVoice.speechVoices().filter({ (voice) -> Bool in
             return voice.language.range(of: "en-") != nil
         })
@@ -23,7 +22,7 @@ class VoicesVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return voices.count
+        return englishVoices.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -37,7 +36,7 @@ class VoicesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "voiceCell", for: indexPath)
 
-        let voice = voices[indexPath.row]
+        let voice = englishVoices[indexPath.row]
         cell.textLabel?.text = voice.name
         cell.detailTextLabel?.text = (NSLocale.current as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: voice.language)
 
@@ -51,7 +50,7 @@ class VoicesVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let voice = voices[indexPath.row]
+        let voice = englishVoices[indexPath.row]
 
         UserPreferences.shared.voiceIdentifier = voice.identifier
         

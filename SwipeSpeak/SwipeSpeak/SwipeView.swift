@@ -14,6 +14,7 @@ protocol SwipeViewDelegate {
     func keyEntered(key: Int)
     func firstStrokeEntered(key: Int)
     func secondStrokeEntered(key: Int)
+    func longPressBegan()
 }
 
 // MARK: -
@@ -58,6 +59,9 @@ class SwipeView: UIView {
         self.backgroundColor = UIColor.clear
         
         self.isUserInteractionEnabled = true
+        
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(self.handleLongPressGesture(_:)))
+        self.addGestureRecognizer(longPress)
         
         if isTwoStrokes {
             let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipeTwoStrokes(_:)))
@@ -260,6 +264,15 @@ class SwipeView: UIView {
         previousPoint = currentPoint
         self.setNeedsDisplay()
     }
+    
+    @objc func handleLongPressGesture(_ recognizer: UILongPressGestureRecognizer) {
+        guard recognizer.state == .began else {
+            return
+        }
+        
+        delegate?.longPressBegan()
+    }
+
 }
 
 // MARK: - Helper
