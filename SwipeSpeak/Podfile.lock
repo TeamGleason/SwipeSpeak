@@ -1,19 +1,19 @@
 PODS:
-  - Crashlytics (3.10.2):
-    - Fabric (~> 1.7.7)
+  - Crashlytics (3.10.4):
+    - Fabric (~> 1.7.9)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.7.7)
-  - Firebase/Core (5.3.0):
+  - Fabric (1.7.9)
+  - Firebase/Core (5.4.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.3.0):
-    - FirebaseCore (= 5.0.4)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
   - FirebaseAnalytics (5.0.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.4):
+  - FirebaseCore (5.0.5):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
@@ -29,12 +29,12 @@ PODS:
   - Zephyr (3.1.2)
 
 DEPENDENCIES:
-  - Crashlytics (~> 3.10.2)
-  - DZNEmptyDataSet (~> 1.8.1)
-  - Fabric (~> 1.7.7)
+  - Crashlytics (= 3.10.4)
+  - DZNEmptyDataSet (= 1.8.1)
+  - Fabric (= 1.7.9)
   - Firebase/Core
-  - MarkdownView (~> 1.3.0)
-  - Zephyr (~> 3.1.2)
+  - MarkdownView (= 1.3.0)
+  - Zephyr (= 3.1.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -51,18 +51,18 @@ SPEC REPOS:
     - Zephyr
 
 SPEC CHECKSUMS:
-  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
+  Crashlytics: 915a7787b84f635fb2a81f92a90e265c2c413f76
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
-  Firebase: 68afeeb05461db02d7c9e3215cda28068670f4aa
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: 62f1b792a49bb9e8b4073f24606d2c93ffc352f0
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   MarkdownView: 6cee6c558eed4a012005405066071ef16a042d17
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Zephyr: 7a3c2678c6bb935a13d7215ec9154956e8b4d209
 
-PODFILE CHECKSUM: 84624642fe3e5a4537bdabd08fcf551e2927c788
+PODFILE CHECKSUM: e3bde76510153f98c90965c21508526cd1e2407e
 
 COCOAPODS: 1.5.3
