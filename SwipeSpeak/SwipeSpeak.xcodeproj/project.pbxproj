@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31656ADF20EEEAD700059AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31656ADE20EEEAD700059AFA /* Assets.xcassets */; };
 		B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */; };
 		B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */; };
 		B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */; };
@@ -29,10 +30,10 @@
 		DA0700271F0DB116003BEE3D /* SentenceHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700261F0DB116003BEE3D /* SentenceHistoryVC.swift */; };
 		DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */; };
 		DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B1FD1F0D9EC100895E18 /* Main.storyboard */; };
-		DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2001F0D9EC100895E18 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31656ADE20EEEAD700059AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		816F1DCA7BB8E6CB0883B7A2 /* Pods-SwipeSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.debug.xcconfig"; sourceTree = "<group>"; };
 		B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-SwipeSpeak-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		DA57B1F61F0D9EC100895E18 /* SwipeSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA57B1FE1F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA57B2001F0D9EC100895E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA57B2051F0D9EC100895E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC2DB48CB6BFD706DC18DD1B /* Pods_SwipeSpeak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeSpeak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,10 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */,
+				31656ADE20EEEAD700059AFA /* Assets.xcassets */,
 				DA57B1FD1F0D9EC100895E18 /* Main.storyboard */,
 				B95CB4171FAFBCAA00F705EB /* Settings.storyboard */,
 				B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */,
-				DA57B2001F0D9EC100895E18 /* Assets.xcassets */,
 				B9FD99F41FAE387600E34F9F /* View Controllers */,
 				DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */,
 				DA0700181F0DA06B003BEE3D /* SwipeView.swift */,
@@ -228,11 +228,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */,
 				B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */,
 				B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */,
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
 				B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */,
+				31656ADF20EEEAD700059AFA /* Assets.xcassets in Resources */,
 				B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */,
 				B98C67B61FD87AD600C35FE5 /* GoogleService-Info.plist in Resources */,
 			);

@@ -250,10 +250,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Usage" id="SDf-nm-2eJ">
+                            <tableViewSection headerTitle="Usage" footerTitle="Word Ranking is used to track commonly used words so they appear first in word suggestions." id="SDf-nm-2eJ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XLt-bK-dyR" imageView="aLa-td-eVK" style="IBUITableViewCellStyleDefault" id="J7Z-aL-LLG">
-                                        <rect key="frame" x="0.0" y="730" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="737.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7Z-aL-LLG" id="eXj-FD-7Kl">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -277,7 +277,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GJ4-eU-wOP" imageView="BT2-Jn-Ojr" style="IBUITableViewCellStyleDefault" id="aaq-q9-TE5">
-                                        <rect key="frame" x="0.0" y="774" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="781.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aaq-q9-TE5" id="gMc-ih-iwq">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -300,12 +300,33 @@
                                             <segue destination="nHx-eb-Aeu" kind="show" id="Joi-6F-RDW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cPb-Ga-0M5" imageView="3lB-Ly-j7t" style="IBUITableViewCellStyleDefault" id="p8Z-EQ-T1o">
+                                        <rect key="frame" x="0.0" y="825.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8Z-EQ-T1o" id="Hq7-QR-qfe">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Reset Word Ranking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cPb-Ga-0M5">
+                                                    <rect key="frame" x="55" y="0.0" width="285" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="baseline_restore_page" id="3lB-Ly-j7t">
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="General" id="FAK-Y3-r1n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="0Mb-7G-SMS" imageView="qTI-9q-T4u" style="IBUITableViewCellStyleDefault" id="n0N-Yq-vqK">
-                                        <rect key="frame" x="0.0" y="874" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="953.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n0N-Yq-vqK" id="9J9-eB-mkq">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -856,6 +877,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="baseline_restore_page" width="24" height="24"/>
         <image name="ic_add_box" width="24" height="24"/>
         <image name="ic_cloud" width="24" height="24"/>
         <image name="ic_history" width="24" height="24"/>
@@ -871,6 +893,6 @@
         <image name="swipespeak_app_icon_transparent" width="166" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fOk-ve-yZr"/>
+        <segue reference="Joi-6F-RDW"/>
     </inferredMetricsTieBreakers>
 </document>

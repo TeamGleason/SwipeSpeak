@@ -14,8 +14,9 @@ class MainTVC: UITableViewController {
     
     // MARK: Constants
     
+    private static let wordAndFrequencyList = getWordAndFrequencyListFromCSV(Bundle.main.path(forResource: "word_frequency_english_ucrel", ofType: "csv")!)!
     private static let buildWordButtonText = NSLocalizedString("Build Word", comment: "")
-
+    
     // MARK: - Properties
     
     private var viewDidAppear = false
@@ -149,28 +150,30 @@ class MainTVC: UITableViewController {
 
     private func setupWordPredictionEngine() {
         wordPredictionEngine = WordPredictionEngine()
-        wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping)
+        wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping, twoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
         
         DispatchQueue.global(qos: .userInitiated).async {
-            for wordDict in UserPreferences.shared.userAddedWords {
-                let word = wordDict[WordKeys.word] as! String
-                let freq = wordDict[WordKeys.frequency] as! Int
-                
+            let userWordRating = UserPreferences.shared.userWordRating
+            
+            // Add user added words
+            for userAddedWord in UserPreferences.shared.userAddedWords {
+                let wordRating = userWordRating[userAddedWord] ?? 0
                 do {
-                    try self.wordPredictionEngine.insert(word, freq)
+                    try self.wordPredictionEngine.insert(userAddedWord, Constants.defaultWordFrequency + wordRating)
                 } catch WordPredictionError.unsupportedWord(let invalidChar) {
-                    print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
+                    print("Cannot add word '\(userAddedWord)', invalid char '\(invalidChar)'")
                 } catch {
-                    print("Cannot add word '\(word)', error: \(error)")
+                    print("Cannot add word '\(userAddedWord)', error: \(error)")
                 }
             }
             
-            guard let filePath = Bundle.main.path(forResource: "word_frequency_english_ucrel", ofType: "csv") else { return }
-            guard let wordAndFrequencyList = getWordAndFrequencyListFromCSV(filePath) else { return }
-            
-            for (word, frequency) in wordAndFrequencyList {
+            // Add dictionary words
+            for (word, frequency) in MainTVC.wordAndFrequencyList {
+                let wordRating = userWordRating[word]
+                let frequencyToUse = (wordRating != nil) ? Constants.defaultWordFrequency + wordRating! : frequency
+                
                 do {
-                    try self.wordPredictionEngine.insert(word, frequency)
+                    try self.wordPredictionEngine.insert(word, frequencyToUse)
                 } catch WordPredictionError.unsupportedWord(_) {
                     //print("Cannot add word '\(word)', invalid char '\(invalidChar)'")
                 } catch {
@@ -346,8 +349,13 @@ class MainTVC: UITableViewController {
     }
     
     @objc private func userAddedWordsUpdated(_ notification: Notification) {
-        setupUI()
-        setupWordPredictionEngine()
+        //setupUI()
+        //setupWordPredictionEngine()
+        
+        guard let userInfo = notification.userInfo else { return }
+        guard let word = userInfo[WordKeys.word] as? String, let freq = userInfo[WordKeys.frequency] as? Int else { return }
+
+        try? wordPredictionEngine.insert(word, freq)
     }
     
     // MARK: User UI Interaction
@@ -529,9 +537,13 @@ class MainTVC: UITableViewController {
         resetAfterWordAdded()
         resetBuildWordMode()
         
-        if UserPreferences.shared.userAddedWordsArray.contains(word) {
-            UserPreferences.shared.incrementWord(word)
+        if !wordPredictionEngine.contains(word) {
+            UserPreferences.shared.addWord(word)
+            try? wordPredictionEngine.insert(word, Constants.defaultWordFrequency)
         }
+        
+        UserPreferences.shared.incrementWordRating(word)
+        setupWordPredictionEngine()
         
         swipeView.firstStroke = nil
         
@@ -567,7 +579,7 @@ class MainTVC: UITableViewController {
         }
         
         // Possible words from input T9 digits.
-        let results = wordPredictionEngine.getSuggestions(enteredKeyList)
+        let results = wordPredictionEngine.suggestions(for: enteredKeyList)
         
         var prediction = [(String, Int)]()
 
@@ -604,7 +616,7 @@ class MainTVC: UITableViewController {
                     }
                 }
                 for digit in newDigits {
-                    prediction += wordPredictionEngine.getSuggestions(digit)
+                    prediction += wordPredictionEngine.suggestions(for: digit)
                 }
                 digits = newDigits
                 

@@ -15,23 +15,29 @@ enum WordPredictionError: Error {
 
 class WordPredictionEngine {
     
+    // MARK: Classes
+    
     private class TrieNode {
         var children = [Int: TrieNode]()
         var words = [(String, Int)]()
     }
 
+    // MARK: Properties
+
     private var rootNode = TrieNode()
+    private var words = [String: Int]()
+    private var keyLetterGrouping = [Character: Int]()
     
-    private var keyLetterGrouping = [Character:Int]()
-    
-    func setKeyLetterGrouping(_ grouping: [String]) {
-        if UserPreferences.shared.keyboardLayout == .strokes2 {
-            keyLetterGrouping = [Character:Int]()
+    // MARK: Actions
+
+    func setKeyLetterGrouping(_ grouping: [String], twoStrokes: Bool) {
+        keyLetterGrouping = [Character: Int]()
+
+        if twoStrokes {
             for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
                 keyLetterGrouping[Character(UnicodeScalar(letterValue)!)] = Int(letterValue)
             }
         } else {
-            keyLetterGrouping = [Character:Int]()
             for i in 0 ..< grouping.count {
                 for letter in grouping[i] {
                     keyLetterGrouping[letter] = i
@@ -79,11 +85,11 @@ class WordPredictionEngine {
             i+=1
         }
         
-        return node;
+        return node
     }
     
-    private func insertWordIntoNodeByFrequency(_ node: TrieNode, word: String, useFrequency: Int) {
-        let wordToInsert = (word, useFrequency)
+    private func insert(_ word: String, _ frequency: Int, into node: TrieNode) {
+        let wordToInsert = (word, frequency)
         for i in 0 ..< node.words.count {
             let comparedFrequency = node.words[i].1
             let insertFrequency = wordToInsert.1
@@ -98,11 +104,20 @@ class WordPredictionEngine {
     }
     
     func insert(_ word: String, _ frequency: Int) throws {
+        guard !word.isEmpty else {
+            return
+        }
+        
         let nodeToAddWord = try findNodeToAddWord(word, node: rootNode)
-        insertWordIntoNodeByFrequency(nodeToAddWord, word: word, useFrequency: frequency)
+        insert(word, frequency, into: nodeToAddWord)
+        words[word] = frequency
     }
     
-    func getSuggestions(_ keyString: [Int]) -> [(String, Int)] {
+    func contains(_ word: String) -> Bool {
+        return words[word] != nil
+    }
+    
+    func suggestions(for keyString: [Int]) -> [(String, Int)] {
         var node = rootNode
         
         for i in 0 ..< keyString.count {
