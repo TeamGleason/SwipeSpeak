@@ -16,7 +16,8 @@ enum KeyboardLayout: Int {
     case keys6 = 6
     case keys8 = 8
     case strokes2 = -1
-    
+    case msr = 99
+
     func localizedString() -> String {
         switch self {
         case .keys4:
@@ -27,6 +28,8 @@ enum KeyboardLayout: Int {
             return NSLocalizedString("8 Keys", comment: "")
         case .strokes2:
             return NSLocalizedString("2 Strokes", comment: "")
+        case .msr:
+            return NSLocalizedString("MSR", comment: "")
         }
     }
 }

@@ -30,6 +30,9 @@ class MainTVC: UITableViewController {
     @IBOutlet var keysView8Keys: UIView!
     @IBOutlet var keysView2Strokes: UIView!
 
+    @IBOutlet var keyboardMSMaster: UIView!
+    @IBOutlet var keyboardMSDetail: UIView!
+
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
     
@@ -76,6 +79,8 @@ class MainTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //UserPreferences.shared.keyboardLayout = .msr
         
         // Initialize the speech engine
         _ = SpeechSynthesizer.shared
@@ -193,7 +198,7 @@ class MainTVC: UITableViewController {
         swipeView = SwipeView(frame: swipeParentView.frame,
                               keyboardContainerView: self.view,
                               keyboardLabels:  keyboardLabels,
-                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2,
+                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2 || UserPreferences.shared.keyboardLayout == .msr,
                               delegate: self)
     
         swipeParentView.superview!.addSubview(swipeView)
@@ -240,6 +245,10 @@ class MainTVC: UITableViewController {
             keyboardView = keysView2Strokes
             keyLetterGrouping = Constants.keyLetterGroupingSteve
             break
+        case .msr:
+            keyboardView = keyboardMSMaster
+            keyLetterGrouping = Constants.keyLetterGroupingMSR
+            break
         }
         
         keyboardContainerView.backgroundColor = UIColor.white
@@ -273,7 +282,8 @@ class MainTVC: UITableViewController {
         var height = min(keyboardContainerView.frame.width, keyboardContainerView.frame.height)
         
         if UserPreferences.shared.keyboardLayout == .keys6 ||
-            UserPreferences.shared.keyboardLayout == .strokes2 {
+            UserPreferences.shared.keyboardLayout == .strokes2 ||
+            UserPreferences.shared.keyboardLayout == .msr {
             
             if UIDevice.current.userInterfaceIdiom == .phone {
                 // iPhone 8 Plus
@@ -328,7 +338,7 @@ class MainTVC: UITableViewController {
             return
         }
         
-        let keyboardViews = [keysView4Keys, keysView6Keys, keysView8Keys, keysView2Strokes]
+        let keyboardViews = [keysView4Keys, keysView6Keys, keysView8Keys, keysView2Strokes, keyboardMSMaster]
         
         for keyboardView in keyboardViews {
             for subview in keyboardView!.subviews {

@@ -18,6 +18,7 @@ struct Constants {
     static let keyLetterGrouping6Keys = ["abcd", "efgh", "ijkl", "mnop", "qrstu", "vwxyz"]
     static let keyLetterGrouping8Keys = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
     static let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
+    static let keyLetterGroupingMSR   = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
 }
 
 func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
