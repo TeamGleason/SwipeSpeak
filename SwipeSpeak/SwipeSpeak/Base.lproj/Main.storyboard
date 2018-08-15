@@ -487,7 +487,6 @@
                         <outlet property="buildWordCancelButton" destination="IFp-Uy-Kpe" id="SMS-em-Kqf"/>
                         <outlet property="buildWordConfirmButton" destination="slV-xO-tGY" id="4dX-ad-6NY"/>
                         <outlet property="keyboardContainerView" destination="U5e-YT-ifk" id="ekZ-se-Lqo"/>
-                        <outlet property="keyboardMSDetail" destination="2iS-nI-Fnb" id="jO4-Fe-CUX"/>
                         <outlet property="keyboardMSMaster" destination="9nC-an-nwu" id="RB6-F6-jiO"/>
                         <outlet property="keysView2Strokes" destination="2Sf-VX-Ebe" id="g7D-pD-nc6"/>
                         <outlet property="keysView4Keys" destination="zQH-97-s0Z" id="wcp-qa-Pr3"/>
@@ -931,81 +930,6 @@ Q   R</string>
                         <constraint firstAttribute="bottom" secondItem="uUc-TO-GpL" secondAttribute="bottom" constant="8" id="wo6-CH-qxt"/>
                         <constraint firstItem="Wf7-Nb-JhN" firstAttribute="centerX" secondItem="9nC-an-nwu" secondAttribute="centerX" id="xGn-hD-uWb"/>
                         <constraint firstItem="Jms-NU-Rcy" firstAttribute="leading" secondItem="9nC-an-nwu" secondAttribute="leading" constant="8" id="ze0-Wq-zIt"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" id="2iS-nI-Fnb">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="210"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-52-LSX">
-                            <rect key="frame" x="202" y="8" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="H0A-U8-XHr">
-                            <rect key="frame" x="105.33333333333331" y="8" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wGU-Om-IXA">
-                            <rect key="frame" x="8" y="8" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4uQ-Pe-ZyF">
-                            <rect key="frame" x="202" y="109" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="oops" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zcH-Dq-NgC">
-                            <rect key="frame" x="105.33333333333331" y="109" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-W8-OhM">
-                            <rect key="frame" x="8" y="109" width="90" height="93"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="zcH-Dq-NgC" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="1B2-Sp-fOK"/>
-                        <constraint firstAttribute="trailing" secondItem="Twy-52-LSX" secondAttribute="trailing" constant="8" id="1dq-7S-Cq9"/>
-                        <constraint firstAttribute="bottom" secondItem="zcH-Dq-NgC" secondAttribute="bottom" constant="8" id="4J0-UB-0dR"/>
-                        <constraint firstItem="4uQ-Pe-ZyF" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="BGH-cY-Rqy"/>
-                        <constraint firstItem="GtV-W8-OhM" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="Ee0-YD-Rvy"/>
-                        <constraint firstItem="zcH-Dq-NgC" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="GZg-Yd-4F1"/>
-                        <constraint firstItem="GtV-W8-OhM" firstAttribute="leading" secondItem="2iS-nI-Fnb" secondAttribute="leading" constant="8" id="Gr1-CG-dst"/>
-                        <constraint firstItem="H0A-U8-XHr" firstAttribute="centerX" secondItem="2iS-nI-Fnb" secondAttribute="centerX" id="J0m-HG-054"/>
-                        <constraint firstItem="H0A-U8-XHr" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="JuZ-7h-C5z"/>
-                        <constraint firstItem="wGU-Om-IXA" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="Ysd-6h-RrM"/>
-                        <constraint firstItem="Twy-52-LSX" firstAttribute="top" secondItem="2iS-nI-Fnb" secondAttribute="top" constant="8" id="alv-Yt-nJr"/>
-                        <constraint firstItem="H0A-U8-XHr" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="ccS-jo-uGl"/>
-                        <constraint firstItem="Twy-52-LSX" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="emu-nF-5Hn"/>
-                        <constraint firstItem="4uQ-Pe-ZyF" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="fHc-8N-mIX"/>
-                        <constraint firstAttribute="trailing" secondItem="4uQ-Pe-ZyF" secondAttribute="trailing" constant="8" id="gRO-5G-U44"/>
-                        <constraint firstItem="wGU-Om-IXA" firstAttribute="top" secondItem="2iS-nI-Fnb" secondAttribute="top" constant="8" id="gY5-pC-xcl"/>
-                        <constraint firstItem="H0A-U8-XHr" firstAttribute="top" secondItem="2iS-nI-Fnb" secondAttribute="top" constant="8" id="hG6-GZ-V7r"/>
-                        <constraint firstItem="GtV-W8-OhM" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="iJS-W9-9fn"/>
-                        <constraint firstItem="Twy-52-LSX" firstAttribute="height" secondItem="2iS-nI-Fnb" secondAttribute="height" multiplier="1:2" constant="-12" id="kqe-wo-vps"/>
-                        <constraint firstItem="zcH-Dq-NgC" firstAttribute="centerX" secondItem="2iS-nI-Fnb" secondAttribute="centerX" id="lYX-tD-eRA"/>
-                        <constraint firstAttribute="bottom" secondItem="4uQ-Pe-ZyF" secondAttribute="bottom" constant="8" id="ocP-v6-7Ee"/>
-                        <constraint firstItem="wGU-Om-IXA" firstAttribute="leading" secondItem="2iS-nI-Fnb" secondAttribute="leading" constant="8" id="rcH-J1-uIi"/>
-                        <constraint firstAttribute="bottom" secondItem="GtV-W8-OhM" secondAttribute="bottom" constant="8" id="y61-Ri-uYG"/>
-                        <constraint firstItem="wGU-Om-IXA" firstAttribute="width" secondItem="2iS-nI-Fnb" secondAttribute="width" multiplier="1:3" constant="-10" id="z0X-8Z-6cJ"/>
                     </constraints>
                 </view>
             </objects>

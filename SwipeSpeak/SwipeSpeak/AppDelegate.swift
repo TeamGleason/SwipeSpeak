@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Starting with 1.1 we only use the `keys4` and `strokes2` keyboard layouts
         if UserPreferences.shared.keyboardLayout != .keys4 &&
-            UserPreferences.shared.keyboardLayout != .strokes2 {
+            UserPreferences.shared.keyboardLayout != .strokes2 &&
+            UserPreferences.shared.keyboardLayout != .msr {
             UserPreferences.shared.keyboardLayout = .strokes2
         }
         

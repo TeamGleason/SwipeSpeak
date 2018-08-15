@@ -25,13 +25,13 @@ class MainTVC: UITableViewController {
     // Keys
     private var swipeView: SwipeView!
 
+    var currentKeys = [String]()
+
     @IBOutlet var keysView4Keys: UIView!
     @IBOutlet var keysView6Keys: UIView!
     @IBOutlet var keysView8Keys: UIView!
     @IBOutlet var keysView2Strokes: UIView!
-
     @IBOutlet var keyboardMSMaster: UIView!
-    @IBOutlet var keyboardMSDetail: UIView!
 
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
@@ -75,12 +75,14 @@ class MainTVC: UITableViewController {
         return predictionLabels + [wordLabel]
     }
 
+    var usesTwoStrokesKeyboard: Bool {
+        return UserPreferences.shared.keyboardLayout == .strokes2 || UserPreferences.shared.keyboardLayout == .msr
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //UserPreferences.shared.keyboardLayout = .msr
         
         // Initialize the speech engine
         _ = SpeechSynthesizer.shared
@@ -155,7 +157,7 @@ class MainTVC: UITableViewController {
 
     private func setupWordPredictionEngine() {
         wordPredictionEngine = WordPredictionEngine()
-        wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping, twoStrokes: UserPreferences.shared.keyboardLayout == .strokes2)
+        wordPredictionEngine.setKeyLetterGrouping(keyLetterGrouping, twoStrokes: usesTwoStrokesKeyboard)
         
         DispatchQueue.global(qos: .userInitiated).async {
             let userWordRating = UserPreferences.shared.userWordRating
@@ -198,7 +200,8 @@ class MainTVC: UITableViewController {
         swipeView = SwipeView(frame: swipeParentView.frame,
                               keyboardContainerView: self.view,
                               keyboardLabels:  keyboardLabels,
-                              isTwoStrokes: UserPreferences.shared.keyboardLayout == .strokes2 || UserPreferences.shared.keyboardLayout == .msr,
+                              isTwoStrokes: usesTwoStrokesKeyboard,
+                              useTwoStrokesLogic: UserPreferences.shared.keyboardLayout == .strokes2,
                               delegate: self)
     
         swipeParentView.superview!.addSubview(swipeView)
@@ -269,6 +272,10 @@ class MainTVC: UITableViewController {
             label.layer.borderColor = UIColor.green.cgColor
             
             keyboardLabels.append(label)
+        }
+        
+        if UserPreferences.shared.keyboardLayout == .msr {
+            changeKeyboardKeysToMaster()
         }
         
         adjustKeysFont()
@@ -371,6 +378,16 @@ class MainTVC: UITableViewController {
     // MARK: User UI Interaction
 
     @IBAction func backspace() {
+        backspace(noSound: false)
+    }
+    
+    private func backspace(noSound: Bool = false) {
+        defer {
+            if UserPreferences.shared.keyboardLayout == .msr {
+                changeKeyboardKeysToMaster()
+            }
+        }
+        
         if inBuildWordMode { return }
         //if !buildWordConfirmButton.isHidden { return }
         
@@ -389,11 +406,11 @@ class MainTVC: UITableViewController {
             updatePredictions()
         }
         
-        if UserPreferences.shared.audioFeedback {
+        if !noSound && UserPreferences.shared.audioFeedback {
             playSoundBackspace()
         }
         
-        if UserPreferences.shared.keyboardLayout == .strokes2 {
+        if usesTwoStrokesKeyboard {
             removeArrowSuffix()
         } else {
             showCurrentArrows()
@@ -418,14 +435,18 @@ class MainTVC: UITableViewController {
     
     @IBAction func handleLabelTapAction(_ sender: UITapGestureRecognizer) {
         guard let label = sender.view as? UILabel else { return }
+        handleLabelTapAction(from: label)
+    }
+    
+    private func handleLabelTapAction(from label: UILabel, forcePromote: Bool = false) {
         guard let text = label.text, !text.isEmpty else { return }
         guard !text.containsArrow() else { return }
         
-        guard highlightableLabels.contains(label) else {
+        guard forcePromote || highlightableLabels.contains(label) else {
             return
         }
         
-        if highlightedLabel != nil && highlightedLabel == label {
+        if forcePromote || (highlightedLabel != nil && highlightedLabel == label) {
             _ = addWordToSentence(from: label, announce: true)
         } else {
             highlight(label: label)
@@ -491,9 +512,9 @@ class MainTVC: UITableViewController {
 
         switch keyboardLayout {
         case .keys4:
-            arrows = MainTVC.arrows4KeysTextMap
-        case .strokes2:
-            arrows = MainTVC.arrows2StrokesTextMap
+            arrows = Constants.arrows4KeysTextMap
+        case .strokes2, .msr:
+            arrows = Constants.arrows2StrokesTextMap
         default:
             return
         }
@@ -584,7 +605,7 @@ class MainTVC: UITableViewController {
         }
         
         // Possible words from input letters.
-        if UserPreferences.shared.keyboardLayout != .strokes2 {
+        if !usesTwoStrokesKeyboard {
             buildWordButton.setTitle(MainTVC.buildWordButtonText, for: .normal)
         }
         
@@ -607,7 +628,7 @@ class MainTVC: UITableViewController {
             var searchLevel = 0
             var maxSearchLevel = 4
             
-            if UserPreferences.shared.keyboardLayout == .strokes2 {
+            if usesTwoStrokesKeyboard {
                 maxSearchLevel = 2
             }
             
@@ -615,7 +636,7 @@ class MainTVC: UITableViewController {
             while (prediction.count < numPredictionLabels - results.count && searchLevel < maxSearchLevel) {
                 var newDigits = [[Int]]()
                 for digit in digits {
-                    if UserPreferences.shared.keyboardLayout == .strokes2 {
+                    if usesTwoStrokesKeyboard {
                         for letterValue in UnicodeScalar("a").value...UnicodeScalar("z").value {
                             newDigits.append(digit+[Int(letterValue)])
                         }
@@ -640,10 +661,10 @@ class MainTVC: UITableViewController {
                 prediction.insert(results[i], at: i)
             }
             
-            if UserPreferences.shared.keyboardLayout == .strokes2 {
+            if usesTwoStrokesKeyboard {
                 var inputString = ""
                 for letterValue in enteredKeyList {
-                    inputString += letter(from: letterValue)!
+                    inputString += MainTVC.letter(from: letterValue)!
                 }
                 
                 if (prediction.count == 0 || prediction[0].0 != inputString) {
@@ -701,14 +722,14 @@ class MainTVC: UITableViewController {
     }
     
     private func showCurrentArrows() {
-        let arrows = directionArrows(for: enteredKeyList)
+        let arrows = MainTVC.directionArrows(for: enteredKeyList)
         setWordText(arrows)
     }
     
     // MARK: - Scanning Mode
     
     @IBAction func buildWordButtonTouched() {
-        guard  UserPreferences.shared.keyboardLayout != .strokes2 else {
+        guard !usesTwoStrokesKeyboard else {
             return
         }
         
@@ -822,6 +843,35 @@ class MainTVC: UITableViewController {
         buildWordButton.setTitle("", for: .normal)
     }
     
+    func changeKeyboardKeysToMaster() {
+        let keys = wordOrSentenceHasText() ? Constants.MSRKeyboardMasterKeys2 : Constants.MSRKeyboardMasterKeys1
+        changeKeyboardKeys(keys)
+    }
+    
+    func changeKeyboardKeysToDetail(for key: SwipeViewKeyNum) {
+        let keys = wordOrSentenceHasText() ? Constants.MSRKeyboardDetailKeys2[key] : Constants.MSRKeyboardDetailKeys1[key]
+        changeKeyboardKeys(keys)
+    }
+    
+    func changeKeyboardKeys(_ keys: [String]) {
+        currentKeys = keys
+        
+        for (index, label) in keyboardLabels.enumerated() {
+            let key = keys[index]
+            
+            UIView.transition(with: label,
+                              duration: 0.2,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                label.text = key
+                                if key == "yes" || key == "no" || key == "oops" {
+                                    label.textColor = .red
+                                } else {
+                                    label.textColor = .white
+                                }
+            }, completion: nil)
+        }
+    }
     
     // MARK: - Helper Methods
 
@@ -830,19 +880,25 @@ class MainTVC: UITableViewController {
         return String(char).containsArrow()
     }
     
-    private func letter(from key: Int) -> String? {
+    private static func letter(from key: Int) -> String? {
         guard let scalar = UnicodeScalar(key) else { return nil }
         return String(describing: scalar)
     }
     
-    private func directionArrows(for keys: [Int]) -> String {
-        guard !keys.isEmpty else {
-            return ""
-        }
-        
-        let arrows = keys.map { MainTVC.arrows4KeysMap[$0]! }
-        
+    private static func directionArrows(for keys: [Int]) -> String {
+        guard !keys.isEmpty else { return "" }
+        let arrows = keys.map { Constants.arrows4KeysMap[$0]! }
         return arrows.joined(separator: "")
+    }
+    
+    func wordOrSentenceHasText() -> Bool {
+        if let word = wordLabel.text, word.count > 0 {
+            return true
+        }
+        if let sentence = sentenceLabel.text, sentence.count > 0 {
+            return true
+        }
+        return false
     }
     
     // MARK: - Table View
@@ -865,36 +921,12 @@ class MainTVC: UITableViewController {
 // MARK: - SwipeViewDelegate
 
 extension MainTVC: SwipeViewDelegate {
-    
-    // MARK: Constants
-    
-    static let arrows4KeysMap = [0: "↑",
-                                 1: "→",
-                                 2: "←",
-                                 3: "↓"]
-    
-    static let arrows4KeysTextMap = [0: "Up",
-                                     1: "Right",
-                                     2: "Left",
-                                     3: "Down"]
-    
-    static let arrows2StrokesMap = [0: "↗︎",
-                                    1: "↑",
-                                    2: "↖︎",
-                                    3: "↘︎",
-                                    4: "↓",
-                                    5: "↙︎"]
-    
-    static let arrows2StrokesTextMap = [0: "Up Right",
-                                        1: "Up",
-                                        2: "Up Left",
-                                        3: "Down Right",
-                                        4: "Down",
-                                        5: "Down left"]
-    
+
     // MARK: Methods
 
-    func keyEntered(key: Int) {
+    func keyEntered(key: SwipeViewKeyNum, isSwipe: Bool) {
+        keyEntered(isSwipe: isSwipe)
+        
         enteredKeyList.append(key)
         
         // Update predictive text for key list.
@@ -906,23 +938,92 @@ extension MainTVC: SwipeViewDelegate {
         showCurrentArrows()
     }
     
-    func firstStrokeEntered(key: Int) {
+    func firstStrokeEntered(key: SwipeViewKeyNum, isSwipe: Bool) {
+        print("STROKE 1 [key=\(key)]")
+
+        keyEntered(isSwipe: isSwipe)
+
         updateKeyboardIndicator(key)
         
-        guard let arrow = MainTVC.arrows2StrokesMap[key] else { return }
+        if UserPreferences.shared.keyboardLayout == .msr {
+            changeKeyboardKeysToDetail(for: key)
+        }
+        
+        guard let arrow = Constants.arrows2StrokesMap[key] else { return }
         let text = (wordLabel.text ?? "") + arrow
         setWordText(text)
         
         announceDirection(for: key, with: .strokes2)
     }
     
-    func secondStrokeEntered(key: Int) {
+    func secondStrokeEntered(key: SwipeViewKeyNum, isSwipe: Bool) {
+        print("STROKE 2 [key=\(key)]")
+
+        defer {
+            if UserPreferences.shared.keyboardLayout == .msr {
+                changeKeyboardKeysToMaster()
+            }
+        }
+        
+        var key = key
+
+        if UserPreferences.shared.keyboardLayout == .msr {
+            
+            let keyString = currentKeys[key]
+            
+            guard keyString != Constants.MSRKeyDelete else {
+                handleKeyDelete()
+                return
+            }
+            
+            keyEntered(isSwipe: isSwipe)
+            
+            guard keyString != Constants.MSRKeyYes else {
+                handleKeyYes()
+                return
+            }
+            
+            guard keyString != Constants.MSRKeyNo else {
+                handleKeyNo()
+                return
+            }
+            
+            guard keyString != Constants.MSRKeyCancel else {
+                handleKeyCancel()
+                return
+            }
+            
+            guard keyString != Constants.MSRKeySpeak else {
+                handleKeyPromote()
+                return
+            }
+            
+            guard let keyScalar = UnicodeScalar(keyString.lowercased()) else { return }
+            let keyInt = Int(keyScalar.value)
+            
+            key = keyInt
+        }
+        
         enteredKeyList.append(key)
         updateKeyboardIndicator(-1)
         updatePredictions()
         
-        guard let letter = letter(from: key) else { return }
+        guard let letter = MainTVC.letter(from: key) else { return }
         announce(letter)
+    }
+    
+    private func keyEntered(isSwipe: Bool) {
+        if UserPreferences.shared.audioFeedback {
+            if isSwipe {
+                playSoundSwipe()
+            } else {
+                playSoundClick()
+            }
+        }
+        
+        if UserPreferences.shared.vibrate {
+            vibrate()
+        }
     }
     
     func longPressBegan() {
@@ -931,6 +1032,46 @@ extension MainTVC: SwipeViewDelegate {
             // Try to complete phrase
             sentenceLabelTouched()
         }
+    }
+    
+}
+
+// MARK: Special Keys
+
+extension MainTVC {
+    
+    func handleKeyYes() {
+        backspace(noSound: true)
+        announce("Yes")
+    }
+    
+    func handleKeyNo() {
+        backspace(noSound: true)
+        announce("No")
+    }
+    
+    func handleKeyCancel() {
+        backspace(noSound: true)
+    }
+    
+    func handleKeyPromote() {
+        removeArrowSuffix()
+        
+        // Check if word should be promoted to sentence
+        if let word = wordLabel.text, word.count > 0, !word.containsArrow() {
+            handleLabelTapAction(from: wordLabel, forcePromote: true)
+            return
+        }
+        
+        // Check if sentence should be outputted
+        if let sentence = sentenceLabel.text, sentence.count > 0 {
+            sentenceLabelTouched()
+        }
+    }
+    
+    func handleKeyDelete() {
+        backspace(noSound: true)
+        backspace(noSound: false)
     }
     
 }

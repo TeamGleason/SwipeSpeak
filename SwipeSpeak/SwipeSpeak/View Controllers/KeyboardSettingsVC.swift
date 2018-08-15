@@ -13,7 +13,8 @@ import UIKit
 class KeyboardSettingsVC: UITableViewController {
     
     private let rowLayoutMap: [Int: KeyboardLayout] = [0: .keys4,
-                                                       1: .strokes2]
+                                                       1: .strokes2,
+                                                       2: .msr]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,6 +25,8 @@ class KeyboardSettingsVC: UITableViewController {
             row = 0
         case .strokes2:
             row = 1
+        case .msr:
+            row = 2
         default: return
         }
         

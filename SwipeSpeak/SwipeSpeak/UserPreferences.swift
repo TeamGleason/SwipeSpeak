@@ -29,7 +29,7 @@ enum KeyboardLayout: Int {
         case .strokes2:
             return NSLocalizedString("2 Strokes", comment: "")
         case .msr:
-            return NSLocalizedString("MSR", comment: "")
+            return NSLocalizedString("MSR Enable", comment: "")
         }
     }
 }
@@ -109,7 +109,7 @@ class UserPreferences {
 
     private init() {
         userDefaults.register(defaults: [
-            Keys.keyboardLayout: KeyboardLayout.strokes2.rawValue,
+            Keys.keyboardLayout: KeyboardLayout.msr.rawValue,
             
             Keys.announceLettersCount: true,
             Keys.vibrate: false,

@@ -11,6 +11,8 @@ import Foundation
 import UIKit
 import AVFoundation
 
+typealias KeyboardKey = Int
+
 struct Constants {    
     static let defaultWordFrequency = 99999
 
@@ -19,6 +21,54 @@ struct Constants {
     static let keyLetterGrouping8Keys = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
     static let keyLetterGroupingSteve = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
     static let keyLetterGroupingMSR   = ["abcd", "efgh", "ijkl", "mnop", "qrst", "uvwxyz"]
+    
+    static let arrows4KeysMap = [0: "↑",
+                                 1: "→",
+                                 2: "←",
+                                 3: "↓"]
+    
+    static let arrows4KeysTextMap = [0: "Up",
+                                     1: "Right",
+                                     2: "Left",
+                                     3: "Down"]
+    
+    static let arrows2StrokesMap = [0: "↗︎",
+                                    1: "↑",
+                                    2: "↖︎",
+                                    3: "↘︎",
+                                    4: "↓",
+                                    5: "↙︎"]
+    
+    static let arrows2StrokesTextMap = [0: "Up Right",
+                                        1: "Up",
+                                        2: "Up Left",
+                                        3: "Down Right",
+                                        4: "Down",
+                                        5: "Down left"]
+    
+    // ✔︎ ✘ ⌫
+    static let MSRKeyYes = "👍🏻"
+    static let MSRKeyNo = "👎🏻"
+    static let MSRKeySpeak = "💬"
+    static let MSRKeyDelete = "⟵"
+    static let MSRKeyCancel = "❌"
+
+    static let MSRKeyboardMasterKeys1 = ["C B A\nE   D", "G \(MSRKeyYes) F\nI    H", "L K J\nN   M", "P   O\nR   Q", "T \(MSRKeyNo) S\nV    U", "X   W\nZ   Y"]
+    static let MSRKeyboardMasterKeys2 = ["C B A\nE   D", "G \(MSRKeySpeak) F\nI    H", "L K J\nN   M", "P   O\nR   Q", "T \(MSRKeyDelete) S\nV    U", "X   W\nZ   Y"]
+
+    static let MSRKeyboardDetailKeys1 = [["A", "B",       "C", "D", MSRKeyCancel, "E"],
+                                         ["F", MSRKeyYes, "G", "H", MSRKeyCancel, "I"],
+                                         ["J", "K",       "L", "M", MSRKeyCancel, "N"],
+                                         ["O", "",        "P", "Q", MSRKeyCancel, "R"],
+                                         ["S", MSRKeyNo,  "T", "U", MSRKeyCancel, "V"],
+                                         ["W", "",        "X", "Y", MSRKeyCancel, "Z"]]
+    
+    static let MSRKeyboardDetailKeys2 = [["A", "B",          "C", "D", MSRKeyCancel, "E"],
+                                         ["F", MSRKeySpeak,  "G", "H", MSRKeyCancel, "I"],
+                                         ["J", "K",          "L", "M", MSRKeyCancel, "N"],
+                                         ["O", "",           "P", "Q", MSRKeyCancel, "R"],
+                                         ["S", MSRKeyDelete, "T", "U", MSRKeyCancel, "V"],
+                                         ["W", "",           "X", "Y", MSRKeyCancel, "Z"]]
 }
 
 func getWordAndFrequencyListFromCSV(_ filepath: String) -> [(String, Int)]? {
