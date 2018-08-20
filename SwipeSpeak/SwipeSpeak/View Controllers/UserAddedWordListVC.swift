@@ -9,6 +9,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import FirebaseAnalytics
 
 class UserAddedWordListVC: UITableViewController {
     
@@ -97,6 +98,8 @@ class UserAddedWordListVC: UITableViewController {
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             self.tableView.reloadEmptyDataSet()
             self.configureRightBarButtonItems()
+            
+            Analytics.logEvent("added_word", parameters: nil)
         }
         
         saveAction.isEnabled = false

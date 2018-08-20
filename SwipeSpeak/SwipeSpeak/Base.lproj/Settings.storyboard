@@ -300,15 +300,15 @@
                                             <segue destination="nHx-eb-Aeu" kind="show" id="Joi-6F-RDW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cPb-Ga-0M5" imageView="3lB-Ly-j7t" style="IBUITableViewCellStyleDefault" id="p8Z-EQ-T1o">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="cPb-Ga-0M5" imageView="3lB-Ly-j7t" style="IBUITableViewCellStyleDefault" id="p8Z-EQ-T1o">
                                         <rect key="frame" x="0.0" y="841.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8Z-EQ-T1o" id="Hq7-QR-qfe">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Reset Word Ranking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cPb-Ga-0M5">
-                                                    <rect key="frame" x="55" y="0.0" width="285" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -509,7 +509,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-1o-7Bd">
-                                                    <rect key="frame" x="14" y="8" width="297" height="28"/>
+                                                    <rect key="frame" x="14" y="8" width="292" height="28"/>
                                                     <accessibility key="accessibilityConfiguration" label="Speaking Rate"/>
                                                     <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
@@ -517,10 +517,10 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYR-5k-9QC">
-                                                    <rect key="frame" x="317" y="0.0" width="50" height="42"/>
+                                                    <rect key="frame" x="312" y="0.0" width="55" height="42"/>
                                                     <accessibility key="accessibilityConfiguration" label="Speaking Rate"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="66B-6k-FgU"/>
+                                                        <constraint firstAttribute="width" constant="55" id="66B-6k-FgU"/>
                                                         <constraint firstAttribute="height" constant="42" id="sTj-LZ-BZj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -550,7 +550,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywc-nX-PK1">
-                                                    <rect key="frame" x="14" y="8" width="297" height="28"/>
+                                                    <rect key="frame" x="14" y="8" width="292" height="28"/>
                                                     <accessibility key="accessibilityConfiguration" label="Volume"/>
                                                     <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
@@ -558,10 +558,10 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOm-KV-Y28">
-                                                    <rect key="frame" x="317" y="1" width="50" height="42"/>
+                                                    <rect key="frame" x="312" y="1" width="55" height="42"/>
                                                     <accessibility key="accessibilityConfiguration" label="Volume"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="186-Nq-xZc"/>
+                                                        <constraint firstAttribute="width" constant="55" id="186-Nq-xZc"/>
                                                         <constraint firstAttribute="height" constant="42" id="ZJO-ss-ETW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -615,7 +615,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sentance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nHp-rE-KPE">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sentence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nHp-rE-KPE">
                                             <rect key="frame" x="16" y="12" width="72.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -639,7 +639,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Clear Sentance History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P5d-5p-R2g">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Clear Sentence History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P5d-5p-R2g">
                                             <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>

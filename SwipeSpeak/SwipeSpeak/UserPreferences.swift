@@ -378,11 +378,11 @@ class UserPreferences {
     private let MaxSentenceHistory = 100
 
     func addSentence(_ sentence: String) {
-        let trimmedSentance = sentence.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSentence = sentence.trimmingCharacters(in: .whitespacesAndNewlines)
         
         var array = Array(sentenceHistory)
         
-        let dict = [SentenceKeys.sentence: trimmedSentance,
+        let dict = [SentenceKeys.sentence: trimmedSentence,
                     SentenceKeys.date: Date()] as [String : Any]
         array.insert(dict, at: 0)
         

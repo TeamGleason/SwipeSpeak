@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 class KeyboardSettingsVC: UITableViewController {
     
@@ -47,6 +48,8 @@ class KeyboardSettingsVC: UITableViewController {
             
             guard let keyboardLayout = rowLayoutMap[indexPath.row] else { return }
             UserPreferences.shared.keyboardLayout = keyboardLayout
+            
+            Analytics.logEvent("select_keyboard", parameters: ["keyboard_type": keyboardLayout.localizedString()])
         }
     }
 }

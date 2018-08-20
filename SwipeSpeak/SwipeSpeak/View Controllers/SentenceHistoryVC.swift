@@ -9,6 +9,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import FirebaseAnalytics
 
 class SentenceHistoryVC: UITableViewController {
     
@@ -84,13 +85,17 @@ class SentenceHistoryVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        guard indexPath.section == 1 else {
-            return .none
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 1 {
+            return false
         }
-        
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
     }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             UserPreferences.shared.removeSentence(indexPath.row)
@@ -124,6 +129,8 @@ class SentenceHistoryVC: UITableViewController {
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: ""), style: .destructive) { [weak self] (action: UIAlertAction) in
+            Analytics.logEvent("clear_sentence_history", parameters: nil)
+            
             UserPreferences.shared.clearSentenceHistory()
             
             self?.loadSentenceHistory()
@@ -150,7 +157,7 @@ extension SentenceHistoryVC: DZNEmptyDataSetSource {
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let subtitle = NSLocalizedString("When you create sentances you will see them here.", comment: "")
+        let subtitle = NSLocalizedString("When you create sentences you will see them here.", comment: "")
         let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
                          NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)

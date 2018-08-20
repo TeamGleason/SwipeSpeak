@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAnalytics
 
 class SpeechVC: UITableViewController  {
     
@@ -32,13 +33,15 @@ class SpeechVC: UITableViewController  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let voiceIdentifier = UserPreferences.shared.voiceIdentifier,
-            let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
-            voiceLabel.text = (NSLocale.current as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: voice.language)
-        } else {
-           voiceLabel.text = ""
+        if let voiceLabel = voiceLabel { // FIXME: voiceLabel is nil after iOS text size change
+            if let voiceIdentifier = UserPreferences.shared.voiceIdentifier,
+                let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
+                voiceLabel.text = (NSLocale.current as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: voice.language)
+            } else {
+                voiceLabel.text = ""
+            }
         }
-        
+
         rateSlider.value = UserPreferences.shared.speechRate
         volumeSlider.value = UserPreferences.shared.speechVolume
         
@@ -51,11 +54,15 @@ class SpeechVC: UITableViewController  {
         UserPreferences.shared.speechRate = sender.value
         
         SpeechSynthesizer.shared.speak(NSLocalizedString("Speaking Rate", comment: ""))
+        
+        Analytics.logEvent("settings.speech.rate", parameters: ["value": String(sender.value)])
     }
     
     @IBAction func volumeSliderValueChanged(_ sender: UISlider) {
         volumeLabel.text = "\(Int(sender.value*100))%"
         UserPreferences.shared.speechVolume = sender.value
+        
+        Analytics.logEvent("settings.speech.volume", parameters: ["value": String(sender.value)])
     }
     
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAnalytics
 
 class VoicesVC: UITableViewController {
 
@@ -65,6 +66,8 @@ class VoicesVC: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        Analytics.logEvent("settings.speech.voice", parameters: ["value": voice.identifier])
     }
     
 }

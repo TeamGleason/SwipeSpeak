@@ -469,7 +469,7 @@ class MainTVC: UITableViewController {
     }
     
     @IBAction func sentenceLabelLongPressed() {
-        completeSentance()
+        completeSentence()
     }
     
     // MARK: UI Actions
@@ -581,7 +581,7 @@ class MainTVC: UITableViewController {
         return true
     }
     
-    private func completeSentance() {
+    private func completeSentence() {
         guard let text = sentenceLabel.text, !text.isEmpty else { return }
         
         UserPreferences.shared.addSentence(text)
