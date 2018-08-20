@@ -16,8 +16,10 @@ enum KeyboardLayout: Int {
     case keys6 = 6
     case keys8 = 8
     case strokes2 = -1
-    case msr = 99
+    case msr = 37
 
+    static let `default` = KeyboardLayout.msr
+    
     func localizedString() -> String {
         switch self {
         case .keys4:
@@ -29,7 +31,7 @@ enum KeyboardLayout: Int {
         case .strokes2:
             return NSLocalizedString("2 Strokes", comment: "")
         case .msr:
-            return NSLocalizedString("MSR Enable", comment: "")
+            return NSLocalizedString("Keyboard 37", comment: "")
         }
     }
 }
@@ -109,7 +111,7 @@ class UserPreferences {
 
     private init() {
         userDefaults.register(defaults: [
-            Keys.keyboardLayout: KeyboardLayout.msr.rawValue,
+            Keys.keyboardLayout: KeyboardLayout.default.rawValue,
             
             Keys.announceLettersCount: true,
             Keys.vibrate: false,
@@ -146,7 +148,10 @@ class UserPreferences {
     
     var keyboardLayout: KeyboardLayout {
         get {
-            return KeyboardLayout(rawValue: userDefaults.integer(forKey: Keys.keyboardLayout))!
+            guard let layout = KeyboardLayout(rawValue: userDefaults.integer(forKey: Keys.keyboardLayout)) else {
+                return KeyboardLayout.default
+            }
+            return layout
         }
         set(newValue) {
             userDefaults.set(newValue.rawValue, forKey: Keys.keyboardLayout)
