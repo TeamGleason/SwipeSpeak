@@ -61,7 +61,7 @@ class UserAddedWordListVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             UserPreferences.shared.removeWord(indexPath.row)
             loadUserAddedWords()
@@ -112,7 +112,7 @@ class UserAddedWordListVC: UITableViewController {
             textField.text = ""
             textField.clearButtonMode = .whileEditing
             
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main, using: { _ in
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main, using: { _ in
                 if let text = textField.text, isWordValid(text) {
                     saveAction.isEnabled = true
                 } else {
@@ -132,22 +132,22 @@ extension UserAddedWordListVC: DZNEmptyDataSetSource {
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("No Added Words", comment: "")
-        let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1),
-                         NSAttributedStringKey.foregroundColor: UIColor.darkGray]
+        let attribute = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1),
+                         NSAttributedString.Key.foregroundColor: UIColor.darkGray]
         return NSAttributedString(string: title, attributes: attribute)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let subtitle = NSLocalizedString("When you add words you will see them here.", comment: "")
-        let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
-                         NSAttributedStringKey.foregroundColor: UIColor.lightGray]
+        let attribute = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                         NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)
     }
     
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
         let title = NSLocalizedString("Add Word", comment: "")
-        let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline),
-                         NSAttributedStringKey.foregroundColor: UIColor.darkGray]
+        let attribute = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
+                         NSAttributedString.Key.foregroundColor: UIColor.darkGray]
         return NSAttributedString(string: title, attributes: attribute)
     }
 }

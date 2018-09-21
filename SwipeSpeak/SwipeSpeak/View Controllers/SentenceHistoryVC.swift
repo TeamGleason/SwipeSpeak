@@ -92,11 +92,11 @@ class SentenceHistoryVC: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             UserPreferences.shared.removeSentence(indexPath.row)
             loadSentenceHistory()
@@ -151,15 +151,15 @@ extension SentenceHistoryVC: DZNEmptyDataSetSource {
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("No History", comment: "")
-        let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .title1),
-                         NSAttributedStringKey.foregroundColor: UIColor.darkGray]
+        let attribute = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1),
+                         NSAttributedString.Key.foregroundColor: UIColor.darkGray]
         return NSAttributedString(string: title, attributes: attribute)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         let subtitle = NSLocalizedString("When you create sentences you will see them here.", comment: "")
-        let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
-                         NSAttributedStringKey.foregroundColor: UIColor.lightGray]
+        let attribute = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                         NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)
     }
     
