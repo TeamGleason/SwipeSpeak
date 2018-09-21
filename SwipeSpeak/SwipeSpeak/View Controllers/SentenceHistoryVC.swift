@@ -9,6 +9,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import FirebaseAnalytics
 
 class SentenceHistoryVC: UITableViewController {
     
@@ -58,15 +59,20 @@ class SentenceHistoryVC: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sentenceHistory.count > 0 ? 2 : 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sentenceHistory.count
+        return section == 0 ? sentenceHistory.count : 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SentenceCell", for: indexPath) as UITableViewCell
+        let cellIdentifier = indexPath.section == 1 ? "DeleteCell" : "SentenceCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as UITableViewCell
+        
+        guard cellIdentifier == "SentenceCell" else {
+            return cell
+        }
         
         let sentenceObject = sentenceHistory[indexPath.row]
         
@@ -77,6 +83,17 @@ class SentenceHistoryVC: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 1 {
+            return false
+        }
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -90,12 +107,40 @@ class SentenceHistoryVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        if indexPath.section == 1 {
+            askToClearHistory()
+            return
+        }
+        
         let sentenceObject = sentenceHistory[indexPath.row]
         if let sentence = sentenceObject[SentenceKeys.sentence] as? String, !sentence.isEmpty {
             SpeechSynthesizer.shared.speak(sentence)
         }
+    }
+    
+    private func askToClearHistory() {
+        let alertController = UIAlertController(title: NSLocalizedString("Clear Sentence History", comment: ""),
+                                                message: NSLocalizedString("Are you sure you want to clear the sentence history?", comment: ""),
+                                                preferredStyle: .alert)
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: ""), style: .destructive) { [weak self] (action: UIAlertAction) in
+            Analytics.logEvent("clear_sentence_history", parameters: nil)
+            
+            UserPreferences.shared.clearSentenceHistory()
+            
+            self?.loadSentenceHistory()
+            self?.tableView.reloadData()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(clearAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }
@@ -112,7 +157,7 @@ extension SentenceHistoryVC: DZNEmptyDataSetSource {
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let subtitle = NSLocalizedString("When you create sentances you will see them here.", comment: "")
+        let subtitle = NSLocalizedString("When you create sentences you will see them here.", comment: "")
         let attribute = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
                          NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         return NSAttributedString(string: subtitle, attributes: attribute)

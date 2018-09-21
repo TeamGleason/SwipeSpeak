@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 class SettingsVC: UITableViewController {
     
@@ -46,17 +47,47 @@ class SettingsVC: UITableViewController {
         cell.imageView?.image = cell.imageView?.image?.withRenderingMode(.alwaysTemplate)
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 5 && indexPath.row == 2 {
+            askToClearWordRanking()
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func askToClearWordRanking() {
+        let alertController = UIAlertController(title: NSLocalizedString("Clear Word Ranking", comment: ""),
+                                                message: NSLocalizedString("Are you sure you want to clear the world ranking?", comment: ""),
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: ""), style: .destructive) { (action: UIAlertAction) in
+            UserPreferences.shared.clearWordRating()
+            Analytics.logEvent("settings.reset_word_ranking", parameters: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(clearAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         if sender === announceLettersCountSwitch {
             UserPreferences.shared.announceLettersCount = sender.isOn
+            Analytics.logEvent("settings.announce_letters_direction", parameters: ["is_on": sender.isOn.description])
         } else if sender === vibrateSwitch {
             UserPreferences.shared.vibrate = sender.isOn
+            Analytics.logEvent("settings.vibrate", parameters: ["is_on": sender.isOn.description])
         } else if sender === longerPauseBetweenLettersSwitch {
             UserPreferences.shared.longerPauseBetweenLetters = sender.isOn
+            Analytics.logEvent("settings.longer_pause_between_letters", parameters: ["is_on": sender.isOn.description])
         } else if sender === enableAudioFeedbackSwitch {
             UserPreferences.shared.audioFeedback = sender.isOn
+            Analytics.logEvent("settings.enable_audio_feedback", parameters: ["is_on": sender.isOn.description])
         } else if sender === enableCouldSyncSwitch {
             UserPreferences.shared.enableCloudSync = sender.isOn
+            Analytics.logEvent("settings.enable_cloud_sync", parameters: ["is_on": sender.isOn.description])
         }
     }
     

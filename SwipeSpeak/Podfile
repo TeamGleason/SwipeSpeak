@@ -4,8 +4,11 @@ target 'SwipeSpeak' do
   use_frameworks!
 
   pod 'DZNEmptyDataSet',  '1.8.1'
-  pod 'Zephyr',           '3.0.1'
-  pod 'MarkdownView',     '1.1.0'
+  pod 'Zephyr',           '3.1.2'
+  pod 'MarkdownView',     '1.3.0'
 
   pod 'Firebase/Core'
+
+  pod 'Fabric',           '1.7.11'
+  pod 'Crashlytics',      '3.10.7'
 end

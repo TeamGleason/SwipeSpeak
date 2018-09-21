@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3dp-xf-2SI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3dp-xf-2SI">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Menlo.ttc">
-            <string>Menlo-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--SwipeSpeak-->
         <scene sceneID="rLm-9x-eLd">
@@ -92,12 +87,6 @@
                                                         <outletCollection property="gestureRecognizers" destination="ziA-AC-nAc" appends="YES" id="Sff-nc-Cp4"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ct-COQ">
-                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Word" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOT-Lm-YIR">
                                                     <rect key="frame" x="20" y="11" width="334" height="22"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -108,6 +97,12 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-ct-COQ">
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="XBE-ct-COQ" firstAttribute="bottom" secondItem="tLQ-4A-HCh" secondAttribute="bottomMargin" id="4ts-BG-RPT"/>
@@ -492,6 +487,7 @@
                         <outlet property="buildWordCancelButton" destination="IFp-Uy-Kpe" id="SMS-em-Kqf"/>
                         <outlet property="buildWordConfirmButton" destination="slV-xO-tGY" id="4dX-ad-6NY"/>
                         <outlet property="keyboardContainerView" destination="U5e-YT-ifk" id="ekZ-se-Lqo"/>
+                        <outlet property="keyboardMSMaster" destination="9nC-an-nwu" id="RB6-F6-jiO"/>
                         <outlet property="keysView2Strokes" destination="2Sf-VX-Ebe" id="g7D-pD-nc6"/>
                         <outlet property="keysView4Keys" destination="zQH-97-s0Z" id="wcp-qa-Pr3"/>
                         <outlet property="keysView6Keys" destination="qFA-T7-OXd" id="TTi-uw-W34"/>
@@ -851,6 +847,91 @@ Z X Y</string>
                         <constraint firstItem="bmJ-re-d4f" firstAttribute="height" secondItem="2Sf-VX-Ebe" secondAttribute="height" multiplier="1:2" constant="-12" id="vRF-HE-KdZ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" id="9nC-an-nwu">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="210"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-2g-0iK">
+                            <rect key="frame" x="202" y="8" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">J K L
+M   N</string>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wf7-Nb-JhN">
+                            <rect key="frame" x="105.33333333333331" y="8" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">F ✔︎ G
+H   I</string>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A B C D   E" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Jms-NU-Rcy">
+                            <rect key="frame" x="8" y="8" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SeO-oY-QOm">
+                            <rect key="frame" x="202" y="109" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">W   X
+Y   Z</string>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cgh-CI-cIa">
+                            <rect key="frame" x="105.33333333333331" y="109" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">S ✘ T
+U   V</string>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uUc-TO-GpL">
+                            <rect key="frame" x="8" y="109" width="90" height="93"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">O   P
+Q   R</string>
+                            <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uUc-TO-GpL" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="1JN-7M-jM1"/>
+                        <constraint firstItem="uUc-TO-GpL" firstAttribute="leading" secondItem="9nC-an-nwu" secondAttribute="leading" constant="8" id="4ya-Cw-fHW"/>
+                        <constraint firstItem="Jms-NU-Rcy" firstAttribute="top" secondItem="9nC-an-nwu" secondAttribute="top" constant="8" id="5hh-v5-RgP"/>
+                        <constraint firstAttribute="bottom" secondItem="Cgh-CI-cIa" secondAttribute="bottom" constant="8" id="8HT-ex-dJH"/>
+                        <constraint firstItem="Cgh-CI-cIa" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="Aaf-S4-d6g"/>
+                        <constraint firstAttribute="trailing" secondItem="SeO-oY-QOm" secondAttribute="trailing" constant="8" id="E2i-Yt-eGi"/>
+                        <constraint firstItem="SeO-oY-QOm" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="N5A-T4-RbL"/>
+                        <constraint firstAttribute="bottom" secondItem="SeO-oY-QOm" secondAttribute="bottom" constant="8" id="SLW-pv-ILf"/>
+                        <constraint firstItem="uoD-2g-0iK" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="Upj-tm-KNx"/>
+                        <constraint firstItem="uUc-TO-GpL" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="Vcz-2x-Ivu"/>
+                        <constraint firstItem="Jms-NU-Rcy" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="bjL-bq-fSn"/>
+                        <constraint firstItem="uoD-2g-0iK" firstAttribute="top" secondItem="9nC-an-nwu" secondAttribute="top" constant="8" id="cc3-vQ-0mV"/>
+                        <constraint firstItem="Jms-NU-Rcy" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="cjo-Bb-haj"/>
+                        <constraint firstItem="Wf7-Nb-JhN" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="fOh-Ap-Ipd"/>
+                        <constraint firstItem="Cgh-CI-cIa" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="foq-S0-2ee"/>
+                        <constraint firstItem="Wf7-Nb-JhN" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="gqk-Ib-WUh"/>
+                        <constraint firstItem="SeO-oY-QOm" firstAttribute="height" secondItem="9nC-an-nwu" secondAttribute="height" multiplier="1:2" constant="-12" id="hZ0-hz-bTX"/>
+                        <constraint firstItem="Cgh-CI-cIa" firstAttribute="centerX" secondItem="9nC-an-nwu" secondAttribute="centerX" id="nbx-Nq-hKe"/>
+                        <constraint firstItem="uoD-2g-0iK" firstAttribute="width" secondItem="9nC-an-nwu" secondAttribute="width" multiplier="1:3" constant="-10" id="pIz-LH-gRB"/>
+                        <constraint firstItem="Wf7-Nb-JhN" firstAttribute="top" secondItem="9nC-an-nwu" secondAttribute="top" constant="8" id="tgE-JC-fhh"/>
+                        <constraint firstAttribute="trailing" secondItem="uoD-2g-0iK" secondAttribute="trailing" constant="8" id="wc7-0L-R1w"/>
+                        <constraint firstAttribute="bottom" secondItem="uUc-TO-GpL" secondAttribute="bottom" constant="8" id="wo6-CH-qxt"/>
+                        <constraint firstItem="Wf7-Nb-JhN" firstAttribute="centerX" secondItem="9nC-an-nwu" secondAttribute="centerX" id="xGn-hD-uWb"/>
+                        <constraint firstItem="Jms-NU-Rcy" firstAttribute="leading" secondItem="9nC-an-nwu" secondAttribute="leading" constant="8" id="ze0-Wq-zIt"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="11.594202898550726" y="597.554347826087"/>
         </scene>
@@ -870,20 +951,16 @@ Z X Y</string>
             </objects>
             <point key="canvasLocation" x="619" y="449"/>
         </scene>
-        <!--Rotation HelperNVC-->
+        <!--Navigation Controller-->
         <scene sceneID="fQ9-u3-RaG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3dp-xf-2SI" customClass="RotationHelperNVC" customModule="SwipeSpeak" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3dp-xf-2SI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="W7l-7t-utP">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="rotatePhone" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="rotatePad" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="9Am-1Y-Xgg" kind="relationship" relationship="rootViewController" id="KvU-8k-kmw"/>
                     </connections>
@@ -898,5 +975,4 @@ Z X Y</string>
         <image name="ic_history" width="24" height="24"/>
         <image name="ic_settings" width="24" height="24"/>
     </resources>
-    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

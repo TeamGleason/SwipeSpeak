@@ -10,10 +10,13 @@
 import Foundation
 import UIKit
 
+typealias SwipeViewKeyNum = Int
+
 protocol SwipeViewDelegate {
-    func keyEntered(key: Int)
-    func firstStrokeEntered(key: Int)
-    func secondStrokeEntered(key: Int)
+    func keyEntered(key: SwipeViewKeyNum, isSwipe: Bool)
+    func firstStrokeEntered(key: SwipeViewKeyNum, isSwipe: Bool)
+    func secondStrokeEntered(key: SwipeViewKeyNum, isSwipe: Bool)
+    func longPressBegan()
 }
 
 // MARK: -
@@ -22,8 +25,8 @@ class SwipeView: UIView {
     
     // MARK: Properties
     
-    private var swipeDirectionList = [Int]()
-    var firstStroke: Int?
+    private var swipeDirectionList = [SwipeViewKeyNum]()
+    var firstStroke: SwipeViewKeyNum?
     
     private var path = UIBezierPath()
     private var previousPoint: CGPoint = CGPoint.zero
@@ -31,76 +34,54 @@ class SwipeView: UIView {
     private let keyboardContainerView: UIView?
     private let keyboardLabels: [UILabel]
     
+    private let isTwoStrokes: Bool
+    private let useTwoStrokesLogic: Bool
+
     var delegate: SwipeViewDelegate?
+    
+    var keysCount: Int {
+        return keyboardLabels.count
+    }
     
     // MARK: - Initialization
     
-    init(frame: CGRect, keyboardContainerView: UIView, keyboardLabels: [UILabel], isTwoStrokes: Bool, delegate: SwipeViewDelegate) {
+    init(frame: CGRect, keyboardContainerView: UIView, keyboardLabels: [UILabel], isTwoStrokes: Bool, useTwoStrokesLogic: Bool, delegate: SwipeViewDelegate) {
         self.keyboardContainerView = keyboardContainerView
         self.keyboardLabels = keyboardLabels
         self.delegate = delegate
-        
+        self.isTwoStrokes = isTwoStrokes
+        self.useTwoStrokesLogic = useTwoStrokesLogic
+
         super.init(frame: frame)
         
-        setup(isTwoStrokes: isTwoStrokes)
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.keyboardContainerView = nil
         self.keyboardLabels = []
+        self.isTwoStrokes = false
+        self.useTwoStrokesLogic = false
 
         super.init(coder: aDecoder)
         
         setup()
     }
     
-    private func setup(isTwoStrokes: Bool = false) {
+    private func setup() {
         self.backgroundColor = UIColor.clear
         
         self.isUserInteractionEnabled = true
         
-        if isTwoStrokes {
-            let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipeTwoStrokes(_:)))
-            pan.maximumNumberOfTouches = 1
-            self.addGestureRecognizer(pan)
-        } else {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-            self.addGestureRecognizer(tap)
-            
-            let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
-            pan.maximumNumberOfTouches = 1
-            self.addGestureRecognizer(pan)
-        }
-    }
-    
-    // MARK: - UIView
-
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard let hitView = keyboardContainerView?.hitTest(point, with: event) else {
-            return super.hitTest(point, with: event)
-        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.addGestureRecognizer(tap)
         
-        // Pass pass through events to keyboard labels
-        for keyView in keyboardLabels {
-            if keyView === hitView {
-                return super.hitTest(point, with: event)
-            }
-        }
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture(_:)))
+        self.addGestureRecognizer(longPress)
         
-        // Pass pass through events to labels and buttons
-        if hitView is UILabel || hitView is UIButton {
-            return hitView
-        }
-        
-        return super.hitTest(point, with: event)
-    }
-    
-    // MARK: - UIViewRendering
-    
-    override func draw(_ rect: CGRect) {
-        UIColor.red.setStroke()
-        path.lineWidth = 4.0
-        path.stroke()
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
+        pan.maximumNumberOfTouches = 1
+        self.addGestureRecognizer(pan)
     }
     
     // MARK: - Handle Swipe
@@ -114,11 +95,17 @@ class SwipeView: UIView {
         
         for i in 0 ..< keyboardLabels.count {
             if hitView === keyboardLabels[i] {
-                if UserPreferences.shared.audioFeedback {
-                    playSoundClick()
+                if isTwoStrokes {
+                    if firstStroke == nil {
+                        delegate?.firstStrokeEntered(key: i, isSwipe: false)
+                        firstStroke = i
+                    } else {
+                        delegate?.secondStrokeEntered(key: i, isSwipe: false)
+                        firstStroke = nil
+                    }
+                } else {
+                    delegate?.keyEntered(key: i, isSwipe: false)
                 }
-                
-                delegate?.keyEntered(key: i)
                 return
             }
         }
@@ -132,7 +119,7 @@ class SwipeView: UIView {
         switch recognizer.state {
         case .began:
             // When user starts swipe gesture, reset directionCount.
-            swipeDirectionList = Array<Int>(repeating: 0, count: UserPreferences.shared.keyboardLayout.rawValue)
+            swipeDirectionList = Array<Int>(repeating: 0, count: keysCount)
             
             // Make sure we clean previous gesture.
             path.removeAllPoints()
@@ -141,70 +128,20 @@ class SwipeView: UIView {
         case .changed:
             // When user is doing swipe gesture, find current velocity direction.
             let velocity = recognizer.velocity(in: self)
-            let keyIndex = SwipeView.keyIndexForSwipe(velocity: velocity, numberOfKeys: UserPreferences.shared.keyboardLayout.rawValue)
-            swipeDirectionList[keyIndex] += 1
             
-            // Add curve.
-            path.addQuadCurve(to: midPoint, controlPoint: previousPoint)
-            break
-        case .ended:
-            // When user completes swipe gesture, find the majority velocity direction during the swipe.
-            guard let max = swipeDirectionList.max(), max > 0 else {
-                return
-            }
-            
-            let majorityDirection = swipeDirectionList.index(of: max)!
-            delegate?.keyEntered(key: majorityDirection)
-            
-            if UserPreferences.shared.vibrate {
-                vibrate()
-            }
-            
-            if UserPreferences.shared.audioFeedback {
-                playSoundSwipe()
-            }
-            
-            // Clean the path.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.path.removeAllPoints()
-                self.setNeedsDisplay()
-            }
-            break
-        default:
-            break
-        }
-        
-        previousPoint = currentPoint
-        self.setNeedsDisplay()
-    }
-    
-    @objc func handleSwipeTwoStrokes(_ recognizer: UIPanGestureRecognizer) {
-        let currentPoint = recognizer.location(in: self)
-        let midPoint = CGPoint(x: (previousPoint.x + currentPoint.x) / 2,
-                               y: (previousPoint.y + currentPoint.y) / 2)
-        
-        switch recognizer.state {
-        case .began:
-            // When user starts swipe gesture, reset directionCount.
-            swipeDirectionList = Array<Int>(repeating: 0, count: 6)
-            
-            // Make sure we clean previous gesture.
-            path.removeAllPoints()
-            path.move(to: currentPoint)
-            break
-        case .changed:
-            // When user is doing swipe gesture, find current velocity direction.
-            let velocity = recognizer.velocity(in: self)
             let numberOfKeys: Int
-            
-            if firstStroke == nil {
-                numberOfKeys = -1
-            } else {
-                if firstStroke == 5 {
-                    numberOfKeys = -3
+            if isTwoStrokes && useTwoStrokesLogic {
+                if firstStroke == nil {
+                    numberOfKeys = -1
                 } else {
-                    numberOfKeys = -2
+                    if firstStroke == 5 {
+                        numberOfKeys = -3
+                    } else {
+                        numberOfKeys = -2
+                    }
                 }
+            } else {
+                numberOfKeys = keysCount
             }
             
             let keyIndex = SwipeView.keyIndexForSwipe(velocity: velocity, numberOfKeys: numberOfKeys)
@@ -221,30 +158,29 @@ class SwipeView: UIView {
             
             let majorityDirection = swipeDirectionList.index(of: max)!
             
-            if firstStroke == nil {
-                delegate?.firstStrokeEntered(key: majorityDirection)
-                firstStroke = majorityDirection
-                
-                if UserPreferences.shared.vibrate {
-                    vibrate()
-                }
-                
-                if UserPreferences.shared.audioFeedback {
-                    playSoundSwipe()
+            if isTwoStrokes {
+                if firstStroke == nil {
+                    delegate?.firstStrokeEntered(key: majorityDirection, isSwipe: true)
+                    firstStroke = majorityDirection
+                } else {
+                    let keyInt: SwipeViewKeyNum
+                    
+                    if useTwoStrokesLogic {
+                        //let letterValue = Int((UnicodeScalar(String(Constants.keyLetterGroupingSteve[firstStroke!][majorityDirection]))?.value)!)
+                        let keyLetterGroup = Constants.keyLetterGroupingSteve[firstStroke!]
+                        let key = keyLetterGroup[majorityDirection]
+                        let keyString = String(key)
+                        let keyUnicodeScalar = UnicodeScalar(keyString)!.value
+                        keyInt = SwipeViewKeyNum(keyUnicodeScalar)
+                    } else {
+                        keyInt = majorityDirection
+                    }
+       
+                    delegate?.secondStrokeEntered(key: keyInt, isSwipe: true)
+                    firstStroke = nil
                 }
             } else {
-                let letterValue = Int((UnicodeScalar(String(Constants.keyLetterGroupingSteve[firstStroke!][majorityDirection]))?.value)!)
-                delegate?.secondStrokeEntered(key: letterValue)
-                
-                firstStroke = nil
-                
-                if UserPreferences.shared.vibrate {
-                    vibrate()
-                }
-                
-                if UserPreferences.shared.audioFeedback {
-                    playSoundSwipe()
-                }
+                delegate?.keyEntered(key: majorityDirection, isSwipe: true)
             }
             
             // Clean the path.
@@ -260,6 +196,15 @@ class SwipeView: UIView {
         previousPoint = currentPoint
         self.setNeedsDisplay()
     }
+    
+    @objc func handleLongPressGesture(_ recognizer: UILongPressGestureRecognizer) {
+        guard recognizer.state == .began else {
+            return
+        }
+        
+        delegate?.longPressBegan()
+    }
+
 }
 
 // MARK: - Helper
@@ -358,5 +303,39 @@ extension SwipeView {
         return 0
     }
     
+}
+
+// MARK: - UIView
+
+extension SwipeView {
+    // MARK: - UIView
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let hitView = keyboardContainerView?.hitTest(point, with: event) else {
+            return super.hitTest(point, with: event)
+        }
+        
+        // Pass pass through events to keyboard labels
+        for keyView in keyboardLabels {
+            if keyView === hitView {
+                return super.hitTest(point, with: event)
+            }
+        }
+        
+        // Pass pass through events to labels and buttons
+        if hitView is UILabel || hitView is UIButton {
+            return hitView
+        }
+        
+        return super.hitTest(point, with: event)
+    }
+    
+    // MARK: UIViewRendering
+    
+    override func draw(_ rect: CGRect) {
+        UIColor.red.setStroke()
+        path.lineWidth = 4.0
+        path.stroke()
+    }
 }
 

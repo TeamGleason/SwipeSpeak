@@ -9,13 +9,13 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 
 class KeyboardSettingsVC: UITableViewController {
     
     private let rowLayoutMap: [Int: KeyboardLayout] = [0: .keys4,
-                                                       1: .keys6,
-                                                       2: .keys8,
-                                                       3: .strokes2]
+                                                       1: .strokes2,
+                                                       2: .msr]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,12 +24,11 @@ class KeyboardSettingsVC: UITableViewController {
         switch UserPreferences.shared.keyboardLayout {
         case .keys4:
             row = 0
-        case .keys6:
-            row = 1
-        case .keys8:
-            row = 2
         case .strokes2:
-            row = 3
+            row = 1
+        case .msr:
+            row = 2
+        default: return
         }
         
         if let selectedCell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
@@ -47,7 +46,10 @@ class KeyboardSettingsVC: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             
-            UserPreferences.shared.keyboardLayout = rowLayoutMap[indexPath.row]!
+            guard let keyboardLayout = rowLayoutMap[indexPath.row] else { return }
+            UserPreferences.shared.keyboardLayout = keyboardLayout
+            
+            Analytics.logEvent("select_keyboard", parameters: ["keyboard_type": keyboardLayout.localizedString()])
         }
     }
 }

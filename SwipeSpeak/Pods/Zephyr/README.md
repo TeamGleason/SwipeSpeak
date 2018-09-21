@@ -2,9 +2,7 @@
 
 ### Effortlessly sync UserDefaults over iCloud
 
-![Swift Support](https://img.shields.io/badge/Swift-3.1%2C%203.2%2C%204.0-orange.svg)
-
-[![Platform](https://img.shields.io/badge/Platforms-iOS%20%7c%20tvOS%20%7c%20watchOS-lightgray.svg?style=flat)](http://cocoadocs.org/docsets/Zephyr)
+![Swift Support](https://img.shields.io/badge/Swift-3.1%2C%203.2%2C%204.1-orange.svg) [![Platform](https://img.shields.io/badge/Platforms-iOS%20%7c%20tvOS-lightgray.svg?style=flat)](http://cocoadocs.org/docsets/Zephyr)
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/Zephyr.svg)]()  [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)]() [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/) [![CocoaPods](https://img.shields.io/cocoapods/dt/Zephyr.svg)](https://cocoapods.org/pods/Zephyr) [![CocoaPods](https://img.shields.io/cocoapods/dm/Zephyr.svg)](https://cocoapods.org/pods/Zephyr)
 ---
@@ -28,7 +26,7 @@ For the latest updates, refer to the [Releases](https://github.com/ArtSabintsev/
 
 | Swift Version |  Branch Name  | Will Continue to Receive Updates?
 | ------------- | ------------- |  -------------
-| 4.0  | master   | **Yes**
+| 4.1  | master   | **Yes**
 | 3.2  | swift3.2 | No
 | 3.1  | swift3.1  | No
 
@@ -49,7 +47,7 @@ pod 'Zephyr', :git => 'https://github.com/ArtSabintsev/Zephyr.git', :branch => '
 ```
 
 ### Carthage
-For Swift 4 support:
+For Swift 4.1 support:
 
 ``` swift
 github "ArtSabintsev/Zephyr"
@@ -92,7 +90,7 @@ In Xcode, open your app's project/workspace file:
 
 #### Integrate Zephyr into your App
 
-Before performing each sync, Zephyr automatically checks to see if the data in UserDefaults or NSUbiquitousKeyValueStore is newer. To make sure there's no overwriting going on in a fresh installation of your app on a new device that's connected to the same iCloud account, make sure that your UserDefaults are registered ***BEFORE*** calling any of the Zephyr methods.
+Before performing each sync, Zephyr automatically checks to see if the data in UserDefaults or NSUbiquitousKeyValueStore is newer. To make sure there's no overwriting going on in a fresh installation of your app on a new device that's connected to the same iCloud account, make sure that your UserDefaults are registered ***BEFORE*** calling any of the Zephyr methods. One way to easily achieve this is by using the [UserDefaults Register API](https://developer.apple.com/documentation/foundation/userdefaults/1417065-register).
 
 **Sync all UserDefaults**
 ```Swift

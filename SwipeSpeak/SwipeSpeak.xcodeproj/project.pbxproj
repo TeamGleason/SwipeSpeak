@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31656ADF20EEEAD700059AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31656ADE20EEEAD700059AFA /* Assets.xcassets */; };
 		B928F1E01FB49EEF00302E70 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */; };
 		B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */; };
 		B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */; };
@@ -18,7 +19,6 @@
 		B98C67B61FD87AD600C35FE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B98C67B51FD87AD600C35FE5 /* GoogleService-Info.plist */; };
 		B991E2281FAEE26F0038074E /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991E2271FAEE26F0038074E /* MainTVC.swift */; };
 		B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */ = {isa = PBXBuildFile; fileRef = B9E23BDA1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv */; };
-		B9F557D31FFA2DCD003DA8AF /* RotationHelperNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */; };
 		B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */; };
 		D6E2115834A64202A7D846AC /* Pods_SwipeSpeak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2DB48CB6BFD706DC18DD1B /* Pods_SwipeSpeak.framework */; };
 		DA0700191F0DA06B003BEE3D /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700181F0DA06B003BEE3D /* SwipeView.swift */; };
@@ -30,10 +30,10 @@
 		DA0700271F0DB116003BEE3D /* SentenceHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0700261F0DB116003BEE3D /* SentenceHistoryVC.swift */; };
 		DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */; };
 		DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57B1FD1F0D9EC100895E18 /* Main.storyboard */; };
-		DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA57B2001F0D9EC100895E18 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31656ADE20EEEAD700059AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		816F1DCA7BB8E6CB0883B7A2 /* Pods-SwipeSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.debug.xcconfig"; sourceTree = "<group>"; };
 		B928F1DF1FB49EEF00302E70 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		B93BCC9E1FD7F831007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-SwipeSpeak-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -48,7 +48,6 @@
 		B98C67B51FD87AD600C35FE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B991E2271FAEE26F0038074E /* MainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		B9E23BDA1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = word_frequency_english_ucrel.csv; sourceTree = "<group>"; };
-		B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationHelperNVC.swift; sourceTree = "<group>"; };
 		B9FD99F21FADFFEB00E34F9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C45FDF6BDB14ABD71E7730E4 /* Pods-SwipeSpeak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeSpeak.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak.release.xcconfig"; sourceTree = "<group>"; };
 		DA0700181F0DA06B003BEE3D /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		DA57B1F61F0D9EC100895E18 /* SwipeSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA57B1FE1F0D9EC100895E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA57B2001F0D9EC100895E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA57B2051F0D9EC100895E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC2DB48CB6BFD706DC18DD1B /* Pods_SwipeSpeak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeSpeak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,7 +119,6 @@
 				B95CB41A1FAFBE2500F705EB /* VoicesVC.swift */,
 				B98A9A011FB96FC5002D2FD9 /* AboutVC.swift */,
 				B93BCC9F1FD7F8DC007BFCC3 /* AcknowledgementsVC.swift */,
-				B9F557D21FFA2DCD003DA8AF /* RotationHelperNVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -148,10 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				DA57B1F91F0D9EC100895E18 /* AppDelegate.swift */,
+				31656ADE20EEEAD700059AFA /* Assets.xcassets */,
 				DA57B1FD1F0D9EC100895E18 /* Main.storyboard */,
 				B95CB4171FAFBCAA00F705EB /* Settings.storyboard */,
 				B9FD99F11FADFFEB00E34F9F /* LaunchScreen.storyboard */,
-				DA57B2001F0D9EC100895E18 /* Assets.xcassets */,
 				B9FD99F41FAE387600E34F9F /* View Controllers */,
 				DA07001C1F0DA15A003BEE3D /* WordPredictionEngine.swift */,
 				DA0700181F0DA06B003BEE3D /* SwipeView.swift */,
@@ -176,7 +173,7 @@
 				DA57B1F31F0D9EC100895E18 /* Frameworks */,
 				DA57B1F41F0D9EC100895E18 /* Resources */,
 				BF9DC38AD4ACB38871A3E0D0 /* [CP] Embed Pods Frameworks */,
-				06CC2F4A3980085F49A87F9D /* [CP] Copy Pods Resources */,
+				B9C89C842064D509008D12E6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -194,12 +191,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = TeamGleason;
 				TargetAttributes = {
 					DA57B1F51F0D9EC100895E18 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8YQUDE4F8S;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -232,11 +228,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA57B2011F0D9EC100895E18 /* Assets.xcassets in Resources */,
 				B93BCCA21FD7FA71007BFCC3 /* Pods-SwipeSpeak-acknowledgements.markdown in Resources */,
 				B9FD99F31FADFFEB00E34F9F /* LaunchScreen.storyboard in Resources */,
 				DA57B1FF1F0D9EC100895E18 /* Main.storyboard in Resources */,
 				B9E23BDB1FEAAFAD00EE3998 /* word_frequency_english_ucrel.csv in Resources */,
+				31656ADF20EEEAD700059AFA /* Assets.xcassets in Resources */,
 				B95CB4191FAFBCAA00F705EB /* Settings.storyboard in Resources */,
 				B98C67B61FD87AD600C35FE5 /* GoogleService-Info.plist in Resources */,
 			);
@@ -245,20 +241,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06CC2F4A3980085F49A87F9D /* [CP] Copy Pods Resources */ = {
+		B9C89C842064D509008D12E6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		BF9DC38AD4ACB38871A3E0D0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -268,7 +262,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwipeSpeak/Pods-SwipeSpeak-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
 				"${BUILT_PRODUCTS_DIR}/Zephyr/Zephyr.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -276,7 +270,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zephyr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -320,7 +314,6 @@
 				DA07001D1F0DA15A003BEE3D /* WordPredictionEngine.swift in Sources */,
 				DA0700231F0DA889003BEE3D /* KeyboardSettingsVC.swift in Sources */,
 				B95CB41B1FAFBE2500F705EB /* VoicesVC.swift in Sources */,
-				B9F557D31FFA2DCD003DA8AF /* RotationHelperNVC.swift in Sources */,
 				DA0700271F0DB116003BEE3D /* SentenceHistoryVC.swift in Sources */,
 				DA57B1FA1F0D9EC100895E18 /* AppDelegate.swift in Sources */,
 				B93BCCA01FD7F8DC007BFCC3 /* AcknowledgementsVC.swift in Sources */,
@@ -374,6 +367,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -381,6 +375,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -390,7 +385,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -431,6 +426,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -438,6 +434,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
