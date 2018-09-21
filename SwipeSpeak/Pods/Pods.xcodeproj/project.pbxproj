@@ -211,7 +211,6 @@
 		3B42FE84628FDBD84C632D0FEB1D003D /* FIRApp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRApp.m; path = Firebase/Core/FIRApp.m; sourceTree = "<group>"; };
 		3BB2610B456DB3304247C5E63ECC4055 /* FIRLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRLogger.h; path = Firebase/Core/Private/FIRLogger.h; sourceTree = "<group>"; };
 		3DE1939C06D6B7C3B1D80DF391EF8AA5 /* GULLoggerLevel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULLoggerLevel.h; path = GoogleUtilities/Logger/Public/GULLoggerLevel.h; sourceTree = "<group>"; };
-		4123FE63EC39A102B3643EA81B91A8B7 /* MeasurementNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeasurementNanoPB.framework; path = Frameworks/MeasurementNanoPB.framework; sourceTree = "<group>"; };
 		4249C17BC3B2349E9D6D18C4A93567F6 /* FIRComponentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRComponentType.h; path = Firebase/Core/Private/FIRComponentType.h; sourceTree = "<group>"; };
 		4347C580880A067A0BDE68437463B6C0 /* FIRComponentContainer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRComponentContainer.m; path = Firebase/Core/FIRComponentContainer.m; sourceTree = "<group>"; };
 		44A489366EA7444A75DF714EF85FAAE1 /* GoogleUtilities-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleUtilities-umbrella.h"; sourceTree = "<group>"; };
@@ -244,6 +243,7 @@
 		6DA1500B4E23E2B48EE51D6D003F9692 /* FirebaseCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCore-umbrella.h"; sourceTree = "<group>"; };
 		6E60D11995E9A25A58BA4BDDB529C97E /* GULReachabilityChecker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GULReachabilityChecker.m; path = GoogleUtilities/Reachability/GULReachabilityChecker.m; sourceTree = "<group>"; };
 		6FCACE98ACDC374C2B174FC1584FDE9B /* FIRComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRComponent.m; path = Firebase/Core/FIRComponent.m; sourceTree = "<group>"; };
+		700D106D66DB3FBB806BA910AD54FE25 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
 		72FB14D1E9C99B56C5B556C5006FCCEB /* GULAppDelegateSwizzler_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULAppDelegateSwizzler_Private.h; path = GoogleUtilities/AppDelegateSwizzler/Internal/GULAppDelegateSwizzler_Private.h; sourceTree = "<group>"; };
 		7380B0EEEA1FA84872D7E29D0D87EB9E /* GULAppEnvironmentUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULAppEnvironmentUtil.h; path = GoogleUtilities/Environment/third_party/GULAppEnvironmentUtil.h; sourceTree = "<group>"; };
 		7526C6BF3CFAA3B23A3E9DE15A81015E /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = nanopb.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -298,7 +298,6 @@
 		C5DBBB6EE3CD2749BD0A8A19FA936015 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		C7026974FAE3E32AE6F5F60D9D134198 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		CB11597F2736D0E6838DEC96E3460DE7 /* Pods-SwipeSpeak-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwipeSpeak-umbrella.h"; sourceTree = "<group>"; };
-		CBF9542E43D74AC336713224D0B0C0AA /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
 		CC7D5879BBEBD13807B41DFF6CC006B3 /* GULAppDelegateSwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULAppDelegateSwizzler.h; path = GoogleUtilities/AppDelegateSwizzler/Private/GULAppDelegateSwizzler.h; sourceTree = "<group>"; };
 		CF09C365CE02D9A327DCE5F65931B1CE /* Pods-SwipeSpeak-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeSpeak-resources.sh"; sourceTree = "<group>"; };
 		D381A744A2107967FEF99BD91A96B7EC /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
@@ -444,15 +443,6 @@
 			path = "../Target Support Files/FirebaseCore";
 			sourceTree = "<group>";
 		};
-		268A1A163C9802001E87E50723388FD4 /* GoogleAppMeasurement */ = {
-			isa = PBXGroup;
-			children = (
-				35AD5AF49BF262CE6E24E13513DE9B0C /* Frameworks */,
-			);
-			name = GoogleAppMeasurement;
-			path = GoogleAppMeasurement;
-			sourceTree = "<group>";
-		};
 		2C49DA7D4945883A692DB3C3295D1855 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,15 +469,6 @@
 				8486D6928B450C07F2D89201462D23DF /* GULReachabilityMessageCode.h */,
 			);
 			name = Reachability;
-			sourceTree = "<group>";
-		};
-		35AD5AF49BF262CE6E24E13513DE9B0C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CBF9542E43D74AC336713224D0B0C0AA /* GoogleAppMeasurement.framework */,
-				4123FE63EC39A102B3643EA81B91A8B7 /* MeasurementNanoPB.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3EBBE742BD86631072E14D70539FBA30 /* Support Files */ = {
@@ -660,6 +641,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		83A199E3F57FA95FBFD508250CA8DEF0 /* GoogleAppMeasurement */ = {
+			isa = PBXGroup;
+			children = (
+				EC98AF7C48E4089539AEBA671643B862 /* Frameworks */,
+			);
+			name = GoogleAppMeasurement;
+			path = GoogleAppMeasurement;
+			sourceTree = "<group>";
+		};
 		8A6E33F29DC6408F2EC66BF55897BDD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,7 +759,7 @@
 				B2AD5A27A64D7578AF11DD2175B9F276 /* FirebaseAnalytics */,
 				4D1E83A1DB557CCC004709E97079DC72 /* FirebaseCore */,
 				9DE81645F998A91E773E2D7117FBFBC4 /* FirebaseInstanceID */,
-				268A1A163C9802001E87E50723388FD4 /* GoogleAppMeasurement */,
+				83A199E3F57FA95FBFD508250CA8DEF0 /* GoogleAppMeasurement */,
 				8E3D26DAA150DDD2E4BCD65327D5AA05 /* GoogleUtilities */,
 				95D5D5DB2B71DDFFA720C4DD55963DD2 /* MarkdownView */,
 				8A896B1A7E09A16E6ECDD227E06C634E /* nanopb */,
@@ -890,6 +880,14 @@
 				D799C2033700FB9B6BC81CBEA3CA3F5D /* Pods-SwipeSpeak */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EC98AF7C48E4089539AEBA671643B862 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				700D106D66DB3FBB806BA910AD54FE25 /* GoogleAppMeasurement.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1571,38 +1569,6 @@
 			};
 			name = Debug;
 		};
-		62430456484B97BD28A90636A9A3CE01 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B9E69C1B4B7EE7E9874DC3A9DE47A33 /* Zephyr.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
-				PRODUCT_MODULE_NAME = Zephyr;
-				PRODUCT_NAME = Zephyr;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		6EB651BD18A29CD78579FC18B61FB937 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E9DF4E51BA86E755E3BDDF408D14F98 /* GoogleUtilities.xcconfig */;
@@ -1717,6 +1683,38 @@
 			};
 			name = Debug;
 		};
+		ABB5DD2C61069B2900DDC1EC452658F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9E69C1B4B7EE7E9874DC3A9DE47A33 /* Zephyr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
+				PRODUCT_MODULE_NAME = Zephyr;
+				PRODUCT_NAME = Zephyr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		BD332565ADDB3E0F266768CF9ECBD55A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 302F02AEC2D5215E1E11D06C31634D66 /* FirebaseCore.xcconfig */;
@@ -1796,39 +1794,6 @@
 			};
 			name = Release;
 		};
-		D8AD8975546A6D47603F02C0ECA92169 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B9E69C1B4B7EE7E9874DC3A9DE47A33 /* Zephyr.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
-				PRODUCT_MODULE_NAME = Zephyr;
-				PRODUCT_NAME = Zephyr;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		EC74BEA18B2458AE6F4A1698C13D2B50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 302F02AEC2D5215E1E11D06C31634D66 /* FirebaseCore.xcconfig */;
@@ -1858,6 +1823,39 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		F45FD92E3D370E44CE64F96AF6881D51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9E69C1B4B7EE7E9874DC3A9DE47A33 /* Zephyr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Zephyr/Zephyr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zephyr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zephyr/Zephyr.modulemap";
+				PRODUCT_MODULE_NAME = Zephyr;
+				PRODUCT_NAME = Zephyr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		F6E311BD5995BFCDFEE2CB4DA90ED3D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1990,8 +1988,8 @@
 		64611438623A814B8F51D2442F9E6A42 /* Build configuration list for PBXNativeTarget "Zephyr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				62430456484B97BD28A90636A9A3CE01 /* Debug */,
-				D8AD8975546A6D47603F02C0ECA92169 /* Release */,
+				ABB5DD2C61069B2900DDC1EC452658F9 /* Debug */,
+				F45FD92E3D370E44CE64F96AF6881D51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
