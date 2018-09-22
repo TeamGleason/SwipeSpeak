@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import FirebaseAnalytics
+import SafariServices
 
 class SettingsVC: UITableViewController {
     
@@ -50,9 +51,15 @@ class SettingsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 5 && indexPath.row == 2 {
             askToClearWordRanking()
+        } else if indexPath.section == 6 && indexPath.row == 0 {
+            showTutorial()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func showTutorial() {
+        present(SFSafariViewController(url: Constants.tutorialURL), animated: true, completion: nil)
     }
     
     private func askToClearWordRanking() {

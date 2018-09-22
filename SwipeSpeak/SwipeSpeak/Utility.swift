@@ -13,7 +13,11 @@ import AVFoundation
 
 typealias KeyboardKey = Int
 
-struct Constants {    
+struct Constants {
+    
+    static let tutorialURL = URL(string: "https://teamgleason.github.io/SwipeSpeak/")!
+    static let tutorialShownKey = "TutorialShownKey"
+
     static let defaultWordFrequency = 99999
 
     static let keyLetterGrouping4Keys = ["abcdef", "ghijkl", "mnopqrs", "tuvwxyz"]
