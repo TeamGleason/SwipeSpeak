@@ -8,6 +8,10 @@ SwipeSpeak is an iOS app that allows people to communicate with eye gestures. Th
 
 SwipeSpeak is an open-source project created by <a href="http://www.teamgleason.org/"/>Team Gleason</a>. Please keep in mind that it is a **_research prototype_** rather than a polished commercial product; we hope that the community finds value in the new interaction style embodied by this app and continues to improve it via the open-source project.
 
+# Video Overview
+
+See our [overview page](https://teamgleason.github.io/SwipeSpeak/) at: https://teamgleason.github.io/SwipeSpeak/
+
 # Typing with SwipeSpeak
 
 <img src="/assets/images/typing_TASK.jpg" alt="Word Predictions Update After Each Gesture in This Four-gesture Sequence to Spell TASK." width="80%">
